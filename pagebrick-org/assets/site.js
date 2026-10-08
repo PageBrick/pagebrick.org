@@ -64,6 +64,54 @@ if (!matchMedia('(hover: hover)').matches) {
     document.querySelectorAll('.flip').forEach(card => card.addEventListener('click', () => card.classList.toggle('flipped')));
 }
 
+// Lights wander along the joints of the brick wall on the cards' front (.flip-front::before): courses 12px tall,
+// bricks 48px long, every other course shifted by half a brick. Each crossing has one vertical joint, up or down.
+// Every card draws its own pace (speed, trail, turns, route length, rests, lights), and every route is new.
+const svgNs = 'http://www.w3.org/2000/svg';
+const between = (min, max) => min + Math.random() * (max - min);
+if (!calm) document.querySelectorAll('.flip-front').forEach(front => {
+    const svg = front.insertBefore(document.createElementNS(svgNs, 'svg'), front.firstChild);
+    svg.setAttribute('class', 'flip-trails');
+    const pace = {speed: between(16, 34), trail: between(30, 90), turns: between(.2, .65), steps: between(6, 20), rest: between(300, 3500),
+        easing: Math.random() < .5 ? 'ease-in-out' : 'linear'};
+    const wander = () => {
+        const cols = Math.floor(front.clientWidth / 24), rows = Math.floor(front.clientHeight * .55 / 12);
+        if (cols < 2 || rows < 2) return;
+        let i = 1 + Math.floor(Math.random() * (cols - 1)), k = 1 + Math.floor(Math.random() * (rows - 1));
+        let dir = Math.random() < .5 ? -1 : 1, turned = false, length = 0, d = `M${i * 24 + .5} ${k * 12 + .5}`;
+        for (let step = 0, steps = pace.steps * between(.6, 1.4); step < steps; step++) {
+            const joint = (i + k) % 2 === 0 ? 1 : -1;
+            if (!turned && Math.random() < pace.turns && k + joint >= 0 && k + joint <= rows) {
+                k += joint;
+                length += 12;
+                turned = true;
+            } else {
+                if (turned) dir = Math.random() < .5 ? -1 : 1;
+                if (i + dir < 0 || i + dir > cols) dir = -dir;
+                i += dir;
+                length += 24;
+                turned = false;
+            }
+            d += ` L${i * 24 + .5} ${k * 12 + .5}`;
+        }
+        // A bright head and a fading trail, moving together from one end of the route to the other.
+        const trail = pace.trail * between(.8, 1.2), paths = [['trail', trail], ['head', 8]].map(([name, dash]) => {
+            const path = svg.appendChild(document.createElementNS(svgNs, 'path'));
+            path.setAttribute('d', d);
+            path.setAttribute('class', name);
+            path.style.strokeDasharray = `${dash} ${length + trail}`;
+            return path.animate([{strokeDashoffset: dash}, {strokeDashoffset: dash - trail - length}],
+                {duration: (length + trail) * pace.speed * between(.85, 1.15), easing: pace.easing});
+        });
+        paths[0].onfinish = () => {
+            paths.forEach(animation => animation.effect.target.remove());
+            setTimeout(wander, pace.rest * between(.5, 1.5));
+        };
+    };
+    const lights = Math.round(between(1, 2.6) + front.clientWidth * front.clientHeight / 90000);
+    for (let n = 0; n < lights; n++) setTimeout(wander, between(0, 4000));
+});
+
 // The screenshot leans a little towards the mouse.
 document.querySelectorAll('[data-tilt]').forEach(el => {
     if (calm || !matchMedia('(hover: hover)').matches) return;

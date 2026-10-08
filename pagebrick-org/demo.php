@@ -76,7 +76,7 @@ return [
                 'testimonials' => ['_visible' => '0'],
                 'cta' => [
                     'title' => 'Free and open source',
-                    'text' => 'Licensed under the GPL-3.0. Made in Brazil by Alcateia Digital and built in the open on GitHub.',
+                    'text' => 'Licensed under the GPL-3.0. Made in Brazil and built in the open on GitHub.',
                     'button_label' => 'Star on GitHub',
                     'button_link' => $repo,
                 ],
@@ -144,7 +144,7 @@ return [
                         'testimonials' => ['_visible' => '0'],
                         'cta' => [
                             'title' => 'Livre e de código aberto',
-                            'text' => 'Licença GPL-3.0. Feito no Brasil pela Alcateia Digital e desenvolvido abertamente no GitHub.',
+                            'text' => 'Licença GPL-3.0. Feito no Brasil e desenvolvido abertamente no GitHub.',
                             'button_label' => 'Dar uma estrela no GitHub',
                             'button_link' => $repo,
                         ],
@@ -211,7 +211,7 @@ return [
                         'testimonials' => ['_visible' => '0'],
                         'cta' => [
                             'title' => 'Libre y de código abierto',
-                            'text' => 'Licencia GPL-3.0. Hecho en Brasil por Alcateia Digital y desarrollado abiertamente en GitHub.',
+                            'text' => 'Licencia GPL-3.0. Hecho en Brasil y desarrollado abiertamente en GitHub.',
                             'button_label' => 'Dar una estrella en GitHub',
                             'button_link' => $repo,
                         ],
@@ -223,7 +223,7 @@ return [
                 'intro' => 'Most company websites need ten pages, a contact form and a way to change a phone number without calling a developer. PageBrick is built for exactly that.',
                 'body' => '<h2>Why another CMS</h2><p>General-purpose systems grew to do everything, and their panels grew with them. A bakery, a law firm or a clinic doesn’t need that. They need their site to look right, stay up and be easy to update. Agencies need to build those sites quickly and know that an update won’t break them a year later.</p>'
                     . '<h2>Principles</h2><ul><li><strong>Simple for the owner.</strong> Every page is a short form. The layout can’t be broken by what gets typed.</li><li><strong>Free for the developer.</strong> The theme owns every byte of the front end, or the front end lives elsewhere and reads the content API.</li><li><strong>Safe to update.</strong> Compatibility is a promise enforced by tests, and a broken update undoes itself.</li><li><strong>Private by default.</strong> No cookies or trackers for visitors. Fonts and photos are served by the site itself.</li></ul>'
-                    . '<h2>Who makes it</h2><p>PageBrick is made by Alcateia Digital, an agency in Brazil that builds websites for small and medium businesses. It is developed in the open on GitHub, and contributions are welcome.</p>'
+                    . '<h2>How it is made</h2><p>PageBrick is made in Brazil and developed in the open on GitHub. Anyone can read the code, report a problem or suggest an improvement, and contributions are welcome.</p>'
                     . '<h2>License</h2><p>PageBrick is free software under the GNU General Public License, version 3 or later. You can use it for any site, change it and share it.</p>',
             ],
             'translations' => [
@@ -233,7 +233,7 @@ return [
                         'intro' => 'A maioria dos sites de empresa precisa de dez páginas, um formulário de contato e um jeito de trocar o telefone sem ligar para o desenvolvedor. O PageBrick foi feito exatamente para isso.',
                         'body' => '<h2>Por que mais um CMS</h2><p>Os sistemas de uso geral cresceram para fazer de tudo, e os painéis cresceram junto. Uma padaria, um escritório de advocacia ou uma clínica não precisam disso. Eles precisam que o site fique bonito, fique no ar e seja fácil de atualizar. E as agências precisam montar esses sites rápido e saber que uma atualização não vai quebrá-los daqui a um ano.</p>'
                             . '<h2>Princípios</h2><ul><li><strong>Simples para quem é dono.</strong> Cada página é um formulário curto. O que for digitado não quebra o layout.</li><li><strong>Livre para quem desenvolve.</strong> O tema é dono de cada byte do front-end, ou o front-end fica em outro lugar e lê a API de conteúdo.</li><li><strong>Seguro de atualizar.</strong> A compatibilidade é uma promessa garantida por testes, e uma atualização que quebra se desfaz sozinha.</li><li><strong>Privado por padrão.</strong> Nada de cookies ou rastreadores para quem visita. Fontes e fotos vêm do próprio site.</li></ul>'
-                            . '<h2>Quem faz</h2><p>O PageBrick é feito pela Alcateia Digital, uma agência brasileira que cria sites para pequenas e médias empresas. Ele é desenvolvido abertamente no GitHub, e contribuições são bem-vindas.</p>'
+                            . '<h2>Como é feito</h2><p>O PageBrick é feito no Brasil e desenvolvido abertamente no GitHub. Qualquer pessoa pode ler o código, relatar um problema ou sugerir uma melhoria, e contribuições são bem-vindas.</p>'
                             . '<h2>Licença</h2><p>O PageBrick é software livre, sob a GNU General Public License, versão 3 ou posterior. Você pode usar em qualquer site, modificar e compartilhar.</p>',
                     ]],
                 'es' => ['title' => 'Nosotros', 'slug' => 'nosotros',
@@ -242,7 +242,7 @@ return [
                         'intro' => 'La mayoría de los sitios de empresa necesitan diez páginas, un formulario de contacto y una forma de cambiar el teléfono sin llamar a un desarrollador. PageBrick está hecho justo para eso.',
                         'body' => '<h2>Por qué otro CMS</h2><p>Los sistemas de uso general crecieron para hacer de todo, y sus paneles crecieron con ellos. Una panadería, un estudio jurídico o una clínica no necesitan eso. Necesitan que su sitio se vea bien, esté en línea y sea fácil de actualizar. Y las agencias necesitan armar esos sitios rápido y saber que una actualización no los va a romper dentro de un año.</p>'
                             . '<h2>Principios</h2><ul><li><strong>Simple para el dueño.</strong> Cada página es un formulario corto. Lo que se escriba no rompe el diseño.</li><li><strong>Libre para el desarrollador.</strong> El tema es dueño de cada byte del front-end, o el front-end vive en otro lugar y lee la API de contenido.</li><li><strong>Seguro de actualizar.</strong> La compatibilidad es una promesa garantizada por pruebas, y una actualización que falla se deshace sola.</li><li><strong>Privado por defecto.</strong> Sin cookies ni rastreadores para los visitantes. Las fuentes y las fotos las sirve el propio sitio.</li></ul>'
-                            . '<h2>Quién lo hace</h2><p>PageBrick lo hace Alcateia Digital, una agencia de Brasil que crea sitios para pequeñas y medianas empresas. Se desarrolla abiertamente en GitHub, y las contribuciones son bienvenidas.</p>'
+                            . '<h2>Cómo se hace</h2><p>PageBrick se hace en Brasil y se desarrolla abiertamente en GitHub. Cualquiera puede leer el código, reportar un problema o sugerir una mejora, y las contribuciones son bienvenidas.</p>'
                             . '<h2>Licencia</h2><p>PageBrick es software libre bajo la GNU General Public License, versión 3 o posterior. Puedes usarlo en cualquier sitio, modificarlo y compartirlo.</p>',
                     ]],
             ]],

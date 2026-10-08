@@ -2,6 +2,17 @@
 // Helpers of the pagebrick.org theme (loaded once by theme.php).
 
 /**
+ * A menu whose links to PageBrick's docs lead to the docs in the page's language: a menu link to another site is the
+ * same in every language, and the docs live at docs/en, docs/pt-BR and docs/es.
+ */
+function pborg_menu_html(string $location, string $class): string
+{
+    $html = pb_menu_html($location, $class);
+    $docs = ['pt-BR' => 'pt-BR', 'es' => 'es'][pb_content_locale()] ?? null;
+    return $docs === null ? $html : str_replace('/PageBrick/pagebrick/tree/main/docs/en', "/PageBrick/pagebrick/tree/main/docs/$docs", $html);
+}
+
+/**
  * Star count of a GitHub repository, like "78k", or '' while unknown or zero. The server asks GitHub at most every
  * six hours and keeps the answer, so visitors never talk to GitHub and a slow GitHub never slows the site.
  */

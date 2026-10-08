@@ -44,6 +44,13 @@ return [
     'Veja acontecer' => 'See it happen',
     'Voltar ao começo' => 'Back to the start',
     'Veja o código' => 'See the code',
+    'Recursos' => 'Features',
+    'Cards' => 'Cards',
+    'Card' => 'Card',
+    'Adicionar card' => 'Add card',
+    'Frase na frente do card' => 'Line on the front of the card',
+    'Texto no verso do card' => 'Text on the back of the card',
+    'Aparece quando a pessoa passa o mouse no card.' => 'Shows when the mouse is over the card.',
     // also used by the default theme
     'Pular para o conteúdo' => 'Skip to content',
     'Menu' => 'Menu',

@@ -44,6 +44,30 @@ function pborg_slide_text(string $label, string $hover = ''): string
     return '<span class="slide-text"><span>' . $label . $arrow . '</span><span aria-hidden="true">' . ($hover !== '' ? $hover : $label) . $arrow . '</span></span>';
 }
 
+/**
+ * Sizes of $count cards in a 4-column mosaic that always closes a rectangle, as CSS classes in order: blocks of two
+ * rows with four cards (one big, one wide) or five (one tall, two wide), mirrored in turn, and 2 or 3 cards share a row.
+ * The grid's normal placement packs each block whole; see .mosaic in style.css.
+ */
+function pborg_mosaic(int $count): array
+{
+    $blocks = [
+        5 => [['tall', 'wide', '', '', 'wide'], ['wide', '', 'tall', '', 'wide']],
+        4 => [['big', '', '', 'wide'], ['', '', 'big', 'wide']],
+        3 => [['wide', '', '']],
+        2 => [['wide', 'wide']],
+        1 => [['full']],
+    ];
+    $sizes = [];
+    for ($i = 0; $count > 0; $i++) {
+        $take = in_array($count, [5, 7], true) ? 5 : min(4, $count); // 5 and 7 take five: no card is left alone
+        $shapes = $blocks[$take];
+        array_push($sizes, ...$shapes[$i % count($shapes)]);
+        $count -= $take;
+    }
+    return $sizes;
+}
+
 /** The light sweep of a "command" control. */
 function pborg_shine(): string
 {

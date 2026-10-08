@@ -1,0 +1,11 @@
+{
+    "name": "pagebrick.org",
+    "version": "1.0.0",
+    "description": "Tema do site do PageBrick: limpo, claro e direto, com o botão do GitHub no topo.",
+    "author": "PageBrick",
+    "api": 1,
+    "i18n": {
+        "en": {"description": "The theme of the PageBrick website: clean, light and direct, with the GitHub button at the top."},
+        "es": {"description": "Tema del sitio de PageBrick: limpio, claro y directo, con el botón de GitHub arriba."}
+    }
+}

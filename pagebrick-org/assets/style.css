@@ -153,17 +153,10 @@ h1, h2, h3 { margin: 0; color: var(--ink); }
 .flip:hover .flip-caption > div { transform: translateY(-4px); }
 .flip-icon { flex: none; width: 18px; height: 18px; margin-bottom: 3px; color: var(--brick); transition: transform .3s; }
 .flip:hover .flip-icon { transform: rotate(-12deg) scale(1.1); }
-/* Brick-colored glows rising and fading in turn above the caption. */
-.flip-glow { position: absolute; top: 38%; left: 50%; width: var(--ring, 50px); height: var(--ring, 50px); transform: translate(-50%, -50%); }
-.flip-glow span { position: absolute; inset: 0; border-radius: 50%; opacity: 0; box-shadow: 0 0 50px rgba(210, 78, 43, .5);
-    animation: glow 3s linear infinite; animation-delay: calc(var(--d) * .5s); }
-.flip:hover .flip-glow span { animation-duration: 2s; }
-@keyframes glow {
-    0% { opacity: 0; transform: scale(2); }
-    50% { opacity: 1; transform: translateY(-5px) scale(1); }
-    100% { opacity: 0; transform: translateY(5px) scale(.1); }
-}
-.big .flip-glow { --ring: 90px; }
+/* A still brick wall above the caption, fading out towards it. */
+.flip-front::before { content: ""; position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='24'%3E%3Cpath d='M0 .5h48M0 12.5h48M.5 0v12M24.5 12v12' fill='none' stroke='%23111214' stroke-opacity='.07'/%3E%3C/svg%3E");
+    -webkit-mask-image: linear-gradient(#000 10%, transparent 65%); mask-image: linear-gradient(#000 10%, transparent 65%); }
 .big .flip-front h2 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 300; letter-spacing: -.02em; }
 .big .flip-front p { font-size: 1rem; }
 .flip-back { display: flex; flex-direction: column; gap: 10px; padding: 24px; transform: rotateY(180deg); }
@@ -308,6 +301,4 @@ h1, h2, h3 { margin: 0; color: var(--ink); }
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; animation: none !important; }
-    .hero-shot { transform: none !important; }
-    .flip-glow span:first-child { opacity: .8; transform: scale(.8); }
-}
+    .hero-shot { transform: none !important; }}

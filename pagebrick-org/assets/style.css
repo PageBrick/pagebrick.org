@@ -131,6 +131,49 @@ h1, h2, h3 { margin: 0; color: var(--ink); }
 .card p { margin: 0; color: var(--muted); font-size: .97rem; font-weight: 400; }
 .card-image { display: block; margin: -28px -28px 24px; width: calc(100% + 56px); max-width: none; border-radius: var(--radius) var(--radius) 0 0; }
 
+/* Features: cards that turn over on hover, in a mosaic that closes a rectangle
+   (sizes from pborg_mosaic). Both faces share one grid cell, so the card is as tall as its longer face. */
+.mosaic { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(210px, auto); gap: 16px; }
+.mosaic .wide { grid-column: span 2; }
+.mosaic .full { grid-column: span 4; }
+.mosaic .tall { grid-row: span 2; }
+.mosaic .big { grid-column: span 2; grid-row: span 2; }
+.flip { display: grid; border-radius: 16px; perspective: 2000px; }
+.flip:focus-visible { outline-offset: 4px; }
+.flip-inner { display: grid; transform-style: preserve-3d; transition: transform .5s cubic-bezier(.77, 0, .175, 1); }
+.flip:hover .flip-inner, .flip:focus-visible .flip-inner { transform: rotateY(180deg); }
+.flip-front, .flip-back { grid-area: 1 / 1; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(180deg, #efefef, var(--surface) 70%);
+    -webkit-backface-visibility: hidden; backface-visibility: hidden; box-shadow: 0 1px 2px rgba(17, 18, 20, .04); transition: box-shadow .5s; }
+.flip:hover .flip-front, .flip:hover .flip-back { box-shadow: 0 24px 40px -28px rgba(17, 18, 20, .45); }
+.flip h2 { font-size: 1.125rem; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; }
+.flip-front { position: relative; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; padding: 20px 22px; }
+.flip-front p { margin: 6px 0 0; color: var(--muted); font-size: .92rem; font-weight: 400; line-height: 1.45; }
+.flip-caption { position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.flip-caption > div { transition: transform .5s cubic-bezier(.16, 1, .3, 1); }
+.flip:hover .flip-caption > div { transform: translateY(-4px); }
+.flip-icon { flex: none; width: 18px; height: 18px; margin-bottom: 3px; color: var(--brick); transition: transform .3s; }
+.flip:hover .flip-icon { transform: rotate(-12deg) scale(1.1); }
+/* Brick-colored glows rising and fading in turn above the caption. */
+.flip-glow { position: absolute; top: 38%; left: 50%; width: var(--ring, 50px); height: var(--ring, 50px); transform: translate(-50%, -50%); }
+.flip-glow span { position: absolute; inset: 0; border-radius: 50%; opacity: 0; box-shadow: 0 0 50px rgba(210, 78, 43, .5);
+    animation: glow 3s linear infinite; animation-delay: calc(var(--d) * .5s); }
+.flip:hover .flip-glow span { animation-duration: 2s; }
+@keyframes glow {
+    0% { opacity: 0; transform: scale(2); }
+    50% { opacity: 1; transform: translateY(-5px) scale(1); }
+    100% { opacity: 0; transform: translateY(5px) scale(.1); }
+}
+.big .flip-glow { --ring: 90px; }
+.big .flip-front h2 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 300; letter-spacing: -.02em; }
+.big .flip-front p { font-size: 1rem; }
+.flip-back { display: flex; flex-direction: column; gap: 10px; padding: 24px; transform: rotateY(180deg); }
+.flip-back p { margin: 0; color: var(--muted); font-size: .95rem; font-weight: 400; line-height: 1.55; }
+.flip-back::after { content: ""; width: 28px; height: 2px; margin-top: auto; background: var(--brick); }
+.big .flip-back { gap: 16px; padding: clamp(28px, 3.5vw, 44px); }
+.big .flip-back h2 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); font-weight: 300; letter-spacing: -.02em; }
+.big .flip-back p, .tall .flip-back p { max-width: 36ch; font-size: 1.05rem; }
+.flip.flipped .flip-inner { transform: rotateY(180deg); } /* a tap, on touch screens (site.js) */
+
 .split { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(40px, 6vw, 80px); align-items: center; }
 .split h2 { margin-bottom: 24px; }
 
@@ -252,8 +295,19 @@ h1, h2, h3 { margin: 0; color: var(--ink); }
     .nav-list a[aria-current]::before { left: 0; }
     .hero-grid, .split { grid-template-columns: 1fr; }
 }
+/* The mosaic becomes two columns, then one; an odd last card takes the whole row, so it still closes. */
+@media (max-width: 1000px) {
+    .mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .mosaic > .flip { grid-column: auto; grid-row: auto; }
+    .mosaic > .flip:last-child:nth-child(odd) { grid-column: span 2; }
+}
+@media (max-width: 600px) {
+    .mosaic { grid-template-columns: 1fr; }
+    .mosaic > .flip:last-child:nth-child(odd) { grid-column: auto; }
+}
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     * { transition: none !important; animation: none !important; }
     .hero-shot { transform: none !important; }
+    .flip-glow span:first-child { opacity: .8; transform: scale(.8); }
 }

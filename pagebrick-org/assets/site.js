@@ -59,6 +59,11 @@ document.querySelectorAll('[data-copy]').forEach(button => button.addEventListen
     } catch (e) { /* no clipboard: nothing to do */ }
 }));
 
+// Feature cards turn over on hover; touch screens have no hover, so a tap does it.
+if (!matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.flip').forEach(card => card.addEventListener('click', () => card.classList.toggle('flipped')));
+}
+
 // The screenshot leans a little towards the mouse.
 document.querySelectorAll('[data-tilt]').forEach(el => {
     if (calm || !matchMedia('(hover: hover)').matches) return;

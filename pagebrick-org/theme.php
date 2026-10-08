@@ -41,6 +41,22 @@ return [
         'services' => ['fields' => [
             'cta_button_hover' => ['type' => 'text', 'label' => __('Texto do botão da chamada final ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
         ]],
+        // Cards that turn over on hover, in a mosaic that always closes a rectangle (templates/features.php).
+        'features' => ['label' => __('Recursos'), 'fields' => [
+            'intro' => ['type' => 'textarea', 'label' => __('Introdução')],
+            'items' => $list(__('Cards'), __('Card'), __('Adicionar card'), [
+                'title' => ['type' => 'text', 'label' => __('Título')],
+                'summary' => ['type' => 'text', 'label' => __('Frase na frente do card')],
+                'text' => ['type' => 'textarea', 'label' => __('Texto no verso do card'), 'help' => __('Aparece quando a pessoa passa o mouse no card.')],
+            ]),
+            'cta' => ['type' => 'group', 'label' => __('Chamada final'), 'toggle' => true, 'fields' => [
+                'title' => ['type' => 'text', 'label' => __('Título')],
+                'text' => ['type' => 'textarea', 'label' => __('Texto')],
+                'button_label' => ['type' => 'text', 'label' => __('Texto do botão')],
+                'button_hover' => ['type' => 'text', 'label' => __('Texto do botão ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
+                'button_link' => ['type' => 'link', 'label' => __('O botão leva para')],
+            ]],
+        ]],
     ],
     'settings' => [
         'project' => ['type' => 'group', 'label' => __('Projeto'), 'fields' => [

@@ -1,0 +1,32 @@
+<?php
+// English texts of the pagebrick.org theme: Portuguese text given to __() => translation.
+return [
+    'Texto do segundo botão do destaque' => 'Hero second button text',
+    'O segundo botão leva para' => 'The second button goes to',
+    'Linha embaixo dos botões' => 'Line under the buttons',
+    'Fatos curtos separados por ·, por exemplo: PHP 8.2 · MySQL · GPL-3.0' => 'Short facts separated by ·, for example: PHP 8.2 · MySQL · GPL-3.0',
+    'Para desenvolvedores' => 'For developers',
+    'Exemplo de código' => 'Code sample',
+    'Texto do link' => 'Link text',
+    'A promessa' => 'The promise',
+    'Garantias' => 'Guarantees',
+    'Garantia' => 'Guarantee',
+    'Adicionar garantia' => 'Add guarantee',
+    'Instalação' => 'Install',
+    'Passos' => 'Steps',
+    'Passo' => 'Step',
+    'Adicionar passo' => 'Add step',
+    'Projeto' => 'Project',
+    'Repositório no GitHub' => 'GitHub repository',
+    'Mostra no topo o botão do GitHub com o número de estrelas.' => 'Shows the GitHub button with the star count at the top.',
+    'PageBrick no GitHub, %s estrelas' => 'PageBrick on GitHub, %s stars',
+    'PageBrick no GitHub' => 'PageBrick on GitHub',
+    'Passo %d' => 'Step %d',
+    'Acompanhe no GitHub' => 'Follow it on GitHub',
+    // also used by the default theme
+    'Pular para o conteúdo' => 'Skip to content',
+    'Menu' => 'Menu',
+    'Feito com PageBrick' => 'Built with PageBrick',
+    'O endereço pode ter mudado ou sido digitado errado.' => 'The address may have changed or been mistyped.',
+    'Ir para a página inicial' => 'Go to the home page',
+];

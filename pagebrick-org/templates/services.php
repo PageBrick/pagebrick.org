@@ -30,7 +30,7 @@ $cta = $page->cta;
             <?php if (!$cta->text->isEmpty()): ?><p><?= $cta->text ?></p><?php endif ?>
         </div>
         <?php if (!$cta->button_label->isEmpty()): ?>
-            <?= pborg_slide_button($cta->button_link->url(), (string) $cta->button_label, 'button button-light') ?>
+            <?= pborg_slide_button($cta->button_link->url(), (string) $cta->button_label, 'button button-light', (string) $page->cta_button_hover) ?>
         <?php endif ?>
     </div>
 </section>

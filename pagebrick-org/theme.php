@@ -14,6 +14,7 @@ return [
         'home' => ['fields' => [
             'hero_secondary_label' => ['type' => 'text', 'label' => __('Texto do segundo botão do destaque')],
             'hero_secondary_link' => ['type' => 'link', 'label' => __('O segundo botão leva para')],
+            'hero_button_hover' => ['type' => 'text', 'label' => __('Texto do botão do destaque ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
             'hero_note' => ['type' => 'text', 'label' => __('Linha embaixo dos botões'), 'help' => __('Fatos curtos separados por ·, por exemplo: PHP 8.2 · MySQL · GPL-3.0')],
             'developers' => ['type' => 'group', 'label' => __('Para desenvolvedores'), 'toggle' => true, 'fields' => [
                 'title' => ['type' => 'text', 'label' => __('Título')],
@@ -32,8 +33,13 @@ return [
                 'intro' => ['type' => 'textarea', 'label' => __('Introdução')],
                 'steps' => $list(__('Passos'), __('Passo'), __('Adicionar passo'), $items),
                 'button_label' => ['type' => 'text', 'label' => __('Texto do botão')],
+                'button_hover' => ['type' => 'text', 'label' => __('Texto do botão ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
                 'button_link' => ['type' => 'link', 'label' => __('O botão leva para')],
             ]],
+            'cta_button_hover' => ['type' => 'text', 'label' => __('Texto do botão da chamada final ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
+        ]],
+        'services' => ['fields' => [
+            'cta_button_hover' => ['type' => 'text', 'label' => __('Texto do botão da chamada final ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
         ]],
     ],
     'settings' => [

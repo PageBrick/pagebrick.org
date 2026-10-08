@@ -76,9 +76,10 @@ h1, h2, h3 { margin: 0; color: var(--ink); }
 
 /* Slide text: the label rolls up and a copy rises from below. */
 .slide { position: relative; overflow: hidden; }
-.slide-text { position: relative; display: inline-block; transition: transform .3s ease-in-out; }
-.slide-text > span { display: inline-flex; align-items: center; gap: 10px; white-space: nowrap; transition: opacity .3s ease-in-out; }
-.slide-text > span + span { position: absolute; top: 100%; left: 0; opacity: 0; }
+.slide-text { display: inline-grid; transition: transform .3s ease-in-out; }
+.slide-text > span { grid-area: 1 / 1; justify-self: center; display: inline-flex; align-items: center; gap: 10px; white-space: nowrap;
+    transition: opacity .3s ease-in-out; }
+.slide-text > span + span { transform: translateY(100%); opacity: 0; }
 .slide:hover .slide-text, .slide:focus-visible .slide-text { transform: translateY(-100%); }
 .slide:hover .slide-text > span:first-child, .slide:focus-visible .slide-text > span:first-child { opacity: 0; }
 .slide:hover .slide-text > span + span, .slide:focus-visible .slide-text > span + span { opacity: 1; }

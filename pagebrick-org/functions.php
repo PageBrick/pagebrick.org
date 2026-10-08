@@ -29,14 +29,19 @@ function pborg_short_number(int $n): string
 }
 
 /**
- * A main button whose label slides up on hover while a copy rises from below.
- * $label is safe HTML: an escaped text or a field printed with (string).
+ * A main button whose label slides up on hover while $hover rises from below.
+ * $label and $hover are safe HTML: escaped texts or fields printed with (string). No $hover repeats the label.
  */
-function pborg_slide_button(string $href, string $label, string $class = 'button'): string
+function pborg_slide_button(string $href, string $label, string $class = 'button', string $hover = ''): string
 {
-    $inner = $label . ' <span class="arrow" aria-hidden="true">→</span>';
-    return '<a class="' . e($class) . ' slide" href="' . e($href) . '"><span class="slide-text"><span>' . $inner . '</span>'
-        . '<span aria-hidden="true">' . $inner . '</span></span></a>';
+    return '<a class="' . e($class) . ' slide" href="' . e($href) . '">' . pborg_slide_text($label, $hover) . '</a>';
+}
+
+/** The two stacked texts of a slide button; screen readers only hear the first. */
+function pborg_slide_text(string $label, string $hover = ''): string
+{
+    $arrow = ' <span class="arrow" aria-hidden="true">→</span>';
+    return '<span class="slide-text"><span>' . $label . $arrow . '</span><span aria-hidden="true">' . ($hover !== '' ? $hover : $label) . $arrow . '</span></span>';
 }
 
 /** The light sweep of a "command" control. */

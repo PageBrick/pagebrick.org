@@ -28,6 +28,8 @@ return [
                 'hero_secondary_label' => 'Read the docs',
                 'hero_secondary_link' => "$docs/en",
                 'hero_note' => 'PHP 8.2+ · MySQL or MariaDB · Any cPanel hosting · GPL-3.0',
+                'hero_button_hover' => 'Free and open source',
+                'cta_button_hover' => 'Help others find it',
                 'services' => [
                     'title' => 'For the people who run the business',
                     'intro' => 'Everything a company site needs, and nothing to learn.',
@@ -59,6 +61,7 @@ return [
                 'install' => [
                     'title' => 'Installed in five minutes',
                     'intro' => 'Upload, open the site, answer four short screens. If you have installed WordPress, you already know how.',
+                    'button_hover' => 'Ready in five minutes',
                     'steps' => [
                         ['title' => 'Download', 'text' => 'Get the latest pagebrick zip from GitHub.'],
                         ['title' => 'Upload', 'text' => 'Send what is inside its pagebrick folder to your hosting, with the cPanel file manager or FTP.'],
@@ -93,6 +96,8 @@ return [
                         'hero_secondary_label' => 'Ler a documentação',
                         'hero_secondary_link' => "$docs/pt-BR",
                         'hero_note' => 'PHP 8.2+ · MySQL ou MariaDB · Qualquer hospedagem com cPanel · GPL-3.0',
+                        'hero_button_hover' => 'Grátis e de código aberto',
+                        'cta_button_hover' => 'Ajude outros a encontrar',
                         'services' => [
                             'title' => 'Para quem cuida do negócio',
                             'intro' => 'Tudo o que um site de empresa precisa, sem nada para aprender.',
@@ -124,6 +129,7 @@ return [
                         'install' => [
                             'title' => 'Instalado em cinco minutos',
                             'intro' => 'Subir os arquivos, abrir o site e responder quatro telas curtas. Quem já instalou o WordPress sabe fazer.',
+                            'button_hover' => 'Pronto em cinco minutos',
                             'steps' => [
                                 ['title' => 'Baixar', 'text' => 'Pegue o zip mais recente do PageBrick no GitHub.'],
                                 ['title' => 'Enviar', 'text' => 'Envie o que está dentro da pasta pagebrick para a hospedagem, pelo gerenciador de arquivos do cPanel ou por FTP.'],
@@ -157,6 +163,8 @@ return [
                         'hero_secondary_label' => 'Leer la documentación',
                         'hero_secondary_link' => "$docs/es",
                         'hero_note' => 'PHP 8.2+ · MySQL o MariaDB · Cualquier alojamiento con cPanel · GPL-3.0',
+                        'hero_button_hover' => 'Gratis y de código abierto',
+                        'cta_button_hover' => 'Ayuda a otros a encontrarlo',
                         'services' => [
                             'title' => 'Para quien lleva el negocio',
                             'intro' => 'Todo lo que necesita un sitio de empresa, y nada que aprender.',
@@ -188,6 +196,7 @@ return [
                         'install' => [
                             'title' => 'Instalado en cinco minutos',
                             'intro' => 'Subir los archivos, abrir el sitio y responder cuatro pantallas cortas. Si ya instalaste WordPress, sabes hacerlo.',
+                            'button_hover' => 'Listo en cinco minutos',
                             'steps' => [
                                 ['title' => 'Descargar', 'text' => 'Baja el zip más reciente de PageBrick desde GitHub.'],
                                 ['title' => 'Subir', 'text' => 'Sube lo que está dentro de la carpeta pagebrick a tu alojamiento, con el administrador de archivos de cPanel o por FTP.'],
@@ -241,6 +250,7 @@ return [
             'seo_description' => 'PageBrick is free. If you’d rather have someone build or look after your site, Alcateia Digital can help.',
             'data' => [
                 'intro' => 'PageBrick is free to use. If you’d rather have someone do it for you, Alcateia Digital, the agency behind it, can help.',
+                'cta_button_hover' => 'A few lines are enough',
                 'items' => [
                     ['title' => 'A site built for you', 'text' => 'Your company site on PageBrick, with your brand, your texts and your photos, ready to edit.'],
                     ['title' => 'A theme for your agency', 'text' => 'A custom theme your team can reuse for its own clients, built on the standard content.'],
@@ -258,6 +268,7 @@ return [
                     'seo_description' => 'O PageBrick é gratuito. Se preferir alguém para criar ou cuidar do seu site, a Alcateia Digital pode ajudar.',
                     'data' => [
                         'intro' => 'O PageBrick é gratuito. Se preferir que alguém faça por você, a Alcateia Digital, a agência por trás dele, pode ajudar.',
+                        'cta_button_hover' => 'Poucas linhas bastam',
                         'items' => [
                             ['title' => 'Um site feito para você', 'text' => 'O site da sua empresa no PageBrick, com a sua marca, os seus textos e as suas fotos, pronto para editar.'],
                             ['title' => 'Um tema para a sua agência', 'text' => 'Um tema sob medida que a sua equipe reaproveita para os próprios clientes, sobre o conteúdo padrão.'],
@@ -274,6 +285,7 @@ return [
                     'seo_description' => 'PageBrick es gratis. Si prefieres que alguien cree o cuide tu sitio, Alcateia Digital puede ayudarte.',
                     'data' => [
                         'intro' => 'PageBrick es gratis. Si prefieres que alguien lo haga por ti, Alcateia Digital, la agencia detrás de él, puede ayudarte.',
+                        'cta_button_hover' => 'Bastan unas líneas',
                         'items' => [
                             ['title' => 'Un sitio hecho para ti', 'text' => 'El sitio de tu empresa en PageBrick, con tu marca, tus textos y tus fotos, listo para editar.'],
                             ['title' => 'Un tema para tu agencia', 'text' => 'Un tema a medida que tu equipo reutiliza para sus propios clientes, sobre el contenido estándar.'],

@@ -8,6 +8,7 @@ $download = "$repo/releases/latest";
 $code = fn(string $comment) => "<!-- templates/home.php -->\n<h1><?= \$page->hero->title ?></h1>\n<?php foreach (\$page->services->items as \$item): ?>\n    <h2><?= \$item->title ?></h2>\n<?php endforeach ?>\n\n# $comment\ncurl https://example.com/api/v1/pages/about";
 
 return [
+    'locale' => 'en', // the main pages are in English: PageBrick refuses this content on a site whose main language is another
     'media' => [
         'panel' => ['file' => 'panel.webp', 'alt' => 'The PageBrick panel, editing the home page of a site'],
         'panel-pt' => ['file' => 'panel-pt.webp', 'alt' => 'O painel do PageBrick editando a página inicial de um site'],

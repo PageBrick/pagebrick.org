@@ -67,6 +67,7 @@ if (!matchMedia('(hover: hover)').matches) {
 // Lights wander along the joints of the brick wall on the cards' front (.flip-front::before): courses 12px tall,
 // bricks 48px long, every other course shifted by half a brick. Each crossing has one vertical joint, up or down.
 // Every card draws its own pace (speed, trail, turns, route length, rests, lights), and every route is new.
+// Lines never cross: a route only goes through crossings no other line of the card is using, nor its own.
 const svgNs = 'http://www.w3.org/2000/svg';
 const between = (min, max) => min + Math.random() * (max - min);
 if (!calm) document.querySelectorAll('.flip-front').forEach(front => {
@@ -74,26 +75,29 @@ if (!calm) document.querySelectorAll('.flip-front').forEach(front => {
     svg.setAttribute('class', 'flip-trails');
     const pace = {speed: between(16, 34), trail: between(30, 90), turns: between(.2, .65), steps: between(6, 20), rest: between(300, 3500),
         easing: Math.random() < .5 ? 'ease-in-out' : 'linear'};
+    const busy = new Set();
     const wander = () => {
         const cols = Math.floor(front.clientWidth / 24), rows = Math.floor(front.clientHeight * .55 / 12);
         if (cols < 2 || rows < 2) return;
         let i = 1 + Math.floor(Math.random() * (cols - 1)), k = 1 + Math.floor(Math.random() * (rows - 1));
-        let dir = Math.random() < .5 ? -1 : 1, turned = false, length = 0, d = `M${i * 24 + .5} ${k * 12 + .5}`;
-        for (let step = 0, steps = pace.steps * between(.6, 1.4); step < steps; step++) {
-            const joint = (i + k) % 2 === 0 ? 1 : -1;
-            if (!turned && Math.random() < pace.turns && k + joint >= 0 && k + joint <= rows) {
-                k += joint;
-                length += 12;
-                turned = true;
-            } else {
-                if (turned) dir = Math.random() < .5 ? -1 : 1;
-                if (i + dir < 0 || i + dir > cols) dir = -dir;
-                i += dir;
-                length += 24;
-                turned = false;
-            }
+        const route = [`${i},${k}`];
+        const free = (x, y) => x >= 0 && x <= cols && y >= 0 && y <= rows && !busy.has(`${x},${y}`) && !route.includes(`${x},${y}`);
+        let dir = Math.random() < .5 ? -1 : 1, length = 0, d = `M${i * 24 + .5} ${k * 12 + .5}`;
+        for (let step = 0, steps = pace.steps * between(.6, 1.4); step < steps && !busy.has(route[0]); step++) {
+            // Straight on, the other way, or the crossing's one vertical joint; now and then the joint comes first.
+            const options = [[i + dir, k, 24], [i - dir, k, 24], [i, (i + k) % 2 === 0 ? k + 1 : k - 1, 12]];
+            if (Math.random() < pace.turns) options.unshift(options.pop());
+            const next = options.find(([x, y]) => free(x, y));
+            if (!next) break; // boxed in: the route ends here
+            if (next[1] === k) dir = next[0] - i;
+            else dir = Math.random() < .5 ? -1 : 1; // after a turn, either way along the course
+            [i, k] = next;
+            length += next[2];
+            route.push(`${i},${k}`);
             d += ` L${i * 24 + .5} ${k * 12 + .5}`;
         }
+        if (route.length < 4) return setTimeout(wander, between(200, 600)); // too short to show: try elsewhere
+        route.forEach(node => busy.add(node));
         // One thin stretch of line, moving from one end of the route to the other.
         const trail = pace.trail * between(.8, 1.2), path = svg.appendChild(document.createElementNS(svgNs, 'path'));
         path.setAttribute('d', d);
@@ -101,6 +105,7 @@ if (!calm) document.querySelectorAll('.flip-front').forEach(front => {
         path.animate([{strokeDashoffset: trail}, {strokeDashoffset: -length}],
             {duration: (length + trail) * pace.speed * between(.85, 1.15), easing: pace.easing}).onfinish = () => {
             path.remove();
+            route.forEach(node => busy.delete(node));
             setTimeout(wander, pace.rest * between(.5, 1.5));
         };
     };

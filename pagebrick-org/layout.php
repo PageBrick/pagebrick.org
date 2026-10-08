@@ -30,7 +30,7 @@ $logo = $site->identity->logo;
             <?php endif ?>
         </a>
         <nav class="site-nav" id="site-nav" aria-label="<?= e(__('Menu principal')) ?>">
-            <?= pb_menu_html('main', 'nav-list') ?>
+            <?= pborg_menu_html('main', 'nav-list') ?>
             <?php if (count($languages = pb_language_links()) > 1):
                 // Each language in its own words, then in the visitor's; the code goes in the little square.
                 $native = ['pt-BR' => 'Português', 'en' => 'English', 'es' => 'Español'];
@@ -80,7 +80,7 @@ $logo = $site->identity->logo;
             <img src="<?= e(pb_theme_url('assets/logo.svg')) ?>" alt="" width="120" height="26">
             <?php if (!$site->footer->text->isEmpty()): ?><p><?= $site->footer->text ?></p><?php endif ?>
         </div>
-        <nav aria-label="<?= e(__('Menu do rodapé')) ?>"><?= pb_menu_html('footer', 'footer-list') ?></nav>
+        <nav aria-label="<?= e(__('Menu do rodapé')) ?>"><?= pborg_menu_html('footer', 'footer-list') ?></nav>
     </div>
     <div class="wrap footer-base">
         <span>© <?= date('Y') ?> <?= $siteName ?></span>

@@ -26,10 +26,10 @@ $simulator = [
             <?php if (!$hero->text->isEmpty()): ?><p class="lead intro" style="--i: 1"><?= $hero->text ?></p><?php endif ?>
             <div class="buttons intro" style="--i: 2">
                 <?php if (!$hero->button_label->isEmpty()): ?>
-                    <a class="button" href="<?= e($hero->button_link->url()) ?>"><?= $hero->button_label ?> <span aria-hidden="true">→</span></a>
+                    <?= pborg_slide_button($hero->button_link->url(), (string) $hero->button_label) ?>
                 <?php endif ?>
                 <?php if (!$page->hero_secondary_label->isEmpty()): ?>
-                    <a class="text-link" href="<?= e($page->hero_secondary_link->url()) ?>"><?= $page->hero_secondary_label ?></a>
+                    <a class="command command-cta" href="<?= e($page->hero_secondary_link->url()) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> <span><?= $page->hero_secondary_label ?></span><?= pborg_shine() ?></a>
                 <?php endif ?>
             </div>
             <?php if (!$page->hero_note->isEmpty()): ?><p class="note intro" style="--i: 3"><?= $page->hero_note ?></p><?php endif ?>
@@ -76,7 +76,7 @@ $simulator = [
         <?php if (!$dev->code->isEmpty()): ?>
             <div class="terminal" data-reveal style="--i: 1">
                 <div class="window-bar"><i></i><i></i><i></i>
-                    <button type="button" class="copy" data-copy data-copied="<?= e(__('Copiado')) ?>"><?= e(__('Copiar')) ?></button>
+                    <button type="button" class="copy command command-dark" data-copy data-copied="<?= e(__('Copiado')) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label><?= e(__('Copiar')) ?></span><?= pborg_shine() ?></button>
                 </div>
                 <pre><code data-type><?= e($dev->code->raw()) ?></code></pre>
             </div>
@@ -105,8 +105,8 @@ $simulator = [
             <div class="simulator-head">
                 <p class="label"><?= e(__('Experimente')) ?></p>
                 <div class="simulator-buttons">
-                    <button type="button" class="button" data-run="ok"><?= e(__('Atualizar')) ?> <span aria-hidden="true">→</span></button>
-                    <button type="button" class="button button-ghost" data-run="broken"><?= e(__('Atualizar com uma página quebrada')) ?></button>
+                    <button type="button" class="button slide" data-run="ok"><span class="slide-text"><span><?= e(__('Atualizar')) ?> <span class="arrow" aria-hidden="true">→</span></span><span aria-hidden="true"><?= e(__('Atualizar')) ?> <span class="arrow">→</span></span></span></button>
+                    <button type="button" class="command command-cta" data-run="broken"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 21h20zM12 10v5M12 18v.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg><span><?= e(__('Atualizar com uma página quebrada')) ?></span><?= pborg_shine() ?></button>
                 </div>
             </div>
             <ol class="simulator-log" aria-live="polite"><li class="muted"><?= e(__('Escolha um dos botões para ver o que acontece numa atualização.')) ?></li></ol>
@@ -132,7 +132,7 @@ $simulator = [
             <?php endforeach ?>
         </ol>
         <?php if (!$install->button_label->isEmpty()): ?>
-            <p data-reveal><a class="button" href="<?= e($install->button_link->url()) ?>"><?= $install->button_label ?> <span aria-hidden="true">→</span></a></p>
+            <p data-reveal><?= pborg_slide_button($install->button_link->url(), (string) $install->button_label) ?></p>
         <?php endif ?>
     </div>
 </section>
@@ -148,7 +148,7 @@ $simulator = [
             <?php if (!$cta->text->isEmpty()): ?><p><?= $cta->text ?></p><?php endif ?>
         </div>
         <?php if (!$cta->button_label->isEmpty()): ?>
-            <a class="button button-light" href="<?= e($cta->button_link->url()) ?>"><?= $cta->button_label ?> <span aria-hidden="true">→</span></a>
+            <?= pborg_slide_button($cta->button_link->url(), (string) $cta->button_label, 'button button-light') ?>
         <?php endif ?>
     </div>
 </section>

@@ -12,9 +12,9 @@ O site do PageBrick, feito no próprio PageBrick. Esta pasta guarda só o **tema
 1. **PHP 8.2 ou mais novo.** No cPanel, abra "MultiPHP Manager" (ou "Selecionar versão do PHP") e escolha PHP 8.2+ para pagebrick.org.
 2. **HTTPS.** No cPanel, em "SSL/TLS Status", confira se o pagebrick.org tem certificado (AutoSSL). Faça a instalação já pelo endereço `https://`, porque ele vira o endereço oficial do site.
 3. **Banco de dados.** No cPanel, abra "Assistente de banco de dados MySQL": crie o banco, o usuário e a senha, e marque "Todos os privilégios". Anote os três.
-4. **Arquivos.** Baixe o zip mais recente do PageBrick (1.1 ou mais novo, por causa dos idiomas) na página de Releases do GitHub. No "Gerenciador de arquivos", entre na pasta do domínio (normalmente `public_html`), envie o .zip e extraia. Mova o **conteúdo** da pasta `pagebrick/` para a pasta do domínio, incluindo o arquivo `.htaccess` (ative "Mostrar arquivos ocultos" nas configurações do gerenciador). Apague o .zip e qualquer `index.html` antigo.
+4. **Arquivos.** Baixe o `pagebrick-1.0.0.zip` (ou mais novo) na página de Releases do GitHub. No "Gerenciador de arquivos", entre na pasta do domínio (normalmente `public_html`), envie o .zip e extraia. Mova o **conteúdo** da pasta `pagebrick/` para a pasta do domínio, incluindo o arquivo `.htaccess` (ative "Mostrar arquivos ocultos" nas configurações do gerenciador). Apague o .zip e qualquer `index.html` antigo.
 5. **Instalador.** Abra https://pagebrick.org e siga as 4 telas: escolha **English**, confira o servidor, preencha o banco e, por fim, o nome do site (`PageBrick`), o seu e-mail e uma senha forte.
-6. **Tema.** No painel: System → Themes → Upload theme (.zip) → envie `pagebrick-org.zip` → **Activate** → **Import the theme's content**. Isso cria o site em inglês e as versões em português (`/pt-br`) e espanhol (`/es-es`).
+6. **Tema.** No painel: System → Themes → Upload theme (.zip) → envie `pagebrick-org.zip` → **Activate** → **Import the theme's content**. Isso cria o site em inglês e as versões em português (`/pt-br`) e espanhol (`/es-es`), e transforma a página Services do exemplo em Features.
 7. **E-mail.** Em System → Email, configure uma conta de e-mail da HostGator (SMTP) e use "Send a test e-mail". Assim as mensagens do formulário de contato chegam.
 8. **Revisão.** Se quiser revisar com calma antes de abrir ao público, deixe o site **Under construction** no início do painel e volte para **Live** quando estiver tudo certo.
 
@@ -24,8 +24,8 @@ Para o painel em português: Minha conta (seu nome no topo) → Idioma do painel
 
 Os textos estão em `demo.php` e podem ser mudados depois no painel. Confira principalmente:
 
-- **Services**: a Alcateia Digital oferecendo criação de sites, temas para agências e hospedagem com manutenção.
-- **Privacy policy**: diz que o site não usa cookies nem ferramentas de rastreamento e que as mensagens do formulário são apagadas depois de 12 meses (a opção padrão do plugin de contato).
+- **Features**: o que o CMS oferece, em cards que giram. A Alcateia Digital só aparece na política de privacidade.
+- **Privacy policy**: diz quem é o responsável pelos dados, que o site não usa cookies nem ferramentas de rastreamento e que as mensagens do formulário são apagadas depois de 12 meses (a opção padrão do plugin de contato).
 - **Contact**: o formulário manda as mensagens para o e-mail do administrador.
 
 ## Atualizar o tema

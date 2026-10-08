@@ -94,17 +94,13 @@ if (!calm) document.querySelectorAll('.flip-front').forEach(front => {
             }
             d += ` L${i * 24 + .5} ${k * 12 + .5}`;
         }
-        // A bright head and a fading trail, moving together from one end of the route to the other.
-        const trail = pace.trail * between(.8, 1.2), paths = [['trail', trail], ['head', 8]].map(([name, dash]) => {
-            const path = svg.appendChild(document.createElementNS(svgNs, 'path'));
-            path.setAttribute('d', d);
-            path.setAttribute('class', name);
-            path.style.strokeDasharray = `${dash} ${length + trail}`;
-            return path.animate([{strokeDashoffset: dash}, {strokeDashoffset: dash - trail - length}],
-                {duration: (length + trail) * pace.speed * between(.85, 1.15), easing: pace.easing});
-        });
-        paths[0].onfinish = () => {
-            paths.forEach(animation => animation.effect.target.remove());
+        // One thin stretch of line, moving from one end of the route to the other.
+        const trail = pace.trail * between(.8, 1.2), path = svg.appendChild(document.createElementNS(svgNs, 'path'));
+        path.setAttribute('d', d);
+        path.style.strokeDasharray = `${trail} ${length + trail}`;
+        path.animate([{strokeDashoffset: trail}, {strokeDashoffset: -length}],
+            {duration: (length + trail) * pace.speed * between(.85, 1.15), easing: pace.easing}).onfinish = () => {
+            path.remove();
             setTimeout(wander, pace.rest * between(.5, 1.5));
         };
     };

@@ -14,6 +14,7 @@ $logo = $site->identity->logo;
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?= e(pb_theme_url('assets/style.css')) ?>">
+<script>document.documentElement.classList.add('js')</script>
 <?= pb_head(['image' => $site->identity->share_image->url()]) ?>
 <link rel="icon" href="<?= e($site->identity->icon->isEmpty() ? pb_theme_url('assets/favicon.svg') : $site->identity->icon->url('thumb')) ?>">
 </head>
@@ -30,6 +31,16 @@ $logo = $site->identity->logo;
         </a>
         <nav class="site-nav" id="site-nav" aria-label="<?= e(__('Menu principal')) ?>">
             <?= pb_menu_html('main', 'nav-list') ?>
+            <?php if (count($languages = pb_language_links()) > 1): ?>
+                <label class="language">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+                    <select data-language aria-label="<?= e(__('Idioma')) ?>">
+                        <?php foreach ($languages as $language): ?>
+                            <option value="<?= e($language['url']) ?>" lang="<?= e($language['locale']) ?>"<?= $language['current'] ? ' selected' : '' ?>><?= e(['pt-BR' => 'Português', 'en' => 'English', 'es' => 'Español'][$language['locale']] ?? $language['name']) ?></option>
+                        <?php endforeach ?>
+                    </select>
+                </label>
+            <?php endif ?>
         </nav>
         <?php if ($github !== ''): ?>
             <a class="github" href="<?= e($github) ?>" target="_blank" rel="noopener"

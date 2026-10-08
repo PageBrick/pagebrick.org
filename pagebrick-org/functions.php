@@ -2,7 +2,7 @@
 // Helpers of the pagebrick.org theme (loaded once by theme.php).
 
 /**
- * Star count of a GitHub repository, like "78k", or '' while unknown. The server asks GitHub at most every
+ * Star count of a GitHub repository, like "78k", or '' while unknown or zero. The server asks GitHub at most every
  * six hours and keeps the answer, so visitors never talk to GitHub and a slow GitHub never slows the site.
  */
 function pborg_github_stars(string $repositoryUrl): string
@@ -19,7 +19,7 @@ function pborg_github_stars(string $repositoryUrl): string
         $cache = ['repo' => $m[1], 'at' => time(), 'stars' => $stars];
         pb_set_option('pborg_github', json_encode($cache));
     }
-    return is_int($cache['stars'] ?? null) ? pborg_short_number($cache['stars']) : '';
+    return is_int($cache['stars'] ?? null) && $cache['stars'] > 0 ? pborg_short_number($cache['stars']) : ''; // no "0" on a new repository
 }
 
 /** 950 → "950", 1234 → "1.2k", 78000 → "78k". */

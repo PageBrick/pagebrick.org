@@ -1,8 +1,10 @@
 # pagebrick.org
 
-O site do PageBrick, feito no próprio PageBrick. Esta pasta guarda só o **tema** do site (`pagebrick-org/`): o CMS fica no repositório `PageBrick/pagebrick`, e o conteúdo fica no banco de dados do site.
+The theme of [pagebrick.org](https://pagebrick.org), the website of [PageBrick](https://github.com/PageBrick/pagebrick), built on PageBrick itself. It is a real, complete example of a theme: layout, templates, a replaced plugin stylesheet, ready-made content in English, Portuguese and Spanish, a language switcher and a bit of motion. Licensed under the GPL-3.0, like PageBrick.
 
-- `pagebrick-org/`: o tema (layout, modelos, CSS, textos do painel em inglês e o conteúdo pronto do site em `demo.php`).
+O site do PageBrick, feito no próprio PageBrick. Esta pasta guarda só o **tema** do site (`pagebrick-org/`): o CMS fica no repositório `PageBrick/pagebrick`, e o conteúdo fica no banco de dados do site. As instruções abaixo estão em português.
+
+- `pagebrick-org/`: o tema (layout, modelos, CSS, movimentos em `assets/site.js`, textos fixos em inglês e espanhol em `lang/` e o conteúdo pronto do site, nos três idiomas, em `demo.php`).
 - `pagebrick-org.zip`: o tema empacotado, pronto para enviar pelo painel. Gere de novo depois de mudar o tema (ver "Atualizar o tema").
 
 ## Publicar na HostGator (primeira vez)
@@ -10,9 +12,9 @@ O site do PageBrick, feito no próprio PageBrick. Esta pasta guarda só o **tema
 1. **PHP 8.2 ou mais novo.** No cPanel, abra "MultiPHP Manager" (ou "Selecionar versão do PHP") e escolha PHP 8.2+ para pagebrick.org.
 2. **HTTPS.** No cPanel, em "SSL/TLS Status", confira se o pagebrick.org tem certificado (AutoSSL). Faça a instalação já pelo endereço `https://`, porque ele vira o endereço oficial do site.
 3. **Banco de dados.** No cPanel, abra "Assistente de banco de dados MySQL": crie o banco, o usuário e a senha, e marque "Todos os privilégios". Anote os três.
-4. **Arquivos.** Baixe o `pagebrick-1.0.0.zip` na página de Releases do GitHub. No "Gerenciador de arquivos", entre na pasta do domínio (normalmente `public_html`), envie o .zip e extraia. Mova o **conteúdo** da pasta `pagebrick/` para a pasta do domínio, incluindo o arquivo `.htaccess` (ative "Mostrar arquivos ocultos" nas configurações do gerenciador). Apague o .zip e qualquer `index.html` antigo.
+4. **Arquivos.** Baixe o zip mais recente do PageBrick (1.1 ou mais novo, por causa dos idiomas) na página de Releases do GitHub. No "Gerenciador de arquivos", entre na pasta do domínio (normalmente `public_html`), envie o .zip e extraia. Mova o **conteúdo** da pasta `pagebrick/` para a pasta do domínio, incluindo o arquivo `.htaccess` (ative "Mostrar arquivos ocultos" nas configurações do gerenciador). Apague o .zip e qualquer `index.html` antigo.
 5. **Instalador.** Abra https://pagebrick.org e siga as 4 telas: escolha **English**, confira o servidor, preencha o banco e, por fim, o nome do site (`PageBrick`), o seu e-mail e uma senha forte.
-6. **Tema.** No painel: System → Themes → Upload theme (.zip) → envie `pagebrick-org.zip` → **Activate** → **Import the theme's content**.
+6. **Tema.** No painel: System → Themes → Upload theme (.zip) → envie `pagebrick-org.zip` → **Activate** → **Import the theme's content**. Isso cria o site em inglês e as versões em português (`/pt-br`) e espanhol (`/es-es`).
 7. **E-mail.** Em System → Email, configure uma conta de e-mail da HostGator (SMTP) e use "Send a test e-mail". Assim as mensagens do formulário de contato chegam.
 8. **Revisão.** Se quiser revisar com calma antes de abrir ao público, deixe o site **Under construction** no início do painel e volte para **Live** quando estiver tudo certo.
 

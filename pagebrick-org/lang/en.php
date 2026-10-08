@@ -37,6 +37,13 @@ return [
     'Tudo certo: o site está na versão 1.1.0.' => 'All good: the site is on version 1.1.0.',
     'Uma página deu erro, então a versão 1.0.0 voltou sozinha. Os visitantes não viram nada.' => 'A page failed, so version 1.0.0 came back on its own. Visitors saw nothing.',
     'A página "Sobre" deu erro' => 'The "About" page failed',
+    'Texto do botão do destaque ao passar o mouse' => 'Hero button text on hover',
+    'Texto do botão ao passar o mouse' => 'Button text on hover',
+    'Texto do botão da chamada final ao passar o mouse' => 'Closing button text on hover',
+    'Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.' => 'Shows when the mouse is over the button. Blank: repeats the button text.',
+    'Veja acontecer' => 'See it happen',
+    'Voltar ao começo' => 'Back to the start',
+    'Veja o código' => 'See the code',
     // also used by the default theme
     'Pular para o conteúdo' => 'Skip to content',
     'Menu' => 'Menu',

@@ -37,6 +37,13 @@ return [
     'Tudo certo: o site está na versão 1.1.0.' => 'Todo bien: el sitio está en la versión 1.1.0.',
     'Uma página deu erro, então a versão 1.0.0 voltou sozinha. Os visitantes não viram nada.' => 'Una página falló, así que la versión 1.0.0 volvió sola. Los visitantes no vieron nada.',
     'A página "Sobre" deu erro' => 'La página "Nosotros" falló',
+    'Texto do botão do destaque ao passar o mouse' => 'Texto del botón de la portada al pasar el mouse',
+    'Texto do botão ao passar o mouse' => 'Texto del botón al pasar el mouse',
+    'Texto do botão da chamada final ao passar o mouse' => 'Texto del botón del cierre al pasar el mouse',
+    'Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.' => 'Aparece cuando se pasa el mouse sobre el botón. En blanco: repite el texto del botón.',
+    'Veja acontecer' => 'Míralo pasar',
+    'Voltar ao começo' => 'Volver al inicio',
+    'Veja o código' => 'Ver el código',
     // also used by the default theme
     'Pular para o conteúdo' => 'Saltar al contenido',
     'Menu' => 'Menú',

@@ -25,7 +25,7 @@ $github = $site->project->github->raw();
     <h1><?= e($title) ?></h1>
     <p class="lead"><?= nl2br(e($message)) ?></p>
     <?php if ($github !== ''): ?>
-        <p><a class="button" href="<?= e($github) ?>"><?= e(__('Acompanhe no GitHub')) ?> <span aria-hidden="true">→</span></a></p>
+        <p><?= pborg_slide_button($github, e(__('Acompanhe no GitHub'))) ?></p>
     <?php endif ?>
 </main>
 </body>

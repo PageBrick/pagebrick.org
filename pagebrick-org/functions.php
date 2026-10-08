@@ -27,3 +27,20 @@ function pborg_short_number(int $n): string
 {
     return $n < 1000 ? (string) $n : rtrim(rtrim(number_format($n / 1000, 1, '.', ''), '0'), '.') . 'k';
 }
+
+/**
+ * A main button whose label slides up on hover while a copy rises from below.
+ * $label is safe HTML: an escaped text or a field printed with (string).
+ */
+function pborg_slide_button(string $href, string $label, string $class = 'button'): string
+{
+    $inner = $label . ' <span class="arrow" aria-hidden="true">→</span>';
+    return '<a class="' . e($class) . ' slide" href="' . e($href) . '"><span class="slide-text"><span>' . $inner . '</span>'
+        . '<span aria-hidden="true">' . $inner . '</span></span></a>';
+}
+
+/** The light sweep of a "command" control. */
+function pborg_shine(): string
+{
+    return '<span class="shine" aria-hidden="true"></span>';
+}

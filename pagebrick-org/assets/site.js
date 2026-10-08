@@ -52,9 +52,10 @@ document.querySelectorAll('[data-copy]').forEach(button => button.addEventListen
     const code = button.closest('.terminal').querySelector('code');
     try {
         await navigator.clipboard.writeText(code.dataset.full || code.textContent);
-        const label = button.textContent;
-        button.textContent = button.dataset.copied;
-        setTimeout(() => { button.textContent = label; }, 1600);
+        const text = button.querySelector('[data-copy-label]');
+        const label = text.textContent;
+        text.textContent = button.dataset.copied;
+        setTimeout(() => { text.textContent = label; }, 1600);
     } catch (e) { /* no clipboard: nothing to do */ }
 }));
 

@@ -31,16 +31,34 @@ $logo = $site->identity->logo;
         </a>
         <nav class="site-nav" id="site-nav" aria-label="<?= e(__('Menu principal')) ?>">
             <?= pb_menu_html('main', 'nav-list') ?>
-            <?php if (count($languages = pb_language_links()) > 1): ?>
-                <label class="language command">
-                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
-                    <select data-language aria-label="<?= e(__('Idioma')) ?>">
-                        <?php foreach ($languages as $language): ?>
-                            <option value="<?= e($language['url']) ?>" lang="<?= e($language['locale']) ?>"<?= $language['current'] ? ' selected' : '' ?>><?= e(['pt-BR' => 'Português', 'en' => 'English', 'es' => 'Español'][$language['locale']] ?? $language['name']) ?></option>
+            <?php if (count($languages = pb_language_links()) > 1):
+                // Each language in its own words, then in the visitor's; the code goes in the little square.
+                $native = ['pt-BR' => 'Português', 'en' => 'English', 'es' => 'Español'];
+                $names = ['pt-BR' => __('Português'), 'en' => __('Inglês'), 'es' => __('Espanhol')];
+                $code = fn(string $locale) => strtoupper(substr($locale, 0, 2));
+                $current = array_values(array_filter($languages, fn($language) => $language['current']))[0] ?? $languages[0]; ?>
+                <details class="language" data-language>
+                    <summary class="language-trigger command" aria-label="<?= e(__('Idioma') . ': ' . ($native[$current['locale']] ?? $current['name'])) ?>">
+                        <svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+                        <span lang="<?= e($current['locale']) ?>"><?= e($native[$current['locale']] ?? $current['name']) ?></span>
+                        <span class="language-code" aria-hidden="true"><?= e($code($current['locale'])) ?></span>
+                        <svg class="chevrons" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></svg>
+                        <?= pborg_shine() ?>
+                    </summary>
+                    <ul class="language-menu">
+                        <?php foreach ($languages as $n => $language): ?>
+                            <li style="--n: <?= $n ?>">
+                                <a href="<?= e($language['url']) ?>" hreflang="<?= e($language['locale']) ?>"<?= $language['current'] ? ' aria-current="true"' : '' ?>>
+                                    <span class="language-code" aria-hidden="true"><?= e($code($language['locale'])) ?></span>
+                                    <span>
+                                        <span class="language-native" lang="<?= e($language['locale']) ?>"><?= e($native[$language['locale']] ?? $language['name']) ?></span>
+                                        <span class="language-name"><?= e($names[$language['locale']] ?? $language['name']) ?></span>
+                                    </span>
+                                </a>
+                            </li>
                         <?php endforeach ?>
-                    </select>
-                    <?= pborg_shine() ?>
-                </label>
+                    </ul>
+                </details>
             <?php endif ?>
         </nav>
         <?php if ($github !== ''): ?>

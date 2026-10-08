@@ -9,10 +9,16 @@ document.querySelectorAll('.menu-toggle').forEach(button => button.addEventListe
     button.setAttribute('aria-expanded', String(open));
 }));
 
-// Language: choosing one goes to this page in that language.
-document.querySelectorAll('[data-language]').forEach(select => select.addEventListener('change', () => {
-    location.href = select.value;
-}));
+// Language menu (a <details>): closes on Escape or a click anywhere outside it.
+document.querySelectorAll('[data-language]').forEach(menu => {
+    document.addEventListener('click', event => menu.contains(event.target) || (menu.open = false));
+    menu.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && menu.open) {
+            menu.open = false;
+            menu.querySelector('summary').focus();
+        }
+    });
+});
 
 // The header gets a hairline shadow once the page scrolls.
 const header = document.querySelector('.site-header');

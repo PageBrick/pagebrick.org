@@ -17,7 +17,6 @@ $sizes = pborg_mosaic(count($page->items));
                 <div class="flip <?= array_shift($sizes) ?>" tabindex="0" data-reveal style="--i: <?= $n % 4 ?>">
                     <div class="flip-inner">
                         <div class="flip-front" aria-hidden="true">
-                            <span class="flip-glow"><?php for ($d = 0; $d < 6; $d++): ?><span style="--d: <?= $d ?>"></span><?php endfor ?></span>
                             <div class="flip-caption">
                                 <div>
                                     <h2><?= $item->title ?></h2>

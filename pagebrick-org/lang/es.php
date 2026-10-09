@@ -1,6 +1,8 @@
 <?php
 // Spanish texts of the pagebrick.org theme: Portuguese text given to __() => translation.
 return [
+    'Imagem do destaque no celular' => 'Imagen de la portada en el celular',
+    'Opcional. Aparece no lugar da imagem do destaque em telas pequenas, para o texto continuar legível. Em branco: a mesma imagem.' => 'Opcional. Se muestra en lugar de la imagen de la portada en pantallas pequeñas, para que el texto siga siendo legible. En blanco: la misma imagen.',
     'Texto do segundo botão do destaque' => 'Texto del segundo botón de la portada',
     'O segundo botão leva para' => 'El segundo botón lleva a',
     'Linha embaixo dos botões' => 'Línea debajo de los botones',

@@ -12,6 +12,7 @@ $items = [
 return [
     'templates' => [
         'home' => ['fields' => [
+            'hero_image_phone' => ['type' => 'image', 'label' => __('Imagem do destaque no celular'), 'help' => __('Opcional. Aparece no lugar da imagem do destaque em telas pequenas, para o texto continuar legível. Em branco: a mesma imagem.')],
             'hero_secondary_label' => ['type' => 'text', 'label' => __('Texto do segundo botão do destaque')],
             'hero_secondary_link' => ['type' => 'link', 'label' => __('O segundo botão leva para')],
             'hero_button_hover' => ['type' => 'text', 'label' => __('Texto do botão do destaque ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],

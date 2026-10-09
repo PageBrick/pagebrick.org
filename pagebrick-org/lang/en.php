@@ -1,6 +1,8 @@
 <?php
 // English texts of the pagebrick.org theme: Portuguese text given to __() => translation.
 return [
+    'Imagem do destaque no celular' => 'Hero picture on a phone',
+    'Opcional. Aparece no lugar da imagem do destaque em telas pequenas, para o texto continuar legível. Em branco: a mesma imagem.' => 'Optional. Shown instead of the hero picture on small screens, so the text stays readable. Blank: the same picture.',
     'Texto do segundo botão do destaque' => 'Hero second button text',
     'O segundo botão leva para' => 'The second button goes to',
     'Linha embaixo dos botões' => 'Line under the buttons',

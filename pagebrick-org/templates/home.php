@@ -32,12 +32,15 @@ $simulator = [
                     <a class="command command-cta" href="<?= e($page->hero_secondary_link->url()) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> <span><?= $page->hero_secondary_label ?></span><?= pborg_shine() ?></a>
                 <?php endif ?>
             </div>
-            <?php if (!$page->hero_note->isEmpty()): ?><p class="note intro" style="--i: 3"><?= $page->hero_note ?></p><?php endif ?>
+            <?php if (!$page->hero_note->isEmpty()): ?><p class="note intro" style="--i: 3"><?= implode(' · ', array_map(fn($fact) => '<span>' . e(trim($fact)) . '</span>', explode('·', (string) $page->hero_note))) ?></p><?php endif ?>
         </div>
         <?php if (!$hero->image->isEmpty()): ?>
             <figure class="hero-shot intro" style="--i: 2" data-tilt>
                 <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-                <?= $hero->image->img('', 'full', false) ?>
+                <picture>
+                    <?php if (!$page->hero_image_phone->isEmpty()): ?><source media="(max-width: 560px)" srcset="<?= e($page->hero_image_phone->url()) ?>"><?php endif ?>
+                    <?= $hero->image->img('', 'full', false) ?>
+                </picture>
             </figure>
         <?php endif ?>
     </div>

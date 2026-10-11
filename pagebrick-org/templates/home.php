@@ -6,6 +6,7 @@
  */
 $hero = $page->hero;
 $owners = $page->services;
+$spot = $page->spotlight;
 $dev = $page->developers;
 $promise = $page->promise;
 $install = $page->install;
@@ -22,6 +23,15 @@ $simulator = [
 <section class="hero">
     <div class="wrap hero-grid">
         <div class="hero-text">
+            <?php if (!$page->hero_badge->isEmpty()): $badgeUrl = $page->hero_badge_link->url(); ?>
+                <p class="badge intro" style="--i: 0">
+                    <?php if ($badgeUrl !== ''): ?>
+                        <a href="<?= e($badgeUrl) ?>"><i aria-hidden="true"></i><?= $page->hero_badge ?> <span class="arrow" aria-hidden="true">→</span></a>
+                    <?php else: ?>
+                        <span><i aria-hidden="true"></i><?= $page->hero_badge ?></span>
+                    <?php endif ?>
+                </p>
+            <?php endif ?>
             <h1 class="intro" style="--i: 0"><?= $hero->title ?></h1>
             <?php if (!$hero->text->isEmpty()): ?><p class="lead intro" style="--i: 1"><?= $hero->text ?></p><?php endif ?>
             <div class="buttons intro" style="--i: 2">
@@ -32,7 +42,7 @@ $simulator = [
                     <a class="command command-cta" href="<?= e($page->hero_secondary_link->url()) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> <span><?= $page->hero_secondary_label ?></span><?= pborg_shine() ?></a>
                 <?php endif ?>
             </div>
-            <?php if (!$page->hero_note->isEmpty()): ?><p class="note intro" style="--i: 3"><?= implode(' · ', array_map(fn($fact) => '<span>' . e(trim($fact)) . '</span>', explode('·', (string) $page->hero_note))) ?></p><?php endif ?>
+            <?php if (!$page->hero_note->isEmpty()): ?><p class="note facts intro" style="--i: 3"><?= implode('', array_map(fn($fact) => '<span>' . e(trim($fact)) . '</span>', explode('·', (string) $page->hero_note))) ?></p><?php endif ?>
         </div>
         <?php if (!$hero->image->isEmpty()): ?>
             <figure class="hero-shot intro" style="--i: 2" data-tilt>
@@ -54,7 +64,7 @@ $simulator = [
             <h2><?= $owners->title ?></h2>
             <?php if (!$owners->intro->isEmpty()): ?><p><?= $owners->intro ?></p><?php endif ?>
         </header>
-        <div class="cards">
+        <div class="cards cards-lines">
             <?php foreach ($owners->items as $n => $item): ?>
                 <article class="card" data-reveal style="--i: <?= $n ?>">
                     <h3><?= $item->title ?></h3>
@@ -62,6 +72,26 @@ $simulator = [
                 </article>
             <?php endforeach ?>
         </div>
+    </div>
+</section>
+<?php endif ?>
+
+<?php if ($spot->visible() && !$spot->title->isEmpty()): ?>
+<section class="section" id="spotlight">
+    <div class="wrap split spotlight">
+        <div data-reveal>
+            <h2><?= $spot->title ?></h2>
+            <?php if (!$spot->text->isEmpty()): ?><p class="lead"><?= $spot->text ?></p><?php endif ?>
+            <?php if (!$spot->link_label->isEmpty()): ?>
+                <p><a class="text-link" href="<?= e($spot->link->url()) ?>"><?= $spot->link_label ?> <span aria-hidden="true">→</span></a></p>
+            <?php endif ?>
+        </div>
+        <?php if (!$spot->image->isEmpty()): ?>
+            <figure class="shot" data-reveal style="--i: 1">
+                <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i></div>
+                <?= $spot->image->img('', 'full') ?>
+            </figure>
+        <?php endif ?>
     </div>
 </section>
 <?php endif ?>
@@ -81,7 +111,7 @@ $simulator = [
                 <div class="window-bar"><i></i><i></i><i></i>
                     <button type="button" class="copy command command-dark" data-copy data-copied="<?= e(__('Copiado')) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label><?= e(__('Copiar')) ?></span><?= pborg_shine() ?></button>
                 </div>
-                <pre><code data-type><?= e($dev->code->raw()) ?></code></pre>
+                <pre tabindex="0"><code data-type><?= e($dev->code->raw()) ?></code></pre>
             </div>
         <?php endif ?>
     </div>
@@ -150,9 +180,14 @@ $simulator = [
             <h2><?= $cta->title ?></h2>
             <?php if (!$cta->text->isEmpty()): ?><p><?= $cta->text ?></p><?php endif ?>
         </div>
-        <?php if (!$cta->button_label->isEmpty()): ?>
-            <?= pborg_slide_button($cta->button_link->url(), (string) $cta->button_label, 'button button-light', (string) $page->cta_button_hover) ?>
-        <?php endif ?>
+        <div class="closing-actions">
+            <?php if (!$cta->button_label->isEmpty()): ?>
+                <?= pborg_slide_button($cta->button_link->url(), (string) $cta->button_label, 'button button-light', (string) $page->cta_button_hover) ?>
+            <?php endif ?>
+            <?php if (!$page->cta_secondary_label->isEmpty()): ?>
+                <a class="command command-cta command-dark" href="<?= e($page->cta_secondary_link->url()) ?>"><span><?= $page->cta_secondary_label ?></span><?= pborg_shine() ?></a>
+            <?php endif ?>
+        </div>
     </div>
 </section>
 <?php endif ?>

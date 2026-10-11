@@ -32,6 +32,8 @@ Os textos estão em `demo.php` e podem ser mudados depois no painel. Confira pri
 
 Depois de mudar arquivos em `pagebrick-org/`, aumente a versão em `theme.json`, gere o .zip de novo e envie em Settings (gear icon) → Themes → Upload theme. O tema anterior fica guardado nos backups, e o botão "Roll back" volta para ele.
 
+**Imagens do conteúdo pronto** (`pagebrick-org/demo/`): se uma imagem mudar, troque também o nome do arquivo (e a chave em `demo.php`). Ao importar, o PageBrick reaproveita uma foto que já está na biblioteca com o mesmo nome e a mesma descrição, e o site ficaria com a imagem antiga. Por isso as imagens do painel se chamam `panel-home*`, `panel-phone*` e `dashboard-dark*`, e os nomes `panel.webp`, `panel-pt.webp`, `panel-es.webp` e `editor*.webp` das versões antigas não devem ser usados de novo.
+
 Para gerar o .zip, rode a partir da pasta do CMS (com o Docker de desenvolvimento ligado):
 
 ```bash
@@ -41,3 +43,11 @@ docker run --rm -v "<pasta pagebrick.org>:/site" -v "<pasta pagebrick>:/app" pag
 ## Botão do GitHub
 
 O número de estrelas no topo vem do repositório informado em Contact → Project → GitHub repository (antes do PageBrick 1.1, esse menu se chamava Appearance & contact). O servidor do site consulta o GitHub no máximo a cada 6 horas e guarda a resposta: o navegador de quem visita nunca fala com o GitHub. Enquanto o repositório não existe ou não tem estrelas, o botão aparece sem número.
+
+## Página de download
+
+A página **Download** (`templates/download.php`) tem o botão que baixa o `pagebrick-x.y.z.zip` da versão mais nova direto do GitHub: a pessoa continua no pagebrick.org, sem passar por nenhuma página do GitHub. O número da versão e a soma de verificação (SHA-256) vêm do catálogo do projeto (`PageBrick/catalog`): o servidor do site consulta no máximo uma vez por hora e guarda a resposta, então a página não precisa ser editada quando sai uma versão nova. O botão só aceita o arquivo de release do próprio PageBrick; se o GitHub não responder, o site mostra a última versão que conheceu, e, se nunca conheceu nenhuma, o botão leva para a página de releases.
+
+O botão **Download** do topo leva para essa página: escolha-a em Contact → Project → Download page (o link acompanha o idioma de quem visita). Os textos da página se editam no painel, como os das outras. O download vem do GitHub, e a política de privacidade diz isso.
+
+Os ícones de linha dos cartões (e alguns outros) vêm do [Lucide](https://lucide.dev), licença ISC, em `pagebrick-org/assets/LUCIDE-LICENSE`.

@@ -65,6 +65,23 @@ document.querySelectorAll('[data-copy]').forEach(button => button.addEventListen
     } catch (e) { /* no clipboard: nothing to do */ }
 }));
 
+// A button that copies the text it carries (the download's checksum).
+document.querySelectorAll('[data-copy-text]').forEach(button => button.addEventListener('click', async () => {
+    try {
+        await navigator.clipboard.writeText(button.dataset.copyText);
+        const text = button.querySelector('[data-copy-label]');
+        const label = text.textContent;
+        text.textContent = button.dataset.copied;
+        setTimeout(() => { text.textContent = label; }, 1600);
+    } catch (e) { /* no clipboard: nothing to do */ }
+}));
+
+// The download button: the file comes straight from GitHub and this page stays where it is, so a line says what to do next.
+document.querySelectorAll('[data-download]').forEach(link => link.addEventListener('click', () => {
+    const note = document.querySelector('[data-thanks]');
+    if (note) note.hidden = false;
+}));
+
 // Feature cards turn over on hover; touch screens have no hover, so a tap does it.
 if (!matchMedia('(hover: hover)').matches) {
     document.querySelectorAll('.flip').forEach(card => card.addEventListener('click', () => card.classList.toggle('flipped')));

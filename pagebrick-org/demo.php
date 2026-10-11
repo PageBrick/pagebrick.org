@@ -4,18 +4,22 @@
 // Format: see pb_import_content() in PageBrick's core/content.php. Everything here can be edited in the panel afterwards.
 $repo = 'https://github.com/PageBrick/pagebrick';
 $docs = "$repo/tree/main/docs";
-$download = "$repo/releases/latest";
+$get = 'page:download'; // the download page: it reads the newest release from GitHub and its button downloads the file right there
+$releases = "$repo/releases";
 $code = fn(string $comment) => "<!-- templates/home.php -->\n<h1><?= \$page->hero->title ?></h1>\n<?php foreach (\$page->services->items as \$item): ?>\n    <h2><?= \$item->title ?></h2>\n<?php endforeach ?>\n\n# $comment\ncurl https://example.com/api/v1/pages/about";
 
 return [
     'locale' => 'en', // the main pages are in English: PageBrick refuses this content on a site whose main language is another
     'media' => [
-        'editor' => ['file' => 'editor.webp', 'alt' => 'The PageBrick panel, editing the home page of a site'],
-        'editor-pt' => ['file' => 'editor-pt.webp', 'alt' => 'O painel do PageBrick editando a página inicial de um site'],
-        'editor-es' => ['file' => 'editor-es.webp', 'alt' => 'El panel de PageBrick editando la página de inicio de un sitio'],
-        'editor-phone' => ['file' => 'editor-phone.webp', 'alt' => 'The PageBrick panel on a phone, editing the home page of a site'],
-        'editor-phone-pt' => ['file' => 'editor-phone-pt.webp', 'alt' => 'O painel do PageBrick no celular, editando a página inicial de um site'],
-        'editor-phone-es' => ['file' => 'editor-phone-es.webp', 'alt' => 'El panel de PageBrick en el celular, editando la página de inicio de un sitio'],
+        'panel-home' => ['file' => 'panel-home.webp', 'alt' => 'The PageBrick panel, editing the home page of a site'],
+        'panel-home-pt' => ['file' => 'panel-home-pt.webp', 'alt' => 'O painel do PageBrick editando a página inicial de um site'],
+        'panel-home-es' => ['file' => 'panel-home-es.webp', 'alt' => 'El panel de PageBrick editando la página de inicio de un sitio'],
+        'panel-phone' => ['file' => 'panel-phone.webp', 'alt' => 'The PageBrick panel on a phone, editing the home page of a site'],
+        'panel-phone-pt' => ['file' => 'panel-phone-pt.webp', 'alt' => 'O painel do PageBrick no celular, editando a página inicial de um site'],
+        'panel-phone-es' => ['file' => 'panel-phone-es.webp', 'alt' => 'El panel de PageBrick en el celular, editando la página de inicio de un sitio'],
+        'dashboard-dark' => ['file' => 'dashboard-dark.webp', 'alt' => 'The PageBrick dashboard in dark mode: numbers, recently edited pages and shortcuts'],
+        'dashboard-dark-pt' => ['file' => 'dashboard-dark-pt.webp', 'alt' => 'A tela inicial do painel do PageBrick no modo escuro: números, páginas editadas há pouco e atalhos'],
+        'dashboard-dark-es' => ['file' => 'dashboard-dark-es.webp', 'alt' => 'El panel de inicio de PageBrick en modo oscuro: números, páginas editadas hace poco y atajos'],
     ],
     'pages' => [
         ['title' => 'Home', 'slug' => 'inicio', 'template' => 'home', 'home' => true,
@@ -26,15 +30,19 @@ return [
                     'title' => 'Business websites your clients can’t break.',
                     'text' => 'PageBrick is a small, open-source CMS for company websites. Owners edit texts and photos in a panel that fits on one screen. Developers keep full control of the front end. Updates check every page and undo themselves if anything breaks.',
                     'button_label' => 'Download PageBrick',
-                    'button_link' => $download,
-                    'image' => 'media:editor',
+                    'button_link' => $get,
+                    'image' => 'media:panel-home',
                 ],
-                'hero_image_phone' => 'media:editor-phone',
+                'hero_image_phone' => 'media:panel-phone',
                 'hero_secondary_label' => 'Read the docs',
                 'hero_secondary_link' => "$docs/en",
                 'hero_note' => 'PHP 8.2+ · MySQL or MariaDB · Any cPanel hosting · GPL-3.0',
+                'hero_badge' => 'New in 1.1: a cleaner panel, light or dark',
+                'hero_badge_link' => $get,
                 'hero_button_hover' => 'Free and open source',
-                'cta_button_hover' => 'Help others find it',
+                'cta_button_hover' => 'No account, no license key',
+                'cta_secondary_label' => 'Star on GitHub',
+                'cta_secondary_link' => $repo,
                 'services' => [
                     'title' => 'For the people who run the business',
                     'intro' => 'Everything a company site needs, and nothing to learn.',
@@ -44,6 +52,13 @@ return [
                         ['title' => 'Contact form and blog included', 'text' => 'Messages arrive by e-mail and stay in the panel. Spam stays out, with no captcha.'],
                         ['title' => 'More than one language', 'text' => 'English, Portuguese and Spanish, for the panel and for the site. Each page can have its translations.'],
                     ],
+                ],
+                'spotlight' => [
+                    'title' => 'Light, dark, or whatever your computer prefers',
+                    'text' => 'The panel opens in the mode your computer is in and remembers each person’s choice. The first screen shows what is published, what is a draft and what changed last.',
+                    'link_label' => 'See everything PageBrick does',
+                    'link' => 'page:features',
+                    'image' => 'media:dashboard-dark',
                 ],
                 'developers' => [
                     'title' => 'For the people who build the sites',
@@ -68,13 +83,13 @@ return [
                     'intro' => 'Upload, open the site, answer four short screens. No terminal, no command line.',
                     'button_hover' => 'Ready in five minutes',
                     'steps' => [
-                        ['title' => 'Download', 'text' => 'Get the latest pagebrick zip from GitHub.'],
+                        ['title' => 'Download', 'text' => 'Get the latest version on the download page.'],
                         ['title' => 'Upload', 'text' => 'Send what is inside its pagebrick folder to your hosting, with the cPanel file manager or FTP.'],
                         ['title' => 'Create a database', 'text' => 'In cPanel, the MySQL Database Wizard creates the database and its user in one go.'],
                         ['title' => 'Open your site', 'text' => 'The installer checks the server, connects to the database and creates a finished example site.'],
                     ],
                     'button_label' => 'Download PageBrick',
-                    'button_link' => $download,
+                    'button_link' => $get,
                 ],
                 'about' => ['_visible' => '0'],
                 'numbers' => ['_visible' => '0'],
@@ -82,8 +97,8 @@ return [
                 'cta' => [
                     'title' => 'Free and open source',
                     'text' => 'Licensed under the GPL-3.0. Made in Brazil and built in the open on GitHub.',
-                    'button_label' => 'Star on GitHub',
-                    'button_link' => $repo,
+                    'button_label' => 'Download PageBrick',
+                    'button_link' => $get,
                 ],
             ],
             'translations' => [
@@ -95,15 +110,19 @@ return [
                             'title' => 'Sites de empresa que o cliente não consegue quebrar.',
                             'text' => 'O PageBrick é um CMS pequeno e de código aberto para sites institucionais. Quem é dono do site edita textos e fotos num painel que cabe numa tela. Quem desenvolve tem controle total do front-end. E cada atualização confere todas as páginas e se desfaz sozinha se algo quebrar.',
                             'button_label' => 'Baixar o PageBrick',
-                            'button_link' => $download,
-                            'image' => 'media:editor-pt',
+                            'button_link' => $get,
+                            'image' => 'media:panel-home-pt',
                         ],
-                        'hero_image_phone' => 'media:editor-phone-pt',
+                        'hero_image_phone' => 'media:panel-phone-pt',
                         'hero_secondary_label' => 'Ler a documentação',
                         'hero_secondary_link' => "$docs/pt-BR",
                         'hero_note' => 'PHP 8.2+ · MySQL ou MariaDB · Qualquer hospedagem com cPanel · GPL-3.0',
+                        'hero_badge' => 'Novo na 1.1: um painel mais limpo, claro ou escuro',
+                        'hero_badge_link' => $get,
                         'hero_button_hover' => 'Grátis e de código aberto',
-                        'cta_button_hover' => 'Ajude outros a encontrar',
+                        'cta_button_hover' => 'Sem cadastro, sem licença',
+                        'cta_secondary_label' => 'Dar uma estrela no GitHub',
+                        'cta_secondary_link' => $repo,
                         'services' => [
                             'title' => 'Para quem cuida do negócio',
                             'intro' => 'Tudo o que um site de empresa precisa, sem nada para aprender.',
@@ -113,6 +132,13 @@ return [
                                 ['title' => 'Formulário de contato e blog incluídos', 'text' => 'As mensagens chegam por e-mail e ficam guardadas no painel. O spam fica de fora, sem captcha.'],
                                 ['title' => 'Mais de um idioma', 'text' => 'Português, inglês e espanhol, no painel e no site. Cada página pode ter as suas traduções.'],
                             ],
+                        ],
+                        'spotlight' => [
+                            'title' => 'Claro, escuro ou o que o seu computador preferir',
+                            'text' => 'O painel abre no modo em que o computador está e lembra a escolha de cada pessoa. A primeira tela mostra o que está publicado, o que é rascunho e o que mudou por último.',
+                            'link_label' => 'Ver tudo o que o PageBrick faz',
+                            'link' => 'page:features',
+                            'image' => 'media:dashboard-dark-pt',
                         ],
                         'developers' => [
                             'title' => 'Para quem constrói os sites',
@@ -137,13 +163,13 @@ return [
                             'intro' => 'Subir os arquivos, abrir o site e responder quatro telas curtas. Sem terminal e sem linha de comando.',
                             'button_hover' => 'Pronto em cinco minutos',
                             'steps' => [
-                                ['title' => 'Baixar', 'text' => 'Pegue o zip mais recente do PageBrick no GitHub.'],
+                                ['title' => 'Baixar', 'text' => 'Baixe a versão mais recente na página de download.'],
                                 ['title' => 'Enviar', 'text' => 'Envie o que está dentro da pasta pagebrick para a hospedagem, pelo gerenciador de arquivos do cPanel ou por FTP.'],
                                 ['title' => 'Criar um banco de dados', 'text' => 'No cPanel, o Assistente de banco de dados MySQL cria o banco e o usuário de uma vez.'],
                                 ['title' => 'Abrir o site', 'text' => 'O instalador confere o servidor, conecta ao banco e cria um site de exemplo pronto.'],
                             ],
                             'button_label' => 'Baixar o PageBrick',
-                            'button_link' => $download,
+                            'button_link' => $get,
                         ],
                         'about' => ['_visible' => '0'],
                         'numbers' => ['_visible' => '0'],
@@ -151,8 +177,8 @@ return [
                         'cta' => [
                             'title' => 'Livre e de código aberto',
                             'text' => 'Licença GPL-3.0. Feito no Brasil e desenvolvido abertamente no GitHub.',
-                            'button_label' => 'Dar uma estrela no GitHub',
-                            'button_link' => $repo,
+                            'button_label' => 'Baixar o PageBrick',
+                            'button_link' => $get,
                         ],
                     ]],
                 'es' => ['title' => 'Inicio', 'slug' => 'inicio',
@@ -163,15 +189,19 @@ return [
                             'title' => 'Sitios de empresa que tus clientes no pueden romper.',
                             'text' => 'PageBrick es un CMS pequeño y de código abierto para sitios corporativos. Quien es dueño del sitio edita textos y fotos en un panel que cabe en una pantalla. Quien desarrolla tiene control total del front-end. Y cada actualización revisa todas las páginas y se deshace sola si algo falla.',
                             'button_label' => 'Descargar PageBrick',
-                            'button_link' => $download,
-                            'image' => 'media:editor-es',
+                            'button_link' => $get,
+                            'image' => 'media:panel-home-es',
                         ],
-                        'hero_image_phone' => 'media:editor-phone-es',
+                        'hero_image_phone' => 'media:panel-phone-es',
                         'hero_secondary_label' => 'Leer la documentación',
                         'hero_secondary_link' => "$docs/es",
                         'hero_note' => 'PHP 8.2+ · MySQL o MariaDB · Cualquier alojamiento con cPanel · GPL-3.0',
+                        'hero_badge' => 'Novedad de la 1.1: un panel más limpio, claro u oscuro',
+                        'hero_badge_link' => $get,
                         'hero_button_hover' => 'Gratis y de código abierto',
-                        'cta_button_hover' => 'Ayuda a otros a encontrarlo',
+                        'cta_button_hover' => 'Sin registro, sin licencia',
+                        'cta_secondary_label' => 'Dar una estrella en GitHub',
+                        'cta_secondary_link' => $repo,
                         'services' => [
                             'title' => 'Para quien lleva el negocio',
                             'intro' => 'Todo lo que necesita un sitio de empresa, y nada que aprender.',
@@ -181,6 +211,13 @@ return [
                                 ['title' => 'Formulario de contacto y blog incluidos', 'text' => 'Los mensajes llegan por correo y quedan en el panel. El spam se queda afuera, sin captcha.'],
                                 ['title' => 'Más de un idioma', 'text' => 'Español, inglés y portugués, en el panel y en el sitio. Cada página puede tener sus traducciones.'],
                             ],
+                        ],
+                        'spotlight' => [
+                            'title' => 'Claro, oscuro o lo que prefiera tu computadora',
+                            'text' => 'El panel se abre en el modo en que está tu computadora y recuerda la elección de cada persona. La primera pantalla muestra lo que está publicado, lo que es borrador y lo último que cambió.',
+                            'link_label' => 'Ver todo lo que hace PageBrick',
+                            'link' => 'page:features',
+                            'image' => 'media:dashboard-dark-es',
                         ],
                         'developers' => [
                             'title' => 'Para quien construye los sitios',
@@ -205,13 +242,13 @@ return [
                             'intro' => 'Subir los archivos, abrir el sitio y responder cuatro pantallas cortas. Sin terminal ni línea de comandos.',
                             'button_hover' => 'Listo en cinco minutos',
                             'steps' => [
-                                ['title' => 'Descargar', 'text' => 'Baja el zip más reciente de PageBrick desde GitHub.'],
+                                ['title' => 'Descargar', 'text' => 'Descarga la versión más reciente en la página de descarga.'],
                                 ['title' => 'Subir', 'text' => 'Sube lo que está dentro de la carpeta pagebrick a tu alojamiento, con el administrador de archivos de cPanel o por FTP.'],
                                 ['title' => 'Crear una base de datos', 'text' => 'En cPanel, el Asistente de bases de datos MySQL crea la base de datos y su usuario de una vez.'],
                                 ['title' => 'Abrir tu sitio', 'text' => 'El instalador revisa el servidor, se conecta a la base de datos y crea un sitio de ejemplo listo.'],
                             ],
                             'button_label' => 'Descargar PageBrick',
-                            'button_link' => $download,
+                            'button_link' => $get,
                         ],
                         'about' => ['_visible' => '0'],
                         'numbers' => ['_visible' => '0'],
@@ -219,8 +256,8 @@ return [
                         'cta' => [
                             'title' => 'Libre y de código abierto',
                             'text' => 'Licencia GPL-3.0. Hecho en Brasil y desarrollado abiertamente en GitHub.',
-                            'button_label' => 'Dar una estrella en GitHub',
-                            'button_link' => $repo,
+                            'button_label' => 'Descargar PageBrick',
+                            'button_link' => $get,
                         ],
                     ]],
             ]],
@@ -274,7 +311,7 @@ return [
                     'text' => 'Download the latest version and have a site running in a few minutes. It is free, under the GPL-3.0.',
                     'button_label' => 'Download PageBrick',
                     'button_hover' => 'No account, no license key',
-                    'button_link' => $download,
+                    'button_link' => $get,
                 ],
             ],
             'translations' => [
@@ -298,7 +335,7 @@ return [
                             'text' => 'Baixe a versão mais recente e tenha um site no ar em poucos minutos. É gratuito, sob a licença GPL-3.0.',
                             'button_label' => 'Baixar o PageBrick',
                             'button_hover' => 'Sem cadastro, sem licença',
-                            'button_link' => $download,
+                            'button_link' => $get,
                         ],
                     ]],
                 'es' => ['title' => 'Funciones', 'slug' => 'funciones',
@@ -321,7 +358,127 @@ return [
                             'text' => 'Descarga la versión más reciente y ten un sitio funcionando en pocos minutos. Es gratis, bajo la licencia GPL-3.0.',
                             'button_label' => 'Descargar PageBrick',
                             'button_hover' => 'Sin registro, sin licencia',
-                            'button_link' => $download,
+                            'button_link' => $get,
+                        ],
+                    ]],
+            ]],
+        // The newest release is read from GitHub by the template (pborg_release), so this page never needs editing when a version comes out.
+        ['title' => 'Download', 'slug' => 'download', 'template' => 'download',
+            'seo_title' => 'Download PageBrick',
+            'seo_description' => 'Download the latest PageBrick: free, open source, one .zip file to upload to ordinary hosting.',
+            'data' => [
+                'intro' => 'The whole CMS in a single .zip file. Free, open source and ready to upload to ordinary hosting.',
+                'install' => [
+                    'title' => 'Install it on your hosting',
+                    'text' => 'For anyone who can upload files to a server and create a database. The installer does the rest.',
+                    'button_label' => 'Download PageBrick',
+                    'thanks' => 'Your download should start now. Next: unzip it, upload what is inside the pagebrick folder to your hosting and open your site.',
+                    'guide_label' => 'Installation steps',
+                    'guide_link' => '/#install',
+                    'requirements' => 'PHP 8.2+ · MySQL 5.7+ or MariaDB 10.4+ · Apache with mod_rewrite',
+                    'links' => [
+                        ['label' => 'All releases', 'link' => $releases],
+                        ['label' => 'Changelog', 'link' => "$repo/blob/main/CHANGELOG.md"],
+                        ['label' => 'Source code', 'link' => $repo],
+                    ],
+                ],
+                'update' => [
+                    'title' => 'Already running PageBrick?',
+                    'text' => 'There is nothing to download. In your panel, open Settings → Updates and click Update. PageBrick fetches the new version, checks every page and goes back by itself if something breaks.',
+                    'link_label' => 'How updates stay safe',
+                    'link' => '/#promise',
+                ],
+                'try' => ['text' => 'Not sure yet?', 'link_label' => 'Watch an update happen, right on this site', 'link' => '/#promise'],
+                'facts' => ['label' => 'Latest version', 'license' => 'GPL-3.0, free for any site', 'includes' => 'The panel, the installer, a ready-made theme, a contact form and a blog.'],
+                'next' => [
+                    'title' => 'You have the file. What now?',
+                    'text' => 'These help most in the first hour.',
+                    'items' => [
+                        ['label' => 'Installation steps', 'link' => '/#install'],
+                        ['label' => 'Build a theme', 'link' => "$docs/en/themes.md"],
+                        ['label' => 'Write a plugin', 'link' => "$docs/en/plugins.md"],
+                        ['label' => 'Read your content as JSON', 'link' => "$docs/en/headless.md"],
+                        ['label' => 'Ask a question or report a problem', 'link' => 'page:contato'],
+                    ],
+                ],
+            ],
+            'translations' => [
+                'pt-BR' => ['title' => 'Baixar', 'slug' => 'baixar',
+                    'seo_title' => 'Baixar o PageBrick',
+                    'seo_description' => 'Baixe a versão mais recente do PageBrick: gratuito, de código aberto, um único arquivo .zip para enviar a uma hospedagem comum.',
+                    'data' => [
+                        'intro' => 'O CMS inteiro num único arquivo .zip. Gratuito, de código aberto e pronto para subir numa hospedagem comum.',
+                        'install' => [
+                            'title' => 'Instale na sua hospedagem',
+                            'text' => 'Para quem sabe enviar arquivos para um servidor e criar um banco de dados. O instalador faz o resto.',
+                            'button_label' => 'Baixar o PageBrick',
+                            'thanks' => 'O download deve começar agora. Depois: descompacte, envie o que está dentro da pasta pagebrick para a hospedagem e abra o seu site.',
+                            'guide_label' => 'Passo a passo da instalação',
+                            'guide_link' => '/pt-br#install',
+                            'requirements' => 'PHP 8.2+ · MySQL 5.7+ ou MariaDB 10.4+ · Apache com mod_rewrite',
+                            'links' => [
+                                ['label' => 'Todas as versões', 'link' => $releases],
+                                ['label' => 'Histórico de mudanças', 'link' => "$repo/blob/main/CHANGELOG.md"],
+                                ['label' => 'Código-fonte', 'link' => $repo],
+                            ],
+                        ],
+                        'update' => [
+                            'title' => 'Já usa o PageBrick?',
+                            'text' => 'Não precisa baixar nada. No painel, abra Configurações → Atualizações e clique em Atualizar. O PageBrick busca a versão nova, confere todas as páginas e volta sozinho se algo quebrar.',
+                            'link_label' => 'Como as atualizações são seguras',
+                            'link' => '/pt-br#promise',
+                        ],
+                        'try' => ['text' => 'Ainda em dúvida?', 'link_label' => 'Veja uma atualização acontecer, aqui mesmo', 'link' => '/pt-br#promise'],
+                        'facts' => ['label' => 'Versão mais recente', 'license' => 'GPL-3.0, livre para qualquer site', 'includes' => 'O painel, o instalador, um tema pronto, um formulário de contato e um blog.'],
+                        'next' => [
+                            'title' => 'Você já tem o arquivo. E agora?',
+                            'text' => 'Estas ajudam mais na primeira hora.',
+                            'items' => [
+                                ['label' => 'Passo a passo da instalação', 'link' => '/pt-br#install'],
+                                ['label' => 'Criar um tema', 'link' => "$docs/pt-BR/themes.md"],
+                                ['label' => 'Escrever um plugin', 'link' => "$docs/pt-BR/plugins.md"],
+                                ['label' => 'Ler o conteúdo em JSON', 'link' => "$docs/pt-BR/headless.md"],
+                                ['label' => 'Tirar uma dúvida ou relatar um problema', 'link' => 'page:contato'],
+                            ],
+                        ],
+                    ]],
+                'es' => ['title' => 'Descargar', 'slug' => 'descargar',
+                    'seo_title' => 'Descargar PageBrick',
+                    'seo_description' => 'Descarga la versión más reciente de PageBrick: gratis, de código abierto, un solo archivo .zip para subir a un alojamiento común.',
+                    'data' => [
+                        'intro' => 'El CMS completo en un solo archivo .zip. Gratis, de código abierto y listo para subir a un alojamiento común.',
+                        'install' => [
+                            'title' => 'Instálalo en tu alojamiento',
+                            'text' => 'Para quien sabe subir archivos a un servidor y crear una base de datos. El instalador hace el resto.',
+                            'button_label' => 'Descargar PageBrick',
+                            'thanks' => 'La descarga debería empezar ahora. Después: descomprímelo, sube lo que está dentro de la carpeta pagebrick a tu alojamiento y abre tu sitio.',
+                            'guide_label' => 'Pasos de instalación',
+                            'guide_link' => '/es-es#install',
+                            'requirements' => 'PHP 8.2+ · MySQL 5.7+ o MariaDB 10.4+ · Apache con mod_rewrite',
+                            'links' => [
+                                ['label' => 'Todas las versiones', 'link' => $releases],
+                                ['label' => 'Historial de cambios', 'link' => "$repo/blob/main/CHANGELOG.md"],
+                                ['label' => 'Código fuente', 'link' => $repo],
+                            ],
+                        ],
+                        'update' => [
+                            'title' => '¿Ya usas PageBrick?',
+                            'text' => 'No hay nada que descargar. En tu panel, abre Configuración → Actualizaciones y haz clic en Actualizar. PageBrick busca la versión nueva, revisa todas las páginas y vuelve atrás solo si algo falla.',
+                            'link_label' => 'Cómo se mantienen seguras las actualizaciones',
+                            'link' => '/es-es#promise',
+                        ],
+                        'try' => ['text' => '¿Aún con dudas?', 'link_label' => 'Mira una actualización ocurrir, aquí mismo', 'link' => '/es-es#promise'],
+                        'facts' => ['label' => 'Versión más reciente', 'license' => 'GPL-3.0, libre para cualquier sitio', 'includes' => 'El panel, el instalador, un tema listo, un formulario de contacto y un blog.'],
+                        'next' => [
+                            'title' => 'Ya tienes el archivo. ¿Y ahora?',
+                            'text' => 'Esto ayuda más en la primera hora.',
+                            'items' => [
+                                ['label' => 'Pasos de instalación', 'link' => '/es-es#install'],
+                                ['label' => 'Crear un tema', 'link' => "$docs/es/themes.md"],
+                                ['label' => 'Escribir un plugin', 'link' => "$docs/es/plugins.md"],
+                                ['label' => 'Leer el contenido como JSON', 'link' => "$docs/es/headless.md"],
+                                ['label' => 'Hacer una pregunta o reportar un problema', 'link' => 'page:contato'],
+                            ],
                         ],
                     ]],
             ]],
@@ -351,7 +508,7 @@ return [
                 'body' => '<h2>Who is responsible</h2><p>This site is run by Alcateia Digital, the agency that maintains PageBrick. To ask anything about your data, use the contact page.</p>'
                     . '<h2>No cookies, no trackers</h2><p>This site doesn’t set cookies in your browser and doesn’t use analytics, advertising or tracking tools. Fonts and images are served from this site.</p>'
                     . '<h2>The contact form</h2><p>If you write to us, we receive your name, e-mail address, phone number (if you give one) and message, plus the IP address the form was sent from, to stop abuse. We use them only to reply. Messages are deleted automatically after 12 months.</p>'
-                    . '<h2>GitHub</h2><p>The star count at the top of the page is fetched by our server from GitHub a few times a day. Your browser only contacts GitHub if you follow a link to it.</p>'
+                    . '<h2>GitHub</h2><p>The star count at the top of the page and the newest PageBrick version on the download page are fetched by our server from GitHub a few times a day. Your browser only contacts GitHub if you follow a link to it or download PageBrick, which comes straight from GitHub.</p>'
                     . '<h2>Your rights</h2><p>You can ask to see, correct or delete your data at any time through the contact page, and we reply within 15 days. These rights are guaranteed by data protection laws such as Brazil’s LGPD and Europe’s GDPR.</p>',
             ],
             'translations' => [
@@ -361,7 +518,7 @@ return [
                         'body' => '<h2>Quem é o responsável</h2><p>Este site é mantido pela Alcateia Digital, a agência que mantém o PageBrick. Para perguntar qualquer coisa sobre os seus dados, use a página de contato.</p>'
                             . '<h2>Sem cookies, sem rastreadores</h2><p>Este site não coloca cookies no seu navegador e não usa ferramentas de estatística, publicidade ou rastreamento. Fontes e imagens vêm do próprio site.</p>'
                             . '<h2>O formulário de contato</h2><p>Se você escrever para a gente, recebemos seu nome, e-mail, telefone (se informar) e a mensagem, além do endereço IP de onde o formulário foi enviado, para evitar abusos. Usamos esses dados só para responder. As mensagens são apagadas automaticamente depois de 12 meses.</p>'
-                            . '<h2>GitHub</h2><p>O número de estrelas no topo da página é buscado pelo nosso servidor no GitHub algumas vezes por dia. O seu navegador só fala com o GitHub se você clicar num link para lá.</p>'
+                            . '<h2>GitHub</h2><p>O número de estrelas no topo da página e a versão mais nova do PageBrick na página de download são buscados pelo nosso servidor no GitHub algumas vezes por dia. O seu navegador só fala com o GitHub se você clicar num link para lá ou baixar o PageBrick, que vem direto do GitHub.</p>'
                             . '<h2>Seus direitos</h2><p>Você pode pedir a qualquer momento para ver, corrigir ou apagar os seus dados pela página de contato, e respondemos em até 15 dias. Esses direitos são garantidos pela LGPD.</p>',
                     ]],
                 'es' => ['title' => 'Política de privacidad', 'slug' => 'politica-de-privacidad',
@@ -370,7 +527,7 @@ return [
                         'body' => '<h2>Quién es el responsable</h2><p>Este sitio lo mantiene Alcateia Digital, la agencia que mantiene PageBrick. Para preguntar cualquier cosa sobre tus datos, usa la página de contacto.</p>'
                             . '<h2>Sin cookies ni rastreadores</h2><p>Este sitio no guarda cookies en tu navegador y no usa herramientas de estadísticas, publicidad ni rastreo. Las fuentes y las imágenes las sirve el propio sitio.</p>'
                             . '<h2>El formulario de contacto</h2><p>Si nos escribes, recibimos tu nombre, correo, teléfono (si lo das) y mensaje, además de la dirección IP desde donde se envió el formulario, para evitar abusos. Los usamos solo para responderte. Los mensajes se eliminan automáticamente después de 12 meses.</p>'
-                            . '<h2>GitHub</h2><p>Nuestro servidor consulta en GitHub, algunas veces al día, el número de estrellas que aparece arriba. Tu navegador solo se conecta con GitHub si sigues un enlace hacia allá.</p>'
+                            . '<h2>GitHub</h2><p>Nuestro servidor consulta en GitHub, algunas veces al día, el número de estrellas que aparece arriba y la versión más nueva de PageBrick en la página de descarga. Tu navegador solo se conecta con GitHub si sigues un enlace hacia allá o descargas PageBrick, que viene directo de GitHub.</p>'
                             . '<h2>Tus derechos</h2><p>Puedes pedir en cualquier momento ver, corregir o eliminar tus datos desde la página de contacto, y respondemos en un plazo de 15 días. Estos derechos están garantizados por leyes de protección de datos como la LGPD de Brasil y el RGPD europeo.</p>',
                     ]],
             ]],
@@ -383,6 +540,7 @@ return [
             ['label' => '', 'link' => 'page:sobre'],
         ],
         'footer' => [
+            ['label' => '', 'link' => 'page:download'],
             ['label' => '', 'link' => 'page:sobre'],
             ['label' => '', 'link' => 'page:features'],
             ['label' => '', 'link' => 'page:contato'],
@@ -393,7 +551,7 @@ return [
     'settings' => [
         'identity' => ['color' => '#d24e2b'],
         'footer' => ['text' => 'PageBrick is free software for websites, licensed under the GPL-3.0.', 'credit' => 'show'],
-        'project' => ['github' => $repo],
+        'project' => ['github' => $repo, 'download' => $get],
     ],
     'settings_translations' => [
         'pt-BR' => ['footer' => ['text' => 'O PageBrick é software livre para sites, sob a licença GPL-3.0.']],

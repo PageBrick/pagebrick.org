@@ -7,6 +7,7 @@
 $github = $site->project->github->raw();
 $stars = $github !== '' ? pborg_github_stars($github) : '';
 $logo = $site->identity->logo;
+$download = $site->project->download->url(); // the page with the download button; none, no button in the header
 ?>
 <!doctype html>
 <html lang="<?= e(pb_locale()) ?>">
@@ -38,10 +39,11 @@ $logo = $site->identity->logo;
                 $code = fn(string $locale) => strtoupper(substr($locale, 0, 2));
                 $current = array_values(array_filter($languages, fn($language) => $language['current']))[0] ?? $languages[0]; ?>
                 <details class="language" data-language>
-                    <summary class="language-trigger command" aria-label="<?= e(__('Idioma') . ': ' . ($native[$current['locale']] ?? $current['name'])) ?>">
+                    <summary class="language-trigger command">
                         <svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
+                        <span class="sr-only"><?= e(__('Idioma')) ?>:</span>
                         <span lang="<?= e($current['locale']) ?>"><?= e($native[$current['locale']] ?? $current['name']) ?></span>
-                        <span class="language-code" aria-hidden="true"><?= e($code($current['locale'])) ?></span>
+                        <span class="language-code"><?= e($code($current['locale'])) ?></span>
                         <svg class="chevrons" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></svg>
                         <?= pborg_shine() ?>
                     </summary>
@@ -60,6 +62,9 @@ $logo = $site->identity->logo;
                     </ul>
                 </details>
             <?php endif ?>
+            <?php if ($download !== ''): ?>
+                <a class="button button-small get-menu" href="<?= e($download) ?>"><?= e(__('Baixar')) ?> <span class="arrow" aria-hidden="true">↓</span></a>
+            <?php endif ?>
         </nav>
         <?php if ($github !== ''): ?>
             <a class="github command" href="<?= e($github) ?>" target="_blank" rel="noopener"
@@ -70,13 +75,16 @@ $logo = $site->identity->logo;
                 <?= pborg_shine() ?>
             </a>
         <?php endif ?>
+        <?php if ($download !== ''): ?>
+            <a class="button button-small get-header" href="<?= e($download) ?>"><?= e(__('Baixar')) ?> <span class="arrow" aria-hidden="true">↓</span></a>
+        <?php endif ?>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><?= e(__('Menu')) ?></button>
     </div>
 </header>
 <main id="main"><?= $content ?></main>
 <footer class="site-footer">
     <div class="wrap footer-row">
-        <div>
+        <div class="footer-about">
             <img src="<?= e(pb_theme_url('assets/logo.svg')) ?>" alt="" width="120" height="26">
             <?php if (!$site->footer->text->isEmpty()): ?><p><?= $site->footer->text ?></p><?php endif ?>
         </div>

@@ -33,6 +33,35 @@ function pborg_github_stars(string $repositoryUrl): string
     return is_int($cache['stars'] ?? null) && $cache['stars'] > 0 ? pborg_short_number($cache['stars']) : ''; // no "0" on a new repository
 }
 
+/**
+ * The newest PageBrick, read from the project's catalog on GitHub: ['version', 'url', 'sha256'], or null while unknown.
+ * Like the star count, the server asks at most once an hour and keeps the answer, so a visitor never waits for GitHub
+ * and the browser only contacts it when the person chooses to download. The address must be this project's release
+ * file, so a wrong catalog can't send anyone elsewhere.
+ */
+function pborg_release(): ?array
+{
+    $cache = json_decode((string) pb_option('pborg_release', ''), true);
+    if (!is_array($cache) || ($cache['at'] ?? 0) < time() - 3600) {
+        $context = stream_context_create(['http' => ['timeout' => 3, 'ignore_errors' => true, 'header' => "User-Agent: pagebrick.org\r\n"]]);
+        $release = pborg_release_from(json_decode((string) @file_get_contents('https://raw.githubusercontent.com/pagebrick/catalog/main/catalog.json', false, $context), true)['core'] ?? null);
+        $cache = ['at' => $release ? time() : time() - 3600 + 300, // a failed try is repeated in five minutes
+            'release' => $release ?? ($cache['release'] ?? null)]; // and meanwhile the last answer stays
+        pb_set_option('pborg_release', json_encode($cache));
+    }
+    return $cache['release'] ?? null;
+}
+
+/** The release a catalog's "core" entry describes, or null when it isn't this project's own release file. */
+function pborg_release_from(mixed $core): ?array
+{
+    $version = is_array($core) ? (string) ($core['version'] ?? '') : '';
+    $valid = preg_match('/^\d+\.\d+\.\d+$/', $version)
+        && ($core['url'] ?? '') === "https://github.com/PageBrick/pagebrick/releases/download/v$version/pagebrick-$version.zip"
+        && preg_match('/^[0-9a-f]{64}$/', (string) ($core['sha256'] ?? ''));
+    return $valid ? ['version' => $version, 'url' => $core['url'], 'sha256' => $core['sha256']] : null;
+}
+
 /** 950 → "950", 1234 → "1.2k", 78000 → "78k". */
 function pborg_short_number(int $n): string
 {
@@ -42,16 +71,17 @@ function pborg_short_number(int $n): string
 /**
  * A main button whose label slides up on hover while $hover rises from below.
  * $label and $hover are safe HTML: escaped texts or fields printed with (string). No $hover repeats the label.
+ * $attributes are more safe HTML attributes for the link, $arrow the little sign after the text.
  */
-function pborg_slide_button(string $href, string $label, string $class = 'button', string $hover = ''): string
+function pborg_slide_button(string $href, string $label, string $class = 'button', string $hover = '', string $attributes = '', string $arrow = '→'): string
 {
-    return '<a class="' . e($class) . ' slide" href="' . e($href) . '">' . pborg_slide_text($label, $hover) . '</a>';
+    return '<a class="' . e($class) . ' slide" href="' . e($href) . '"' . ($attributes !== '' ? " $attributes" : '') . '>' . pborg_slide_text($label, $hover, $arrow) . '</a>';
 }
 
 /** The two stacked texts of a slide button; screen readers only hear the first. */
-function pborg_slide_text(string $label, string $hover = ''): string
+function pborg_slide_text(string $label, string $hover = '', string $arrow = '→'): string
 {
-    $arrow = ' <span class="arrow" aria-hidden="true">→</span>';
+    $arrow = ' <span class="arrow" aria-hidden="true">' . e($arrow) . '</span>';
     return '<span class="slide-text"><span>' . $label . $arrow . '</span><span aria-hidden="true">' . ($hover !== '' ? $hover : $label) . $arrow . '</span></span>';
 }
 

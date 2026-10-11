@@ -85,6 +85,7 @@ return [
     'Página de download' => 'Página de descarga',
     'O botão de baixar no topo do site leva para ela. Em branco: o botão não aparece.' => 'El botón de descarga de la parte de arriba del sitio lleva a ella. En blanco: el botón no aparece.',
     'Baixar' => 'Descargar',
+    'Grátis' => 'Gratis',
     'No pacote' => 'En el paquete',
     'Soma de verificação (SHA-256)' => 'Suma de verificación (SHA-256)',
     'Pular para o conteúdo' => 'Saltar al contenido',

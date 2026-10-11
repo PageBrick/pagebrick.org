@@ -77,7 +77,7 @@ $external = fn(string $url) => str_starts_with($url, 'http');
                         <dt><?= e(__('Soma de verificação (SHA-256)')) ?></dt>
                         <dd class="checksum">
                             <code><?= e($release['sha256']) ?></code>
-                            <button type="button" class="copy copy-light" data-copy-text="<?= e($release['sha256']) ?>" data-copied="<?= e(__('Copiado')) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label><?= e(__('Copiar')) ?></span></button>
+                            <button type="button" class="copy copy-light command" data-copy-text="<?= e($release['sha256']) ?>" data-copied="<?= e(__('Copiado')) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label><?= e(__('Copiar')) ?></span><?= pborg_shine() ?></button>
                         </dd>
                     </div>
                 </dl>

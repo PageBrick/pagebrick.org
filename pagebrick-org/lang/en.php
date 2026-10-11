@@ -84,6 +84,7 @@ return [
     'Página de download' => 'Download page',
     'O botão de baixar no topo do site leva para ela. Em branco: o botão não aparece.' => 'The download button at the top of the site goes to it. Blank: the button does not show.',
     'Baixar' => 'Download',
+    'Grátis' => 'Free',
     'No pacote' => 'In the package',
     'Soma de verificação (SHA-256)' => 'Checksum (SHA-256)',
     // also used by the default theme

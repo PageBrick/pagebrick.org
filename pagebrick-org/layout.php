@@ -63,7 +63,7 @@ $download = $site->project->download->url(); // the page with the download butto
                 </details>
             <?php endif ?>
             <?php if ($download !== ''): ?>
-                <a class="button button-small get-menu" href="<?= e($download) ?>"><?= e(__('Baixar')) ?> <span class="arrow" aria-hidden="true">↓</span></a>
+                <?= pborg_slide_button($download, e(__('Baixar')), 'button button-small get-menu', e(__('Grátis')), '', '↓') ?>
             <?php endif ?>
         </nav>
         <?php if ($github !== ''): ?>
@@ -76,7 +76,7 @@ $download = $site->project->download->url(); // the page with the download butto
             </a>
         <?php endif ?>
         <?php if ($download !== ''): ?>
-            <a class="button button-small get-header" href="<?= e($download) ?>"><?= e(__('Baixar')) ?> <span class="arrow" aria-hidden="true">↓</span></a>
+            <?= pborg_slide_button($download, e(__('Baixar')), 'button button-small get-header', e(__('Grátis')), '', '↓') ?>
         <?php endif ?>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><?= e(__('Menu')) ?></button>
     </div>

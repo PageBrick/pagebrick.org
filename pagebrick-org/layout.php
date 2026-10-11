@@ -1,6 +1,6 @@
 <?php
 /**
- * @var PbGroup $site      settings from "Aparência e contato"
+ * @var PbGroup $site      the site's settings (Contato, Aparência and this theme's groups)
  * @var PbValue $siteName
  * @var string  $content   the template's HTML
  */

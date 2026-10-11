@@ -40,4 +40,4 @@ docker run --rm -v "<pasta pagebrick.org>:/site" -v "<pasta pagebrick>:/app" pag
 
 ## Botão do GitHub
 
-O número de estrelas no topo vem do repositório informado em Appearance & contact → Project → GitHub repository. O servidor do site consulta o GitHub no máximo a cada 6 horas e guarda a resposta: o navegador de quem visita nunca fala com o GitHub. Enquanto o repositório não existe ou não tem estrelas, o botão aparece sem número.
+O número de estrelas no topo vem do repositório informado em Contact → Project → GitHub repository (antes do PageBrick 1.1, esse menu se chamava Appearance & contact). O servidor do site consulta o GitHub no máximo a cada 6 horas e guarda a resposta: o navegador de quem visita nunca fala com o GitHub. Enquanto o repositório não existe ou não tem estrelas, o botão aparece sem número.

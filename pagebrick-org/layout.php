@@ -18,6 +18,7 @@ $download = $site->project->download->url(); // the page with the download butto
 <link rel="icon" href="<?= e($site->identity->icon->isEmpty() ? pb_theme_url('assets/favicon.svg') : $site->identity->icon->url('thumb')) ?>">
 </head>
 <body>
+<div class="scroll-line" aria-hidden="true"><i></i></div>
 <a class="skip" href="#main"><?= e(__('Pular para o conteúdo')) ?></a>
 <header class="site-header">
     <div class="wrap header-row">

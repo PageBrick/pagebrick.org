@@ -172,3 +172,16 @@ document.querySelectorAll('[data-simulator]').forEach(box => {
         buttons.forEach(b => { b.disabled = false; });
     }));
 });
+
+// Reading line: how much of the page was read (the browser's scrollbar is hidden, see .scroll-line in style.css).
+const line = document.querySelector('.scroll-line > i');
+if (line) {
+    const draw = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        line.style.transform = 'scaleY(' + (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0) + ')';
+    };
+    addEventListener('scroll', draw, {passive: true});
+    addEventListener('resize', draw);
+    if ('ResizeObserver' in window) new ResizeObserver(draw).observe(document.body); // the page grows when pictures load
+    draw();
+}

@@ -56,6 +56,16 @@ h1, h2 { font-family: var(--serif); font-weight: 300; letter-spacing: -.025em; }
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .skip:focus { left: 16px; top: 12px; z-index: 40; padding: 8px 12px; background: #fff; color: var(--ink); }
 
+/* The reading line: the browser's own scrollbar is hidden (only when the script runs, so without it nothing changes) and a thin line on the right edge
+   shows how much of the page was read. It is a picture: no focus, no clicks; keyboard and wheel scrolling stay the browser's. */
+html.js { scrollbar-width: none; }
+html.js::-webkit-scrollbar { display: none; }
+.scroll-line { position: fixed; top: 0; right: 0; z-index: 100; width: 2px; height: 100%; background: rgba(128, 128, 128, .18); pointer-events: none; }
+.scroll-line > i { display: block; height: 100%; background: var(--orange); transform-origin: top; transform: scaleY(0); }
+/* areas that scroll by themselves keep a thin bar, in the same two colours */
+pre { scrollbar-width: thin; scrollbar-color: var(--orange) rgba(128, 128, 128, .18); }
+@media print { .scroll-line { display: none; } }
+
 /* Labels, notes and code speak in monospace. */
 .label, .note, .number, .footer-base, .menu-toggle, .plan-step { font-family: var(--mono); letter-spacing: .01em; }
 

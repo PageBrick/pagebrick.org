@@ -49,6 +49,10 @@ Para gerar o .zip, rode a partir da pasta do CMS (com o Docker de desenvolviment
 docker run --rm -v "<pasta pagebrick.org>:/site" -v "<pasta pagebrick>:/app" pagebrick-app php -r 'define("PB_ROOT", "/app"); require "/app/core/bootstrap.php"; $z = new ZipArchive; $z->open("/site/pagebrick-org.zip", ZipArchive::CREATE | ZipArchive::OVERWRITE); pb_zip_add_folder($z, "/site/pagebrick-org", "pagebrick-org"); $z->close(); pb_inspect_package("/site/pagebrick-org.zip", "theme"); echo "ok\n";'
 ```
 
+## A linha de leitura
+
+No lugar da barra de rolagem do navegador (escondida só quando o JavaScript do tema roda) há um fio de 2 px na borda direita da tela, que se enche de laranja conforme a página é lida. Ele é decorativo (`aria-hidden`, sem foco, sem clique); a rolagem por roda, teclado e toque continua sendo a do navegador, suave para quem não pediu menos movimento. Os blocos de código com rolagem própria mantêm uma barra fina nas mesmas cores. Para voltar à barra de sempre, apague as duas regras `html.js` e o `.scroll-line` no começo do `assets/style.css`.
+
 ## Endereço do GitHub
 
 O topo do site não tem botão do GitHub. O endereço do repositório, em Contact → Project → GitHub repository, continua sendo usado pela página de download: se o GitHub não responder, o botão leva para a página de versões do projeto.

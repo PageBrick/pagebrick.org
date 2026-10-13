@@ -14,17 +14,17 @@ function pborg_menu_html(string $location, string $class): string
 
 /**
  * The newest PageBrick, read from the project's catalog on GitHub: ['version', 'url', 'sha256'], or null while unknown.
- * The server asks at most once an hour and keeps the answer, so a visitor never waits for GitHub
+ * The server asks at most every 15 minutes and keeps the answer, so a visitor never waits for GitHub
  * and the browser only contacts it when the person chooses to download. The address must be this project's release
  * file, so a wrong catalog can't send anyone elsewhere.
  */
 function pborg_release(): ?array
 {
     $cache = json_decode((string) pb_option('pborg_release', ''), true);
-    if (!is_array($cache) || ($cache['at'] ?? 0) < time() - 3600) {
+    if (!is_array($cache) || ($cache['at'] ?? 0) < time() - 900) {
         $context = stream_context_create(['http' => ['timeout' => 3, 'ignore_errors' => true, 'header' => "User-Agent: pagebrick.org\r\n"]]);
         $release = pborg_release_from(json_decode((string) @file_get_contents('https://raw.githubusercontent.com/pagebrick/catalog/main/catalog.json', false, $context), true)['core'] ?? null);
-        $cache = ['at' => $release ? time() : time() - 3600 + 300, // a failed try is repeated in five minutes
+        $cache = ['at' => $release ? time() : time() - 900 + 300, // a failed try is repeated in five minutes
             'release' => $release ?? ($cache['release'] ?? null)]; // and meanwhile the last answer stays
         pb_set_option('pborg_release', json_encode($cache));
     }

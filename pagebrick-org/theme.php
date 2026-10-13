@@ -1,6 +1,6 @@
 <?php
 // The pagebrick.org theme: the project's own website, built on PageBrick like any other site.
-// It adds to the standard content the home page sections a product site needs, and the GitHub link of the header.
+// It adds to the standard content the home page sections a product site needs, and the download button of the header.
 require_once __DIR__ . '/functions.php';
 
 $list = fn(string $label, string $item, string $add, array $fields) => ['type' => 'list', 'label' => $label, 'item_label' => $item, 'add_label' => $add, 'fields' => $fields];
@@ -112,7 +112,7 @@ return [
     ],
     'settings' => [
         'project' => ['type' => 'group', 'label' => __('Projeto'), 'fields' => [
-            'github' => ['type' => 'url', 'label' => __('Repositório no GitHub'), 'help' => __('Mostra no topo o botão do GitHub com o número de estrelas.')],
+            'github' => ['type' => 'url', 'label' => __('Repositório no GitHub'), 'help' => __('Endereço do repositório do projeto. A página de download leva para as versões dele quando o GitHub não responde.')],
             'download' => ['type' => 'link', 'label' => __('Página de download'), 'help' => __('O botão de baixar no topo do site leva para ela. Em branco: o botão não aparece.')],
         ]],
     ],

@@ -57,7 +57,7 @@ h1, h2 { font-family: var(--serif); font-weight: 300; letter-spacing: -.025em; }
 .skip:focus { left: 16px; top: 12px; z-index: 40; padding: 8px 12px; background: #fff; color: var(--ink); }
 
 /* Labels, notes and code speak in monospace. */
-.label, .note, .number, .github, .footer-base, .menu-toggle, .plan-step { font-family: var(--mono); letter-spacing: .01em; }
+.label, .note, .number, .footer-base, .menu-toggle, .plan-step { font-family: var(--mono); letter-spacing: .01em; }
 
 /* The words that carry a sentence: plain orange, in the weight of the title (written *like this* in the panel). */
 h1 em, h2 em { font-style: normal; color: var(--accent); }
@@ -72,7 +72,7 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 .band-orange p, .band-orange li, .closing p:not(.pop), .get-list a { font-weight: 500; }
 
 /* ---------------------------------------------------------------- header */
-/* The site's mark (not the whole logo: that one is in the footer), the menu in the middle, the language, the GitHub button and the download button. */
+/* The site's mark (not the whole logo: that one is in the footer), the menu in the middle, the language and the download button. */
 .site-header { position: relative; z-index: 20; background: var(--dark); color: #fff; --btn-bg: #fff; --btn-fg: var(--ink); --btn-hover: #ffd9ca; }
 .header-row { position: relative; z-index: 1; display: flex; align-items: center; gap: 20px; height: 50px; } /* 50 = two dash periods of the guide lines (25px each) */
 .site-header::before, .site-header::after { content: ""; position: absolute; top: 0; bottom: 0; z-index: 0; width: 2px; background: var(--dashes-v); pointer-events: none;
@@ -112,13 +112,6 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 .language[open] .language-menu li { animation: language-in .5s cubic-bezier(.34, 1.36, .64, 1) both; animation-delay: calc(40ms + var(--n) * 45ms); }
 @keyframes menu-in { from { opacity: 0; transform: translateY(-6px) scale(.96); } }
 @keyframes language-in { from { opacity: 0; transform: translateX(-14px); } }
-
-/* The GitHub button: the mark, the star count and a star. */
-.github { display: inline-flex; flex: none; align-items: center; gap: 6px; height: 34px; padding: 0 13px 0 11px; border: 1px solid rgba(255, 255, 255, .2); border-radius: var(--r-s);
-    background: transparent; color: #fff; font-size: .8125rem; font-weight: 500; text-decoration: none; transition: border-color .15s; }
-.github:hover { border-color: rgba(255, 255, 255, .55); }
-.github svg { width: 18px; height: 18px; }
-.github .star { width: 14px; height: 14px; color: var(--star); }
 
 /* The download button of the header (white, like the main button of a dark band); on a phone it moves into the open menu. */
 .button.get-header, .button.get-menu { flex: none; height: 34px; padding: 0 16px; font-size: .875rem; }
@@ -565,8 +558,7 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 @media (max-width: 860px) {
     .header-row { flex-wrap: wrap; gap: 8px 14px; height: auto; min-height: 64px; padding-top: 10px; padding-bottom: 10px; }
     .site-header::before, .site-header::after { display: none; }
-    .github { margin-left: auto; }
-    .menu-toggle { display: inline-block; margin-left: 0; }
+    .menu-toggle { display: inline-block; margin-left: auto; }
     .js .site-nav { display: none; order: 5; width: 100%; margin: 0; }
     .site-nav { flex-direction: column; align-items: stretch; gap: 0; }
     .language { align-self: flex-start; margin: 4px 0 14px; }

@@ -1,11 +1,11 @@
 {
     "name": "pagebrick.org",
-    "version": "2.0.0",
-    "description": "Tema do site do PageBrick: escuro e laranja, com tijolos próprios, a página de download e o botão do GitHub no topo.",
+    "version": "2.0.1",
+    "description": "Tema do site do PageBrick: escuro e laranja, com tijolos próprios, a página de download e o botão de baixar no topo.",
     "author": "PageBrick",
     "api": 1,
     "i18n": {
-        "en": {"description": "The theme of the PageBrick website: dark and orange, with its own brick artwork, a download page and the GitHub button at the top."},
-        "es": {"description": "Tema del sitio de PageBrick: oscuro y naranja, con ladrillos propios, la página de descarga y el botón de GitHub arriba."}
+        "en": {"description": "The theme of the PageBrick website: dark and orange, with its own brick artwork, a download page and the Download button at the top."},
+        "es": {"description": "Tema del sitio de PageBrick: oscuro y naranja, con ladrillos propios, la página de descarga y el botón de descargar arriba."}
     }
 }

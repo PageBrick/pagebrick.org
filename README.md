@@ -49,9 +49,9 @@ Para gerar o .zip, rode a partir da pasta do CMS (com o Docker de desenvolviment
 docker run --rm -v "<pasta pagebrick.org>:/site" -v "<pasta pagebrick>:/app" pagebrick-app php -r 'define("PB_ROOT", "/app"); require "/app/core/bootstrap.php"; $z = new ZipArchive; $z->open("/site/pagebrick-org.zip", ZipArchive::CREATE | ZipArchive::OVERWRITE); pb_zip_add_folder($z, "/site/pagebrick-org", "pagebrick-org"); $z->close(); pb_inspect_package("/site/pagebrick-org.zip", "theme"); echo "ok\n";'
 ```
 
-## Botão do GitHub
+## Endereço do GitHub
 
-O número de estrelas no topo vem do repositório informado em Contact → Project → GitHub repository (antes do PageBrick 1.1, esse menu se chamava Appearance & contact). O servidor do site consulta o GitHub no máximo a cada 6 horas e guarda a resposta: o navegador de quem visita nunca fala com o GitHub. Enquanto o repositório não existe ou não tem estrelas, o botão aparece sem número.
+O topo do site não tem botão do GitHub. O endereço do repositório, em Contact → Project → GitHub repository, continua sendo usado pela página de download: se o GitHub não responder, o botão leva para a página de versões do projeto.
 
 ## Página de download
 

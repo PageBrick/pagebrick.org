@@ -1,0 +1,10 @@
+Pictures of the pagebrick.org theme
+
+hero-en|pt|es.webp, closing-en|pt|es.webp
+  Pencil drawings supplied by the maintainers of the site, with the PageBrick panel placed on the screen of the laptop (perspective), in English, Portuguese and Spanish.
+
+columns.webp
+  A photograph of a colonnade supplied by the maintainers of the site, recoloured in the orange of the band it sits in.
+
+mark.svg, logo.svg, logo-dark.svg, alcateia-lobo.svg
+  The marks of PageBrick and of Alcateia Digital.

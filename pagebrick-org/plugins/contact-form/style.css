@@ -1,10 +1,10 @@
 /* The contact form in the pagebrick.org look (replaces the plugin's own stylesheet: see pb_template_file). */
-.pb-form { padding: clamp(24px, 3vw, 36px); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.pb-form { margin: 0; } /* the card around it is the theme's .contact-form */
 .pb-form h2 { margin: 0 0 8px; font-size: 1.25rem; font-weight: 600; }
 .pb-form label { display: block; margin: 18px 0 6px; color: var(--ink); font-size: .9375rem; font-weight: 600; }
 .pb-form label span { color: var(--muted); font-weight: 400; }
-.pb-form input, .pb-form textarea { width: 100%; padding: 11px 12px; border: 1px solid var(--line-strong); border-radius: 4px; background: #fff; color: var(--ink); font: 400 1rem/1.5 var(--sans); }
-.pb-form input:focus, .pb-form textarea:focus { outline: 2px solid var(--brick); outline-offset: 1px; border-color: transparent; }
+.pb-form input, .pb-form textarea { width: 100%; padding: 11px 12px; border: 1px solid var(--line-strong); border-radius: var(--r-s); background: #fff; color: var(--ink); font: 400 1rem/1.5 var(--sans); }
+.pb-form input:focus, .pb-form textarea:focus { outline: 2px solid var(--orange); outline-offset: 1px; border-color: transparent; }
 .pb-form .button { position: relative; overflow: hidden; margin-top: 24px; border: 0; cursor: pointer; font-family: var(--sans); }
 /* The light sweep of the site's command buttons, with no extra markup. */
 .pb-form .button::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
@@ -12,7 +12,7 @@
 .pb-form .button:hover::after { transform: translateX(100%); }
 .pb-form-note { margin: 16px 0 0; color: var(--muted); font-size: .875rem; }
 .pb-form-note a { color: var(--brick-text); }
-.pb-form-errors { padding: 12px 14px; border-left: 3px solid var(--brick); background: #fbefeb; color: #7a2611; font-size: .9375rem; }
+.pb-form-errors { padding: 12px 14px; border-left: 3px solid var(--orange); border-radius: 0 var(--r-s) var(--r-s) 0; background: #fbefeb; color: #7a2611; font-size: .9375rem; }
 .pb-form-errors p { margin: 4px 0; }
 .pb-form-ok { margin: 0; color: var(--ink); font-size: 1.125rem; font-weight: 600; }
 .pb-form-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }

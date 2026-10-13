@@ -1,7 +1,6 @@
-Fonts bundled with the PageBrick default theme:
-- Public Sans: Copyright 2015 The Public Sans Project Authors (https://github.com/uswds/public-sans)
-- Fraunces: Copyright 2020 The Fraunces Project Authors (https://github.com/undercasetype/Fraunces)
-- Nunito: Copyright 2014 The Nunito Project Authors (https://github.com/googlefonts/nunito)
+Fonts bundled with the pagebrick.org theme:
+- Newsreader: Copyright 2020 The Newsreader Project Authors (http://github.com/productiontype/Newsreader)
+- Inter Tight: Copyright 2022 The Inter Project Authors (https://github.com/rsms/inter-tight)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

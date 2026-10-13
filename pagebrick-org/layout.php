@@ -6,7 +6,6 @@
  */
 $github = $site->project->github->raw();
 $stars = $github !== '' ? pborg_github_stars($github) : '';
-$logo = $site->identity->logo;
 $download = $site->project->download->url(); // the page with the download button; none, no button in the header
 ?>
 <!doctype html>
@@ -14,6 +13,7 @@ $download = $site->project->download->url(); // the page with the download butto
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2b2b2d">
 <link rel="stylesheet" href="<?= e(pb_theme_url('assets/style.css')) ?>">
 <script>document.documentElement.classList.add('js')</script>
 <?= pb_head(['image' => $site->identity->share_image->url()]) ?>
@@ -24,11 +24,7 @@ $download = $site->project->download->url(); // the page with the download butto
 <header class="site-header">
     <div class="wrap header-row">
         <a class="brand" href="<?= e(pb_url('/')) ?>">
-            <?php if ($logo->isEmpty()): ?>
-                <img src="<?= e(pb_theme_url('assets/logo.svg')) ?>" alt="<?= e($siteName->raw()) ?>" width="148" height="32">
-            <?php else: ?>
-                <?= $logo->img('', 'full', false) ?>
-            <?php endif ?>
+            <img src="<?= e(pb_theme_url('assets/mark.svg')) ?>" alt="<?= e($siteName->raw()) ?>" width="31" height="40">
         </a>
         <nav class="site-nav" id="site-nav" aria-label="<?= e(__('Menu principal')) ?>">
             <?= pborg_menu_html('main', 'nav-list') ?>
@@ -41,8 +37,7 @@ $download = $site->project->download->url(); // the page with the download butto
                 <details class="language" data-language>
                     <summary class="language-trigger command">
                         <svg class="globe" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z"/></svg>
-                        <span class="sr-only"><?= e(__('Idioma')) ?>:</span>
-                        <span lang="<?= e($current['locale']) ?>"><?= e($native[$current['locale']] ?? $current['name']) ?></span>
+                        <span class="sr-only"><?= e(__('Idioma')) ?>: <span lang="<?= e($current['locale']) ?>"><?= e($native[$current['locale']] ?? $current['name']) ?></span></span>
                         <span class="language-code"><?= e($code($current['locale'])) ?></span>
                         <svg class="chevrons" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 15 5 5 5-5M7 9l5-5 5 5"/></svg>
                         <?= pborg_shine() ?>
@@ -82,17 +77,25 @@ $download = $site->project->download->url(); // the page with the download butto
     </div>
 </header>
 <main id="main"><?= $content ?></main>
-<footer class="site-footer">
-    <div class="wrap footer-row">
-        <div class="footer-about">
-            <img src="<?= e(pb_theme_url('assets/logo.svg')) ?>" alt="" width="120" height="26">
-            <?php if (!$site->footer->text->isEmpty()): ?><p><?= $site->footer->text ?></p><?php endif ?>
+<footer class="site-footer band-dark guides">
+    <i class="footer-line" aria-hidden="true"></i>
+    <i class="footer-mid" aria-hidden="true"></i>
+    <div class="wrap">
+        <div class="footer-row">
+            <div class="footer-about">
+                <img src="<?= e(pb_theme_url('assets/logo-dark.svg')) ?>" alt="<?= e($siteName->raw()) ?>" width="162" height="34">
+                <?php if (!$site->footer->text->isEmpty()): ?><p><?= $site->footer->text ?></p><?php endif ?>
+            </div>
+            <nav aria-label="<?= e(__('Menu do rodapé')) ?>"><?= pborg_menu_html('footer', 'footer-list') ?></nav>
         </div>
-        <nav aria-label="<?= e(__('Menu do rodapé')) ?>"><?= pborg_menu_html('footer', 'footer-list') ?></nav>
-    </div>
-    <div class="wrap footer-base">
-        <span>© <?= date('Y') ?> <?= $siteName ?></span>
-        <?php if ($site->footer->credit->raw() !== 'hide'): ?><span><?= e(__('Feito com PageBrick')) ?></span><?php endif ?>
+        <div class="footer-base">
+            <span><span>© <?= date('Y') ?> <?= $siteName ?></span><?php if ($site->footer->credit->raw() !== 'hide'): ?><span><?= e(__('Feito com PageBrick')) ?></span><?php endif ?></span>
+            <a class="maintainer" href="https://alcateia.digital/?utm=pagebrick.org" target="_blank" rel="noopener">
+                <span><?= e(__('Mantido pela')) ?></span>
+                <img src="<?= e(pb_theme_url('assets/alcateia-lobo.svg')) ?>" alt="Alcateia Digital" width="22" height="22">
+                <span class="sr-only"><?= e(__('(abre em nova aba)')) ?></span>
+            </a>
+        </div>
     </div>
 </footer>
 <?= pb_footer() ?>

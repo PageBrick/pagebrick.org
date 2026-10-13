@@ -62,6 +62,17 @@ function pborg_release_from(mixed $core): ?array
     return $valid ? ['version' => $version, 'url' => $core['url'], 'sha256' => $core['sha256']] : null;
 }
 
+/** The version before $version: 1.2.0 → 1.1.0, 1.1.2 → 1.1.1, 2.0.0 → 1.0.0 (a small, honest guess for the demonstration). */
+function pborg_previous_version(string $version): string
+{
+    [$major, $minor, $patch] = array_map('intval', explode('.', $version) + [0, 0, 0]);
+    return match (true) {
+        $patch > 0 => "$major.$minor." . ($patch - 1),
+        $minor > 0 => "$major." . ($minor - 1) . '.0',
+        default => max(1, $major - 1) . '.0.0',
+    };
+}
+
 /** 950 → "950", 1234 → "1.2k", 78000 → "78k". */
 function pborg_short_number(int $n): string
 {
@@ -107,6 +118,29 @@ function pborg_mosaic(int $count): array
         $count -= $take;
     }
     return $sizes;
+}
+
+/**
+ * A title with its key words in the serif italic: what is written *between asterisks* in the panel becomes <em>.
+ * Takes a field (already escaped when printed as a string) or a text; the asterisks are all that is added to it.
+ */
+function pborg_em(mixed $title): string
+{
+    return preg_replace('/\*([^*]+)\*/u', '<em>$1</em>', (string) $title);
+}
+
+/** A small line icon (24×24, drawn for this site) by name; an unknown name gives a plain brick. */
+function pborg_icon(string $name): string
+{
+    $paths = [
+        'shield' => '<path d="M12 3 4.5 6v5.5c0 4.4 3.1 8.1 7.5 9.5 4.4-1.4 7.5-5.1 7.5-9.5V6z"/><path d="m9 12 2 2 4-4"/>',
+        'layout' => '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/>',
+        'clipboard' => '<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM9 14l2 2 4-4"/>',
+        'scan' => '<path d="M3 8V5a2 2 0 0 1 2-2h3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M8 21H5a2 2 0 0 1-2-2v-3"/><circle cx="12" cy="12" r="3"/>',
+        'folder' => '<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="m9.5 13 2 2 3.5-3.5"/>',
+        'brick' => '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 12h18M9 5v7M15 12v7"/>',
+    ];
+    return '<svg viewBox="0 0 24 24" aria-hidden="true">' . ($paths[$name] ?? $paths['brick']) . '</svg>';
 }
 
 /** The light sweep of a "command" control. */

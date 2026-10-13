@@ -19,9 +19,11 @@ $label = (string) $install->button_label . ($release ? ' ' . e($release['version
 $external = fn(string $url) => str_starts_with($url, 'http');
 ?>
 <article class="get">
-    <header class="wrap get-head">
-        <h1 class="intro" style="--i: 0"><?= $title ?></h1>
-        <?php if (!$page->intro->isEmpty()): ?><p class="lead intro" style="--i: 1"><?= $page->intro ?></p><?php endif ?>
+    <header class="get-head band-dark guides">
+        <div class="wrap">
+            <h1 class="intro" style="--i: 0"><?= $title ?></h1>
+            <?php if (!$page->intro->isEmpty()): ?><p class="lead intro" style="--i: 1"><?= $page->intro ?></p><?php endif ?>
+        </div>
     </header>
 
     <section class="get-main">

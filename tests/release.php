@@ -14,4 +14,5 @@ assert(pborg_release_from($entry('1.2.3', 'https://evil.example/pagebrick-1.2.3.
 assert(pborg_release_from($entry('1.2.3', 'https://github.com/PageBrick/pagebrick/releases/download/v1.2.4/pagebrick-1.2.4.zip')) === null, 'a file of another version is refused');
 assert(pborg_release_from($entry('1.2.3', 'https://github.com/other/pagebrick/releases/download/v1.2.3/pagebrick-1.2.3.zip')) === null, 'another repository is refused');
 assert(pborg_release_from($entry('1.2.3', null, 'xyz')) === null && pborg_release_from($entry('1.2.3', null, strtoupper($sha))) === null, 'a checksum is 64 lowercase hex digits');
+assert(pborg_previous_version('1.2.0') === '1.1.0' && pborg_previous_version('1.1.2') === '1.1.1' && pborg_previous_version('2.0.0') === '1.0.0' && pborg_previous_version('1.0.0') === '1.0.0', 'the version before');
 echo "release: ok\n";

@@ -6,11 +6,13 @@
 $cta = $page->cta;
 ?>
 <article class="page">
-    <header class="wrap page-head">
-        <h1><?= $title ?></h1>
-        <?php if (!$page->intro->isEmpty()): ?><p class="lead"><?= $page->intro ?></p><?php endif ?>
+    <header class="page-top band-dark guides">
+        <div class="wrap">
+            <h1><?= $title ?></h1>
+            <?php if (!$page->intro->isEmpty()): ?><p class="lead"><?= $page->intro ?></p><?php endif ?>
+        </div>
     </header>
-    <div class="wrap">
+    <div class="wrap page-body">
         <div class="cards">
             <?php foreach ($page->items as $item): ?>
                 <article class="card">

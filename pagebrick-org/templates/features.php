@@ -7,16 +7,19 @@ $cta = $page->cta;
 $sizes = pborg_mosaic(count($page->items));
 ?>
 <article class="page">
-    <header class="wrap page-head">
-        <h1><?= $title ?></h1>
-        <?php if (!$page->intro->isEmpty()): ?><p class="lead"><?= $page->intro ?></p><?php endif ?>
+    <header class="page-top band-dark guides">
+        <div class="wrap">
+            <h1><?= $title ?></h1>
+            <?php if (!$page->intro->isEmpty()): ?><p class="lead"><?= $page->intro ?></p><?php endif ?>
+        </div>
     </header>
-    <div class="wrap">
+    <div class="wrap page-body">
         <div class="mosaic">
             <?php foreach ($page->items as $n => $item): ?>
                 <div class="flip <?= array_shift($sizes) ?>" tabindex="0" data-reveal style="--i: <?= $n % 4 ?>">
                     <div class="flip-inner">
                         <div class="flip-front" aria-hidden="true">
+                            <span class="flip-no"><?= sprintf('%02d', $n + 1) ?></span>
                             <div class="flip-caption">
                                 <div>
                                     <h2><?= $item->title ?></h2>

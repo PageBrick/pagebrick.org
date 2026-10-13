@@ -20,12 +20,6 @@ document.querySelectorAll('[data-language]').forEach(menu => {
     });
 });
 
-// The header gets a hairline shadow once the page scrolls.
-const header = document.querySelector('.site-header');
-const onScroll = () => header?.classList.toggle('scrolled', scrollY > 8);
-addEventListener('scroll', onScroll, {passive: true});
-onScroll();
-
 // Sections fade in as they reach the screen.
 const reveal = !('IntersectionObserver' in window) ? {observe: el => el.classList.add('visible')} : new IntersectionObserver(entries => entries.forEach(entry => {
     if (entry.isIntersecting) {

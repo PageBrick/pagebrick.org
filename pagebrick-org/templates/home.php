@@ -2,26 +2,35 @@
 /**
  * @var PbGroup $page
  * @var PbValue $title
+ * @var PbGroup $site
  * Motion: elements with data-reveal fade in when they reach the screen (assets/site.js); --i staggers a group.
+ * A word between *asterisks* in a title is shown in the title's colour of emphasis (pborg_em).
  */
 $hero = $page->hero;
 $owners = $page->services;
 $spot = $page->spotlight;
 $dev = $page->developers;
 $promise = $page->promise;
+$numbers = $page->numbers;
 $install = $page->install;
 $cta = $page->cta;
-// The update simulator's texts (it is a demonstration, not content: it lives in the theme, translated by lang/).
+$release = pborg_release();
+$download = $site->project->download->url();
+$code = ['pt-BR' => 'pt', 'es' => 'es'][pb_content_locale()] ?? 'en'; // the pictures with the panel on the laptop exist in three languages
+$icons = ['shield', 'layout', 'clipboard', 'scan', 'folder'];
+// The update simulator's texts (a demonstration, not content: it lives in the theme, translated by lang/). It names the newest release and the one before it.
+$new = $release['version'] ?? '';
+$old = $new !== '' ? pborg_previous_version($new) : '';
 $simulator = [
-    'steps' => [__('Baixando a versão 1.1.0'), __('Conferindo a assinatura'), __('Guardando um backup da versão atual'), __('Trocando o núcleo'), __('Abrindo todas as páginas do site')],
-    'ok' => __('Tudo certo: o site está na versão 1.1.0.'),
-    'broken' => __('Uma página deu erro, então a versão 1.0.0 voltou sozinha. Os visitantes não viram nada.'),
+    'steps' => [$new !== '' ? sprintf(__('Baixando a versão %s'), $new) : __('Baixando a nova versão'), __('Conferindo a assinatura'), __('Guardando um backup da versão atual'), __('Trocando o núcleo'), __('Abrindo todas as páginas do site')],
+    'ok' => $new !== '' ? sprintf(__('Tudo certo: o site está na versão %s.'), $new) : __('Tudo certo: o site foi atualizado.'),
+    'broken' => $old !== '' ? sprintf(__('Uma página deu erro, então a versão %s voltou sozinha. Os visitantes não viram nada.'), $old) : __('Uma página deu erro, então a versão anterior voltou sozinha. Os visitantes não viram nada.'),
     'failed' => __('A página "Sobre" deu erro'),
 ];
 ?>
 <?php if ($hero->visible()): ?>
-<section class="hero">
-    <div class="wrap hero-grid">
+<section class="hero band-dark guides">
+    <div class="wrap hero-top">
         <div class="hero-text">
             <?php if (!$page->hero_badge->isEmpty()): $badgeUrl = $page->hero_badge_link->url(); ?>
                 <p class="badge intro" style="--i: 0">
@@ -32,103 +41,61 @@ $simulator = [
                     <?php endif ?>
                 </p>
             <?php endif ?>
-            <h1 class="intro" style="--i: 0"><?= $hero->title ?></h1>
+            <h1 class="intro" style="--i: 0"><?= pborg_em($hero->title) ?></h1>
             <?php if (!$hero->text->isEmpty()): ?><p class="lead intro" style="--i: 1"><?= $hero->text ?></p><?php endif ?>
-            <div class="buttons intro" style="--i: 2">
-                <?php if (!$hero->button_label->isEmpty()): ?>
-                    <?= pborg_slide_button($hero->button_link->url(), (string) $hero->button_label, 'button', (string) $page->hero_button_hover) ?>
-                <?php endif ?>
-                <?php if (!$page->hero_secondary_label->isEmpty()): ?>
-                    <a class="command command-cta" href="<?= e($page->hero_secondary_link->url()) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> <span><?= $page->hero_secondary_label ?></span><?= pborg_shine() ?></a>
-                <?php endif ?>
+            <div class="hero-row">
+                <div class="buttons intro" style="--i: 2">
+                    <?php if (!$hero->button_label->isEmpty()): ?>
+                        <?= pborg_slide_button($hero->button_link->url(), (string) $hero->button_label, 'button', (string) $page->hero_button_hover) ?>
+                    <?php endif ?>
+                    <?php if (!$page->hero_secondary_label->isEmpty()): ?>
+                        <a class="command command-cta" href="<?= e($page->hero_secondary_link->url()) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg> <span><?= $page->hero_secondary_label ?></span><?= pborg_shine() ?></a>
+                    <?php endif ?>
+                </div>
+                <?php if (!$page->hero_note->isEmpty()): ?><p class="note facts intro" style="--i: 3"><?= implode('', array_map(fn($fact) => '<span>' . e(trim($fact)) . '</span>', explode('·', (string) $page->hero_note))) ?></p><?php endif ?>
             </div>
-            <?php if (!$page->hero_note->isEmpty()): ?><p class="note facts intro" style="--i: 3"><?= implode('', array_map(fn($fact) => '<span>' . e(trim($fact)) . '</span>', explode('·', (string) $page->hero_note))) ?></p><?php endif ?>
         </div>
-        <?php if (!$hero->image->isEmpty()): ?>
-            <figure class="hero-shot intro" style="--i: 2" data-tilt>
-                <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-                <picture>
-                    <?php if (!$page->hero_image_phone->isEmpty()): ?><source media="(max-width: 560px)" srcset="<?= e($page->hero_image_phone->url()) ?>"><?php endif ?>
-                    <?= $hero->image->img('', 'full', false) ?>
-                </picture>
-            </figure>
-        <?php endif ?>
+    </div>
+    <div class="hero-geo" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/><line x1="-100" y1="-100" x2="200" y2="200"/><line x1="200" y1="-100" x2="-100" y2="200"/></svg><i class="hline"></i></div>
+    <div class="wrap">
+        <div class="stage intro" style="--i: 2">
+            <img class="figure" src="<?= e(pb_theme_url("assets/hero-$code.webp")) ?>" alt="<?= e(__('Um legionário romano usando o painel do PageBrick num notebook')) ?>" width="1400" height="1045">
+            <p class="pop pop-a" aria-hidden="true"><strong><?= e(__('Cópia guardada antes de atualizar')) ?></strong><span><?= e(__('O site continua no ar')) ?></span></p>
+            <p class="pop pop-b" aria-hidden="true"><strong><?= e(__('Todas as páginas conferidas')) ?></strong><span><?= e(__('Nenhuma deu erro')) ?></span></p>
+        </div>
     </div>
 </section>
 <?php endif ?>
 
 <?php if ($owners->visible()): ?>
-<section class="section" id="owners">
-    <div class="wrap">
-        <header class="section-head" data-reveal>
-            <h2><?= $owners->title ?></h2>
-            <?php if (!$owners->intro->isEmpty()): ?><p><?= $owners->intro ?></p><?php endif ?>
-        </header>
-        <div class="cards cards-lines">
-            <?php foreach ($owners->items as $n => $item): ?>
-                <article class="card" data-reveal style="--i: <?= $n ?>">
-                    <h3><?= $item->title ?></h3>
-                    <p><?= $item->text ?></p>
-                </article>
+<section class="split-band band-orange" id="owners">
+    <div class="split-image" aria-hidden="true">
+        <img class="columns" src="<?= e(pb_theme_url('assets/columns.webp')) ?>" alt="" width="986" height="1480" loading="lazy">
+        <p class="float-card"><strong><?= e(__('Página publicada')) ?></strong><span><?= e(__('A página inicial já está no ar')) ?></span></p>
+    </div>
+    <div class="split-text" data-reveal>
+        <h2><?= pborg_em($owners->title) ?></h2>
+        <?php if (!$owners->intro->isEmpty()): ?><p class="panel-intro"><?= $owners->intro ?></p><?php endif ?>
+        <ul class="checks">
+            <?php foreach ($owners->items as $item): ?>
+                <li><div><h3><?= $item->title ?></h3><p><?= $item->text ?></p></div></li>
             <?php endforeach ?>
-        </div>
-    </div>
-</section>
-<?php endif ?>
-
-<?php if ($spot->visible() && !$spot->title->isEmpty()): ?>
-<section class="section" id="spotlight">
-    <div class="wrap split spotlight">
-        <div data-reveal>
-            <h2><?= $spot->title ?></h2>
-            <?php if (!$spot->text->isEmpty()): ?><p class="lead"><?= $spot->text ?></p><?php endif ?>
-            <?php if (!$spot->link_label->isEmpty()): ?>
-                <p><a class="text-link" href="<?= e($spot->link->url()) ?>"><?= $spot->link_label ?> <span aria-hidden="true">→</span></a></p>
-            <?php endif ?>
-        </div>
-        <?php if (!$spot->image->isEmpty()): ?>
-            <figure class="shot" data-reveal style="--i: 1">
-                <div class="window-bar" aria-hidden="true"><i></i><i></i><i></i></div>
-                <?= $spot->image->img('', 'full') ?>
-            </figure>
-        <?php endif ?>
-    </div>
-</section>
-<?php endif ?>
-
-<?php if ($dev->visible()): ?>
-<section class="section" id="developers">
-    <div class="wrap split">
-        <div data-reveal>
-            <h2><?= $dev->title ?></h2>
-            <div class="prose"><?= $dev->text ?></div>
-            <?php if (!$dev->link_label->isEmpty()): ?>
-                <p><a class="text-link" href="<?= e($dev->link->url()) ?>"><?= $dev->link_label ?> <span aria-hidden="true">→</span></a></p>
-            <?php endif ?>
-        </div>
-        <?php if (!$dev->code->isEmpty()): ?>
-            <div class="terminal" data-reveal style="--i: 1">
-                <div class="window-bar"><i></i><i></i><i></i>
-                    <button type="button" class="copy command command-dark" data-copy data-copied="<?= e(__('Copiado')) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label><?= e(__('Copiar')) ?></span><?= pborg_shine() ?></button>
-                </div>
-                <pre tabindex="0"><code data-type><?= e($dev->code->raw()) ?></code></pre>
-            </div>
-        <?php endif ?>
+        </ul>
     </div>
 </section>
 <?php endif ?>
 
 <?php if ($promise->visible()): ?>
-<section class="section" id="promise">
+<section class="section wall" id="promise">
     <div class="wrap">
         <header class="section-head" data-reveal>
-            <h2><?= $promise->title ?></h2>
+            <h2><?= pborg_em($promise->title) ?></h2>
             <?php if (!$promise->intro->isEmpty()): ?><p><?= $promise->intro ?></p><?php endif ?>
         </header>
         <ol class="numbered">
             <?php foreach ($promise->items as $n => $item): ?>
                 <li data-reveal style="--i: <?= $n ?>">
-                    <span class="number"><?= sprintf('%02d', $n + 1) ?></span>
+                    <span class="icon"><?= pborg_icon($icons[$n % count($icons)]) ?></span>
                     <h3><?= $item->title ?></h3>
                     <p><?= $item->text ?></p>
                 </li>
@@ -148,24 +115,86 @@ $simulator = [
 </section>
 <?php endif ?>
 
+<?php if ($spot->visible() && !$spot->title->isEmpty()): ?>
+<section class="section" id="spotlight">
+    <div class="wrap">
+        <header class="section-head center" data-reveal>
+            <h2><?= pborg_em($spot->title) ?></h2>
+            <?php if (!$spot->text->isEmpty()): ?><p><?= $spot->text ?></p><?php endif ?>
+            <?php if (!$spot->link_label->isEmpty()): ?>
+                <p><a class="text-link" href="<?= e($spot->link->url()) ?>"><?= $spot->link_label ?> <span aria-hidden="true">→</span></a></p>
+            <?php endif ?>
+        </header>
+        <div class="bento">
+            <?php if (!$spot->image->isEmpty()): ?>
+                <figure class="bento-card bento-shot" data-reveal>
+                    <figcaption class="bento-head"><?= e(__('Painel')) ?> <span><?= e(__('No ar')) ?></span></figcaption>
+                    <div class="shot"><?= $spot->image->img('', 'full') ?></div>
+                </figure>
+            <?php endif ?>
+            <?php if ($dev->visible()): ?>
+                <div class="bento-card bento-dark" id="developers" data-reveal style="--i: 1">
+                    <h3><?= pborg_em($dev->title) ?></h3>
+                    <div class="prose-light"><?= $dev->text ?></div>
+                    <?php if (!$dev->code->isEmpty()): ?>
+                        <div class="terminal">
+                            <div class="window-bar"><i></i><i></i><i></i>
+                                <button type="button" class="copy command command-dark" data-copy data-copied="<?= e(__('Copiado')) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label><?= e(__('Copiar')) ?></span><?= pborg_shine() ?></button>
+                            </div>
+                            <pre tabindex="0"><code data-type><?= e($dev->code->raw()) ?></code></pre>
+                        </div>
+                    <?php endif ?>
+                    <?php if (!$dev->link_label->isEmpty()): ?>
+                        <p><a class="text-link" href="<?= e($dev->link->url()) ?>"><?= $dev->link_label ?> <span aria-hidden="true">→</span></a></p>
+                    <?php endif ?>
+                </div>
+            <?php endif ?>
+            <?php if ($release && $download !== ''): ?>
+                <div class="bento-card bento-version" data-reveal style="--i: 2">
+                    <div><p class="label"><?= e(__('Última versão')) ?></p>
+                    <p class="big-number"><?= e($release['version']) ?></p></div>
+                    <p><?= e(__('Licença MIT, grátis e sem cadastro.')) ?></p>
+                    <?= pborg_slide_button($download, e(__('Baixar')), 'button', e(__('Grátis')), '', '↓') ?>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+</section>
+<?php endif ?>
+
+<?php if ($numbers->visible() && !$numbers->title->isEmpty() && count($numbers->items)): ?>
+<section class="section stats wall" id="numbers">
+    <div class="wrap stats-row" data-reveal>
+        <h2><?= pborg_em($numbers->title) ?></h2>
+        <dl class="stat-list">
+            <?php foreach ($numbers->items as $item): ?>
+                <div><dt><?= $item->value ?></dt><dd><?= $item->label ?></dd></div>
+            <?php endforeach ?>
+        </dl>
+    </div>
+</section>
+<?php endif ?>
+
 <?php if ($install->visible()): ?>
 <section class="section" id="install">
     <div class="wrap">
-        <header class="section-head" data-reveal>
-            <h2><?= $install->title ?></h2>
+        <header class="section-head center" data-reveal>
+            <h2><?= pborg_em($install->title) ?></h2>
             <?php if (!$install->intro->isEmpty()): ?><p><?= $install->intro ?></p><?php endif ?>
         </header>
-        <ol class="steps">
+        <?php $last = count($install->steps) - 1; ?>
+        <ol class="plans">
             <?php foreach ($install->steps as $n => $step): ?>
-                <li data-reveal style="--i: <?= $n ?>">
-                    <span class="label"><?= e(sprintf(__('Passo %d'), $n + 1)) ?></span>
+                <li class="plan<?= $n === $last ? ' plan-dark' : '' ?>" data-reveal style="--i: <?= $n ?>">
+                    <span class="plan-step"><?= e(sprintf(__('Passo %d'), $n + 1)) ?></span>
                     <h3><?= $step->title ?></h3>
+                    <span class="plan-num" aria-hidden="true"><?= sprintf('%02d', $n + 1) ?></span>
                     <p><?= $step->text ?></p>
                 </li>
             <?php endforeach ?>
         </ol>
         <?php if (!$install->button_label->isEmpty()): ?>
-            <p data-reveal><?= pborg_slide_button($install->button_link->url(), (string) $install->button_label, 'button', (string) $install->button_hover) ?></p>
+            <p data-reveal style="text-align: center"><?= pborg_slide_button($install->button_link->url(), (string) $install->button_label, 'button', (string) $install->button_hover) ?></p>
         <?php endif ?>
     </div>
 </section>
@@ -174,19 +203,24 @@ $simulator = [
 <?= pb_slot('home') ?>
 
 <?php if ($cta->visible()): ?>
-<section class="closing">
-    <div class="wrap closing-row" data-reveal>
-        <div>
-            <h2><?= $cta->title ?></h2>
+<section class="closing has-stage">
+    <div class="wrap closing-row">
+        <div class="closing-text" data-reveal>
+            <h2><?= pborg_em($cta->title) ?></h2>
             <?php if (!$cta->text->isEmpty()): ?><p><?= $cta->text ?></p><?php endif ?>
+            <div class="buttons closing-actions">
+                <?php if (!$cta->button_label->isEmpty()): ?>
+                    <?= pborg_slide_button($cta->button_link->url(), (string) $cta->button_label, 'button button-light', (string) $page->cta_button_hover) ?>
+                <?php endif ?>
+                <?php if (!$page->cta_secondary_label->isEmpty()): ?>
+                    <a class="command command-cta" href="<?= e($page->cta_secondary_link->url()) ?>"><span><?= $page->cta_secondary_label ?></span><?= pborg_shine() ?></a>
+                <?php endif ?>
+            </div>
         </div>
-        <div class="closing-actions">
-            <?php if (!$cta->button_label->isEmpty()): ?>
-                <?= pborg_slide_button($cta->button_link->url(), (string) $cta->button_label, 'button button-light', (string) $page->cta_button_hover) ?>
-            <?php endif ?>
-            <?php if (!$page->cta_secondary_label->isEmpty()): ?>
-                <a class="command command-cta command-dark" href="<?= e($page->cta_secondary_link->url()) ?>"><span><?= $page->cta_secondary_label ?></span><?= pborg_shine() ?></a>
-            <?php endif ?>
+        <div class="closing-stage" aria-hidden="true" data-reveal>
+            <img class="figure" src="<?= e(pb_theme_url("assets/closing-$code.webp")) ?>" alt="" width="1400" height="1045" loading="lazy">
+            <p class="pop pop-d"><strong><?= e(__('Licença MIT')) ?></strong><span><?= e(__('Use em qualquer site')) ?></span></p>
+            <p class="pop pop-e"><strong><?= e(__('Sem cadastro')) ?></strong><span><?= e(__('Sem chave de licença')) ?></span></p>
         </div>
     </div>
 </section>

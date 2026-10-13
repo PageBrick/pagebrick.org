@@ -1,11 +1,19 @@
 # pagebrick.org
 
-The theme of [pagebrick.org](https://pagebrick.org), the website of [PageBrick](https://github.com/PageBrick/pagebrick), built on PageBrick itself. It is a real, complete example of a theme: layout, templates, a replaced plugin stylesheet, ready-made content in English, Portuguese and Spanish, a language switcher and a bit of motion. Licensed under the GPL-3.0, like PageBrick.
+The theme of [pagebrick.org](https://pagebrick.org), the website of [PageBrick](https://github.com/PageBrick/pagebrick), built on PageBrick itself. It is a real, complete example of a theme: layout, templates, a replaced plugin stylesheet, ready-made content in English, Portuguese and Spanish, a language switcher and a bit of motion. Licensed under the MIT License, like PageBrick.
 
 O site do PageBrick, feito no próprio PageBrick. Esta pasta guarda só o **tema** do site (`pagebrick-org/`): o CMS fica no repositório `PageBrick/pagebrick`, e o conteúdo fica no banco de dados do site. As instruções abaixo estão em português.
 
 - `pagebrick-org/`: o tema (layout, modelos, CSS, movimentos em `assets/site.js`, textos fixos em inglês e espanhol em `lang/` e o conteúdo pronto do site, nos três idiomas, em `demo.php`).
 - `pagebrick-org.zip`: o tema empacotado, pronto para enviar pelo painel. Gere de novo depois de mudar o tema (ver "Atualizar o tema").
+
+## O visual
+
+Fundo grafite, laranja de destaque, títulos em serifada leve, com a palavra de destaque em laranja (em pé, sem itálico), botões retangulares pequenos e cartões brancos suaves. Fontes Newsreader (títulos e números grandes, bem leve) e Inter Tight (o resto), hospedadas no próprio tema (licença OFL). No cabeçalho vai só o ícone do PageBrick; o logotipo completo fica no rodapé, ao lado da assinatura "Mantido pela" (lobo da Alcateia Digital). As linhas tracejadas (as laterais do destaque e do rodapé, as duas faixas e os círculos atrás da figura do topo) são a `.guides` e a `.hero-geo` do CSS.
+
+Nos títulos da página inicial, uma palavra entre `*asteriscos*` aparece em laranja (função `pborg_em`). O painel avisa isso nos campos de título.
+
+**As figuras.** No topo da página inicial há um legionário romano e, na faixa laranja do fim, um filósofo, ambos desenhados a lápis, cada um usando um notebook. O painel do PageBrick já vem aplicado na tela do notebook, em perspectiva, e existe nos três idiomas: `assets/hero-en|pt|es.webp` e `assets/closing-en|pt|es.webp` (o tema escolhe pelo idioma da página). Por isso a foto do campo "Destaque" da página inicial não é mais usada. Os cartões que "saem da tela" são HTML (`.pop` na página inicial), com os textos em `lang/`; entram com um movimento curto e depois flutuam devagar, e ficam parados para quem pediu menos movimento no sistema. A foto das colunas na faixa laranja do meio (`assets/columns.webp`) foi enviada pelos mantenedores e recolorida no laranja da faixa; ela some nas bordas para se fundir ao fundo (veja `assets/PICTURES.txt`).
 
 ## Publicar na HostGator (primeira vez)
 
@@ -24,7 +32,8 @@ Para o painel em português: Minha conta (seu nome no topo) → Idioma do painel
 
 Os textos estão em `demo.php` e podem ser mudados depois no painel. Confira principalmente:
 
-- **Features**: o que o CMS oferece, em cards que giram. A Alcateia Digital só aparece na política de privacidade.
+- **Features**: o que o CMS oferece, em cards que giram.
+- **Rodapé**: a assinatura "Mantido pela" (com o lobo da Alcateia Digital) abre alcateia.digital em outra aba, com `?utm=pagebrick.org`. O nome da empresa também aparece na política de privacidade.
 - **Privacy policy**: diz quem é o responsável pelos dados, que o site não usa cookies nem ferramentas de rastreamento e que as mensagens do formulário são apagadas depois de 12 meses (a opção padrão do plugin de contato).
 - **Contact**: o formulário manda as mensagens para o e-mail do administrador.
 
@@ -32,7 +41,7 @@ Os textos estão em `demo.php` e podem ser mudados depois no painel. Confira pri
 
 Depois de mudar arquivos em `pagebrick-org/`, aumente a versão em `theme.json`, gere o .zip de novo e envie em Settings (gear icon) → Themes → Upload theme. O tema anterior fica guardado nos backups, e o botão "Roll back" volta para ele.
 
-**Imagens do conteúdo pronto** (`pagebrick-org/demo/`): se uma imagem mudar, troque também o nome do arquivo (e a chave em `demo.php`). Ao importar, o PageBrick reaproveita uma foto que já está na biblioteca com o mesmo nome e a mesma descrição, e o site ficaria com a imagem antiga. Por isso as imagens do painel se chamam `panel-home*`, `panel-phone*` e `dashboard-dark*`, e os nomes `panel.webp`, `panel-pt.webp`, `panel-es.webp` e `editor*.webp` das versões antigas não devem ser usados de novo.
+**Imagens do conteúdo pronto** (`pagebrick-org/demo/`): se uma imagem mudar, troque também o nome do arquivo (e a chave em `demo.php`). Ao importar, o PageBrick reaproveita uma foto que já está na biblioteca com o mesmo nome e a mesma descrição, e o site ficaria com a imagem antiga. Por isso a imagem do painel se chama `dashboard-dark*`, e os nomes `panel*.webp` e `editor*.webp` das versões antigas não devem ser usados de novo.
 
 Para gerar o .zip, rode a partir da pasta do CMS (com o Docker de desenvolvimento ligado):
 

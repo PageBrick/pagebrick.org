@@ -21,7 +21,7 @@ $github = $site->project->github->raw();
 </head>
 <body class="closed">
 <main class="wrap narrow">
-    <img src="<?= e(pb_theme_url('assets/logo.svg')) ?>" alt="<?= e($siteName) ?>" width="148" height="32">
+    <img src="<?= e(pb_theme_url('assets/logo-dark.svg')) ?>" alt="<?= e($siteName) ?>" width="170" height="36">
     <h1><?= e($title) ?></h1>
     <p class="lead"><?= nl2br(e($message)) ?></p>
     <?php if ($github !== ''): ?>

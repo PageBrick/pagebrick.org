@@ -210,8 +210,7 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
     box-shadow: 0 1.6em 2.6em -1em rgba(0, 0, 0, .65), 0 0 0 1px rgba(0, 0, 0, .05); font-size: clamp(7.5px, 1.2cqw, 13px); line-height: 1.3; transform: rotate(var(--r, -3deg));
     animation: pop .95s cubic-bezier(.2, .9, .25, 1.15) var(--d, .6s) both, bob var(--bt, 5.2s) ease-in-out calc(var(--d, .6s) + 1s) infinite alternate; }
 .pop strong { display: flex; align-items: flex-start; gap: .55em; font-size: 1em; font-weight: 600; }
-.pop strong::before { content: ""; flex: none; width: 1.5em; height: 1.5em; margin-top: -.1em; border-radius: 50%; background: var(--orange)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141414' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / 62% no-repeat; }
+.pop strong::before { content: ""; flex: none; width: 1.5em; height: 1.5em; margin-top: -.1em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23f16540'/%3E%3Cpath transform='translate(12 12) scale(0.62) translate(-12 -12)' d='m6 12.5 4 4 8-9' fill='none' stroke='%23141414' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
 .pop span { padding-left: 2.05em; color: var(--muted); font-size: .88em; }
 /* They come out of the screen (from its middle, small) and then hover, calmly. */
 @keyframes pop { from { opacity: 0; transform: translate(var(--fx, 40%), var(--fy, 70%)) scale(.45) rotate(var(--r, -3deg)); } 55% { opacity: 1; } }
@@ -257,16 +256,14 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
     box-shadow: 0 24px 40px -18px rgba(60, 12, 0, .55); font-size: .8125rem; line-height: 1.35; }
 .float-card { animation: bob var(--bt, 5.8s) ease-in-out 1s infinite alternate; --r: 0deg; }
 .float-card strong { display: flex; align-items: center; gap: 8px; font-size: .875rem; }
-.float-card strong::before { content: ""; width: 18px; height: 18px; border-radius: 50%; background: var(--orange)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23141414' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.float-card strong::before { content: ""; width: 18px; height: 18px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23f16540'/%3E%3Cpath transform='translate(12 12) scale(0.62) translate(-12 -12)' d='m6 12.5 4 4 8-9' fill='none' stroke='%23141414' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
 .float-card span { padding-left: 26px; color: var(--muted); }
 .split-text { align-self: center; max-width: 660px; padding: clamp(40px, 6vw, 80px) clamp(24px, 6vw, 88px); }
 .split-text h2 { margin-bottom: 18px; font-size: clamp(2rem, 3.6vw, 3.1rem); line-height: 1.06; }
 .panel-intro { margin: 0 0 28px; max-width: 34em; font-size: 1.0625rem; }
 .checks { display: grid; gap: 18px; margin: 0; padding: 0; list-style: none; }
 .checks li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 14px; align-items: start; }
-.checks li::before { content: ""; width: 26px; height: 26px; margin-top: 1px; border-radius: 50%; background: #fff
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f16540' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E") center / 15px no-repeat; }
+.checks li::before { content: ""; width: 26px; height: 26px; margin-top: 1px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23fff'/%3E%3Cpath transform='translate(12 12) scale(0.6) translate(-12 -12)' d='m6 12.5 4 4 8-9' fill='none' stroke='%23f16540' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
 .checks h3 { margin-bottom: 2px; color: var(--on-orange); font-size: 1rem; font-weight: 600; }
 .checks p { margin: 0; font-size: .95rem; line-height: 1.55; }
 

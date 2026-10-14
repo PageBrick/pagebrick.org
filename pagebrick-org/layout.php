@@ -66,7 +66,7 @@ $download = $site->project->download->url(); // the page with the download butto
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav"><?= e(__('Menu')) ?></button>
     </div>
 </header>
-<main id="main"><?= $content ?></main>
+<main id="main"><?= pborg_docs_links($content) ?></main>
 <footer class="site-footer band-dark guides">
     <i class="footer-line" aria-hidden="true"></i>
     <i class="footer-mid" aria-hidden="true"></i>

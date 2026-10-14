@@ -438,7 +438,7 @@ return [
                             'text' => 'Estas ajudam mais na primeira hora.',
                             'items' => [
                                 ['label' => 'Passo a passo da instalação', 'link' => '/pt-br#install'],
-                                ['label' => 'Criar um tema', 'link' => "$docs/pt-BR/themes.md"],
+                                ['label' => 'Criar um tema', 'link' => "$docs/pt-BR/temas.md"],
                                 ['label' => 'Escrever um plugin', 'link' => "$docs/pt-BR/plugins.md"],
                                 ['label' => 'Ler o conteúdo em JSON', 'link' => "$docs/pt-BR/headless.md"],
                                 ['label' => 'Tirar uma dúvida ou relatar um problema', 'link' => 'page:contato'],
@@ -477,7 +477,7 @@ return [
                             'text' => 'Esto ayuda más en la primera hora.',
                             'items' => [
                                 ['label' => 'Pasos de instalación', 'link' => '/es-es#install'],
-                                ['label' => 'Crear un tema', 'link' => "$docs/es/themes.md"],
+                                ['label' => 'Crear un tema', 'link' => "$docs/es/temas.md"],
                                 ['label' => 'Escribir un plugin', 'link' => "$docs/es/plugins.md"],
                                 ['label' => 'Leer el contenido como JSON', 'link' => "$docs/es/headless.md"],
                                 ['label' => 'Hacer una pregunta o reportar un problema', 'link' => 'page:contato'],

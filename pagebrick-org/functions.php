@@ -9,7 +9,24 @@ function pborg_menu_html(string $location, string $class): string
 {
     $html = pb_menu_html($location, $class);
     $docs = ['pt-BR' => 'pt-BR', 'es' => 'es'][pb_content_locale()] ?? null;
-    return $docs === null ? $html : str_replace('/PageBrick/pagebrick/tree/main/docs/en', "/PageBrick/pagebrick/tree/main/docs/$docs", $html);
+    return pborg_docs_links($docs === null ? $html : str_replace('/PageBrick/pagebrick/tree/main/docs/en', "/PageBrick/pagebrick/tree/main/docs/$docs", $html));
+}
+
+/**
+ * The links to PageBrick's docs on GitHub, in a piece of HTML, made to follow the newest release: "…/tree/main/docs/…" becomes "…/tree/v1.2.2/docs/…" (the tag of
+ * the release the download button offers; the same cached answer), so a new release needs no edit of any menu or page. While the release is unknown they stay on
+ * main. Also puts right the names of the pt-BR and es theme guides that older imported pages have as "themes.md" (the files are "temas.md").
+ */
+function pborg_docs_links(string $html): string
+{
+    return pborg_docs_for($html, pborg_release());
+}
+
+/** pborg_docs_links() for a known release (or none): the pure part. */
+function pborg_docs_for(string $html, ?array $release): string
+{
+    $html = preg_replace('~(/PageBrick/pagebrick/(?:tree|blob)/[^/"\']+/docs/(?:pt-BR|es))/themes\.md~', '$1/temas.md', $html);
+    return $release === null ? $html : str_replace('/PageBrick/pagebrick/tree/main/docs', '/PageBrick/pagebrick/tree/v' . $release['version'] . '/docs', $html);
 }
 
 /**

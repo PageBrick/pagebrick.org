@@ -6,7 +6,7 @@ $repo = 'https://github.com/PageBrick/pagebrick';
 $docs = "$repo/tree/main/docs";
 $get = 'page:download'; // the download page: it reads the newest release from GitHub and its button downloads the file right there
 $releases = "$repo/releases";
-$code = fn(string $comment) => "<!-- templates/home.php -->\n<h1><?= \$page->hero->title ?></h1>\n<?php foreach (\$page->services->items as \$item): ?>\n    <h2><?= \$item->title ?></h2>\n<?php endforeach ?>\n\n# $comment\ncurl https://example.com/api/v1/pages/about";
+$code = fn(string $comment) => "<!-- templates/home.php -->\n<h1><?= \$page->hero->title ?></h1>\n<?php foreach (\$page->services->items as \$item): ?>\n    <h2><?= \$item->title ?></h2>\n<?php endforeach ?>\n\n// $comment\nfetch(\"https://example.com/api/v1/pages/about\")"; // not "curl https://…": many hosts' security filters refuse a text like that when the form is saved
 
 return [
     'locale' => 'en', // the main pages are in English: PageBrick refuses this content on a site whose main language is another
@@ -65,7 +65,7 @@ return [
                         ['title' => 'A frozen site', 'text' => 'A real site built on 1.0 must deliver the same HTML, byte for byte, on every new release.'],
                         ['title' => 'Checked before', 'text' => 'If an active plugin or the theme isn’t ready for the new version, the panel says which one and waits.'],
                         ['title' => 'Checked after', 'text' => 'The first visit after an update renders every page. If one fails, the previous version comes back on its own.'],
-                        ['title' => 'Your files untouched', 'text' => 'Updates replace the core only. Themes, plugins, photos and settings stay exactly as they are.'],
+                        ['title' => 'Your files untouched', 'text' => 'Updates replace the core and the default theme. Your themes, plugins, photos and settings stay exactly as they are.'],
                     ],
                 ],
                 'install' => [
@@ -148,7 +148,7 @@ return [
                                 ['title' => 'Um site congelado', 'text' => 'Um site real feito na 1.0 precisa entregar o mesmo HTML, byte por byte, em toda versão nova.'],
                                 ['title' => 'Conferido antes', 'text' => 'Se um plugin ativo ou o tema não estiver pronto para a versão nova, o painel diz qual e espera.'],
                                 ['title' => 'Conferido depois', 'text' => 'A primeira visita depois da atualização abre todas as páginas. Se uma falhar, a versão anterior volta sozinha.'],
-                                ['title' => 'Seus arquivos intactos', 'text' => 'A atualização troca só o núcleo. Temas, plugins, fotos e configurações ficam exatamente como estão.'],
+                                ['title' => 'Seus arquivos intactos', 'text' => 'A atualização troca o núcleo e o tema padrão. Os seus temas, plugins, fotos e configurações ficam exatamente como estão.'],
                             ],
                         ],
                         'install' => [
@@ -230,7 +230,7 @@ return [
                                 ['title' => 'Un sitio congelado', 'text' => 'Un sitio real hecho con la 1.0 debe entregar el mismo HTML, byte por byte, en cada versión nueva.'],
                                 ['title' => 'Revisado antes', 'text' => 'Si un plugin activo o el tema no está listo para la versión nueva, el panel dice cuál y espera.'],
                                 ['title' => 'Revisado después', 'text' => 'La primera visita tras la actualización abre todas las páginas. Si una falla, la versión anterior vuelve sola.'],
-                                ['title' => 'Tus archivos intactos', 'text' => 'La actualización reemplaza solo el núcleo. Temas, plugins, fotos y configuración quedan tal como están.'],
+                                ['title' => 'Tus archivos intactos', 'text' => 'La actualización reemplaza el núcleo y el tema estándar. Tus temas, plugins, fotos y configuración quedan tal como están.'],
                             ],
                         ],
                         'install' => [

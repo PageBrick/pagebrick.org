@@ -146,12 +146,13 @@ $simulator = [
                 <div class="bento-card bento-dark" id="developers" data-reveal style="--i: 1">
                     <h3><?= pborg_em($dev->title) ?></h3>
                     <div class="prose-light"><?= $dev->text ?></div>
-                    <?php if (!$dev->code->isEmpty()): ?>
+                    <?php $sample = $dev->code->isEmpty() ? pborg_code_sample() : (string) $dev->code->raw(); // the sample lives in the theme: see pborg_code_sample() ?>
+                    <?php if ($sample !== ''): ?>
                         <div class="terminal">
                             <div class="window-bar"><i></i><i></i><i></i>
                                 <button type="button" class="copy command command-dark" data-copy data-copied="<?= e(__('Copiado')) ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><span data-copy-label><?= e(__('Copiar')) ?></span><?= pborg_shine() ?></button>
                             </div>
-                            <pre tabindex="0"><code data-type><?= e($dev->code->raw()) ?></code></pre>
+                            <pre tabindex="0"><code data-type><?= e($sample) ?></code></pre>
                         </div>
                     <?php endif ?>
                     <?php if (!$dev->link_label->isEmpty()): ?>

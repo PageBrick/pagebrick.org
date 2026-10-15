@@ -6,7 +6,6 @@ $repo = 'https://github.com/PageBrick/pagebrick';
 $docs = "$repo/tree/main/docs";
 $get = 'page:download'; // the download page: it reads the newest release from GitHub and its button downloads the file right there
 $releases = "$repo/releases";
-$code = fn(string $comment) => "<!-- templates/home.php -->\n<h1><?= \$page->hero->title ?></h1>\n<?php foreach (\$page->services->items as \$item): ?>\n    <h2><?= \$item->title ?></h2>\n<?php endforeach ?>\n\n// $comment\nfetch(\"https://example.com/api/v1/pages/about\")"; // not "curl https://…": many hosts' security filters refuse a text like that when the form is saved
 
 return [
     'locale' => 'en', // the main pages are in English: PageBrick refuses this content on a site whose main language is another
@@ -53,7 +52,6 @@ return [
                 'developers' => [
                     'title' => 'For the people who *build the sites*',
                     'text' => '<p>The front end is yours. PageBrick adds nothing you didn’t ask for: no CSS, no JavaScript, no cookies. Write plain PHP templates with any build tool, replace any plugin’s markup from your theme, or skip PHP entirely and read the content as JSON.</p>',
-                    'code' => $code('or headless, from Next.js, Astro or an app'),
                     'link_label' => 'Build a theme',
                     'link' => "$docs/en/themes.md",
                 ],
@@ -136,7 +134,6 @@ return [
                         'developers' => [
                             'title' => 'Para quem *constrói os sites*',
                             'text' => '<p>O front-end é seu. O PageBrick não coloca nada que você não pediu: nada de CSS, JavaScript ou cookies. Escreva templates em PHP puro com qualquer ferramenta de build, troque o HTML de qualquer plugin pelo seu tema, ou dispense o PHP e leia o conteúdo em JSON.</p>',
-                            'code' => $code('ou headless, a partir de Next.js, Astro ou um aplicativo'),
                             'link_label' => 'Criar um tema',
                             'link' => "$docs/pt-BR/temas.md",
                         ],
@@ -218,7 +215,6 @@ return [
                         'developers' => [
                             'title' => 'Para quien *construye los sitios*',
                             'text' => '<p>El front-end es tuyo. PageBrick no agrega nada que no pidas: nada de CSS, JavaScript ni cookies. Escribe plantillas en PHP puro con cualquier herramienta de build, reemplaza el HTML de cualquier plugin desde tu tema, o deja PHP de lado y lee el contenido en JSON.</p>',
-                            'code' => $code('o headless, desde Next.js, Astro o una app'),
                             'link_label' => 'Crear un tema',
                             'link' => "$docs/es/temas.md",
                         ],

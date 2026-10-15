@@ -152,6 +152,17 @@ function pborg_block(PbGroup $page, string $section): string
 }
 
 /** A section of the page, marked while the client edits it in the panel (PageBrick 1.3+). */
+/**
+ * The sample of "For developers": a template and the same content as JSON. It lives here and not in a field of the page because a form that carries PHP tags
+ * inside HTML is refused by the security filter of many hosts (the panel's preview and Save answer "Not Acceptable"). The field "Exemplo de código" still
+ * overrides it, for a site whose host lets such text through.
+ */
+function pborg_code_sample(): string
+{
+    return "<!-- templates/home.php -->\n<h1><?= \$page->hero->title ?></h1>\n<?php foreach (\$page->services->items as \$item): ?>\n    <h2><?= \$item->title ?></h2>\n<?php endforeach ?>\n\n// "
+        . __('ou headless, a partir de Next.js, Astro ou um aplicativo') . "\nfetch(\"https://example.com/api/v1/pages/about\")";
+}
+
 function pborg_section(string $name, string $html): string
 {
     return function_exists('pb_section') ? pb_section($name, $html) : $html;

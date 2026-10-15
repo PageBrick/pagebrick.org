@@ -31,7 +31,7 @@ return [
             'developers' => ['type' => 'group', 'label' => __('Para desenvolvedores'), 'toggle' => true, 'fields' => [
                 'title' => ['type' => 'text', 'label' => __('Título'), 'help' => __('Uma palavra entre *asteriscos* aparece em itálico, em destaque.')],
                 'text' => ['type' => 'richtext', 'label' => __('Texto')],
-                'code' => ['type' => 'textarea', 'label' => __('Exemplo de código')],
+                'code' => ['type' => 'textarea', 'label' => __('Exemplo de código'), 'help' => __('Em branco: usa o exemplo do tema. Alguns servidores recusam o envio de código PHP dentro de um formulário.')],
                 'link_label' => ['type' => 'text', 'label' => __('Texto do link')],
                 'link' => ['type' => 'link', 'label' => __('O link leva para')],
             ]],

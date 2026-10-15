@@ -7,6 +7,8 @@ return [
     'Fatos curtos separados por ·, por exemplo: PHP 8.2 · MySQL · MIT' => 'Short facts separated by ·, for example: PHP 8.2 · MySQL · MIT',
     'Para desenvolvedores' => 'For developers',
     'Exemplo de código' => 'Code sample',
+    'ou headless, a partir de Next.js, Astro ou um aplicativo' => 'or headless, from Next.js, Astro or an app',
+    'Em branco: usa o exemplo do tema. Alguns servidores recusam o envio de código PHP dentro de um formulário.' => 'Empty: uses the theme\'s own sample. Some servers refuse a form that carries PHP code.',
     'Texto do link' => 'Link text',
     'A promessa' => 'The promise',
     'Garantias' => 'Guarantees',

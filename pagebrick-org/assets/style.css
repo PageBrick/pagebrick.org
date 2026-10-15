@@ -194,6 +194,11 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
 .hero .facts { flex-wrap: nowrap; justify-content: flex-end; margin: 0; }
 .hero .facts span { border-radius: 6px; font-size: .75rem; }
 
+/* The motto above the headline: a little brick, the phrase, and the song's title in orange (it is always English: lang=en in the markup). */
+.motto { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 0 0 20px; color: #cfcfcf; font: 500 .875rem/1.4 var(--mono); letter-spacing: .01em; }
+.motto::before { content: ""; flex: none; width: 20px; height: 11px; margin-right: 4px; border-radius: 2px; background: var(--orange); box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18); }
+.motto em { font-style: normal; color: var(--orange-on-dark); }
+
 /* A short announcement above the headline: an outlined tag with an orange dot. */
 .badge { margin: 0 0 24px; }
 .badge a, .badge > span { display: inline-flex; align-items: center; gap: 9px; padding: 6px 14px 6px 11px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 6px;
@@ -606,3 +611,20 @@ h1 em, h2 em { font-style: normal; color: var(--accent); }
     html { scroll-behavior: auto; }
     * { transition: none !important; animation: none !important; }
 }
+
+/* Sections the client adds in the panel: the core prints plain HTML (core/blocks/*.php) and this is all the style they get. */
+.pb-block { max-width: 1200px; margin: 0 auto; padding: 4rem clamp(20px, 4vw, 40px); }
+.pb-block-text, .pb-block-faq, .pb-block-video { max-width: 780px; }
+.pb-block-image_text { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+.pb-block h2 { margin-bottom: 1.25rem; }
+.pb-cards, .pb-numbers, .pb-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 0; padding: 0; list-style: none; }
+.pb-card img, .pb-gallery img { width: 100%; height: auto; }
+.pb-quote { margin: 1.5rem 0; }
+.pb-number strong { display: block; font: 300 2.6rem/1.1 var(--serif); color: var(--orange-ink); }
+.pb-faq-item { padding: .75rem 0; border-top: 1px solid var(--line-strong); }
+.pb-faq-item summary { cursor: pointer; font-weight: 600; }
+.pb-block-cta { max-width: none; background: var(--orange); color: var(--on-orange); text-align: center; }
+.pb-block-cta h2 { color: inherit; }
+.pb-button { display: inline-block; padding: .7rem 1.2rem; background: var(--ink); color: #fff; font-weight: 600; text-decoration: none; }
+.pb-video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; }
+@media (max-width: 800px) { .pb-block-image_text { grid-template-columns: 1fr; } }

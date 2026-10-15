@@ -98,6 +98,7 @@ return [
     'A página inicial já está no ar' => 'La página de inicio ya está en línea',
     'Um legionário romano usando o painel do PageBrick num notebook' => 'Un legionario romano usando el panel de PageBrick en un portátil',
     'Todas as páginas conferidas' => 'Todas las páginas revisadas',
+    'Página por página.' => 'Página a página.',
     'Nenhuma deu erro' => 'Ninguna falló',
     'Voltou sozinho' => 'Volvió sola',
     'Quando algo quebra' => 'Cuando algo se rompe',

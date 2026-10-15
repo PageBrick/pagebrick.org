@@ -43,6 +43,8 @@ $simulator = [
                     <?php endif ?>
                 </p>
             <?php endif ?>
+            <?php // The motto is a wink at a song about bricks: its title stays in English whatever the language of the site (only the phrase before it is translated). ?>
+            <p class="motto intro" style="--i: 0"><span><?= e(__('Página por página.')) ?></span> <em lang="en">Another Brick in the Wall.</em></p>
             <h1 class="intro" style="--i: 0"><?= pborg_em($hero->title) ?></h1>
             <?php if (!$hero->text->isEmpty()): ?><p class="lead intro" style="--i: 1"><?= $hero->text ?></p><?php endif ?>
             <div class="hero-row">
@@ -242,5 +244,5 @@ $simulator = [
 <?php $parts['cta'] = ob_get_clean() ?>
 
 <?php foreach (pborg_order($page, ['services', 'promise', 'spotlight', 'numbers', 'install', 'plugins', 'cta']) as $name): ?>
-<?= pborg_section($name, $parts[$name] ?? '') ?>
+<?= pborg_section($name, str_starts_with($name, 'block-') ? pborg_block($page, $name) : ($parts[$name] ?? '')) ?>
 <?php endforeach ?>

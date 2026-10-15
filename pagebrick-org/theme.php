@@ -11,8 +11,10 @@ $items = [
 
 return [
     'templates' => [
-        // The sections after the hero can be put in any order in the panel (PageBrick 1.3+); 'plugins' is where plugins add theirs.
-        'home' => ['sections' => ['services', 'promise', 'spotlight', 'numbers', 'install', 'plugins', 'cta'], 'fields' => [
+        // The sections after the hero can be put in any order in the panel (PageBrick 1.3+); 'plugins' is where plugins add theirs. A name with a kind
+        // ('services' => 'cards') says the section is the same as that kind of piece, so the client can duplicate it; 'blocks' lets the client add pieces
+        // (text, photo with text, cards...) among the sections, drawn by the core as plain HTML (templates/blocks/ of this theme would replace them).
+        'home' => ['sections' => ['services' => 'cards', 'promise', 'spotlight', 'numbers' => 'numbers', 'install', 'plugins', 'cta' => 'cta'], 'blocks' => true, 'fields' => [
             'hero_secondary_label' => ['type' => 'text', 'label' => __('Texto do segundo botão do destaque')],
             'hero_secondary_link' => ['type' => 'link', 'label' => __('O segundo botão leva para')],
             'hero_button_hover' => ['type' => 'text', 'label' => __('Texto do botão do destaque ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
@@ -50,6 +52,7 @@ return [
             'cta_secondary_label' => ['type' => 'text', 'label' => __('Texto do segundo botão da chamada final')],
             'cta_secondary_link' => ['type' => 'link', 'label' => __('O segundo botão da chamada final leva para')],
         ]],
+        'page' => ['sections' => ['content'], 'blocks' => true],
         'services' => ['fields' => [
             'cta_button_hover' => ['type' => 'text', 'label' => __('Texto do botão da chamada final ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],
         ]],

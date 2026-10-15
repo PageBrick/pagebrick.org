@@ -98,6 +98,7 @@ return [
     'A página inicial já está no ar' => 'The home page is live',
     'Um legionário romano usando o painel do PageBrick num notebook' => 'A Roman legionary using the PageBrick panel on a laptop',
     'Todas as páginas conferidas' => 'Every page checked',
+    'Página por página.' => 'Page by page.',
     'Nenhuma deu erro' => 'None failed',
     'Voltou sozinho' => 'Rolled back by itself',
     'Quando algo quebra' => 'When something breaks',

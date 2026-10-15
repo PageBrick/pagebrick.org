@@ -145,6 +145,12 @@ function pborg_order(PbGroup $page, array $names): array
     return method_exists($page, 'order') ? $page->order($names) : $names;
 }
 
+/** A piece the client added (PageBrick 1.3+; older versions never ask for one). */
+function pborg_block(PbGroup $page, string $section): string
+{
+    return function_exists('pb_block') ? pb_block($page, $section) : '';
+}
+
 /** A section of the page, marked while the client edits it in the panel (PageBrick 1.3+). */
 function pborg_section(string $name, string $html): string
 {

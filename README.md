@@ -33,7 +33,7 @@ Para o painel em português: Minha conta (seu nome no topo) → Idioma do painel
 Os textos estão em `demo.php` e podem ser mudados depois no painel. Confira principalmente:
 
 - **Features**: o que o CMS oferece, em cards que giram.
-- **Rodapé**: a assinatura "Mantido pela" (com o lobo da Alcateia Digital) abre alcateia.digital em outra aba, com `?utm=pagebrick.org`. O nome da empresa também aparece na política de privacidade.
+- **Rodapé**: a assinatura "Mantido pela" (com o lobo da Alcateia Digital) abre alcateia.digital em outra aba, com `?utm_source=pagebrick.org`. O nome da empresa também aparece na política de privacidade.
 - **Privacy policy**: diz quem é o responsável pelos dados, que o site não usa cookies nem ferramentas de rastreamento e que as mensagens do formulário são apagadas depois de 12 meses (a opção padrão do plugin de contato).
 - **Contact**: o formulário manda as mensagens para o e-mail do administrador.
 

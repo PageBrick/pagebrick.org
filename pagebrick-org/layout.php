@@ -80,7 +80,7 @@ $download = $site->project->download->url(); // the page with the download butto
         </div>
         <div class="footer-base">
             <span><span>© <?= date('Y') ?> <?= $siteName ?></span><?php if ($site->footer->credit->raw() !== 'hide'): ?><span><?= e(__('Feito com PageBrick')) ?></span><?php endif ?></span>
-            <a class="maintainer" href="https://alcateia.digital/?utm=pagebrick.org" target="_blank" rel="noopener">
+            <a class="maintainer" href="https://alcateia.digital/?utm_source=pagebrick.org" target="_blank" rel="noopener">
                 <span><?= e(__('Mantido pela')) ?></span>
                 <img src="<?= e(pb_theme_url('assets/alcateia-lobo.svg')) ?>" alt="Alcateia Digital" width="22" height="22">
                 <span class="sr-only"><?= e(__('(abre em nova aba)')) ?></span>

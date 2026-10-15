@@ -11,7 +11,8 @@ $items = [
 
 return [
     'templates' => [
-        'home' => ['fields' => [
+        // The sections after the hero can be put in any order in the panel (PageBrick 1.3+); 'plugins' is where plugins add theirs.
+        'home' => ['sections' => ['services', 'promise', 'spotlight', 'numbers', 'install', 'plugins', 'cta'], 'fields' => [
             'hero_secondary_label' => ['type' => 'text', 'label' => __('Texto do segundo botão do destaque')],
             'hero_secondary_link' => ['type' => 'link', 'label' => __('O segundo botão leva para')],
             'hero_button_hover' => ['type' => 'text', 'label' => __('Texto do botão do destaque ao passar o mouse'), 'help' => __('Aparece quando a pessoa passa o mouse no botão. Em branco: repete o texto do botão.')],

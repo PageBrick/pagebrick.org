@@ -138,3 +138,15 @@ function pborg_shine(): string
 {
     return '<span class="shine" aria-hidden="true"></span>';
 }
+
+/** The sections of the home page after the hero, in the order the client chose (PageBrick 1.3+); the theme's own order on an older one. */
+function pborg_order(PbGroup $page, array $names): array
+{
+    return method_exists($page, 'order') ? $page->order($names) : $names;
+}
+
+/** A section of the page, marked while the client edits it in the panel (PageBrick 1.3+). */
+function pborg_section(string $name, string $html): string
+{
+    return function_exists('pb_section') ? pb_section($name, $html) : $html;
+}

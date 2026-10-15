@@ -14,6 +14,7 @@ $promise = $page->promise;
 $numbers = $page->numbers;
 $install = $page->install;
 $cta = $page->cta;
+$parts = []; // the sections after the hero, printed at the end in the order chosen in the panel
 $release = pborg_release();
 $download = $site->project->download->url();
 $code = ['pt-BR' => 'pt', 'es' => 'es'][pb_content_locale()] ?? 'en'; // the pictures with the panel on the laptop exist in three languages
@@ -28,6 +29,7 @@ $simulator = [
     'failed' => __('A página "Sobre" deu erro'),
 ];
 ?>
+<?php ob_start() ?>
 <?php if ($hero->visible()): ?>
 <section class="hero band-dark guides">
     <div class="wrap hero-top">
@@ -66,7 +68,9 @@ $simulator = [
     </div>
 </section>
 <?php endif ?>
+<?= pborg_section('hero', ob_get_clean()) ?>
 
+<?php ob_start() ?>
 <?php if ($owners->visible()): ?>
 <section class="split-band band-orange" id="owners">
     <div class="split-image" aria-hidden="true">
@@ -84,7 +88,9 @@ $simulator = [
     </div>
 </section>
 <?php endif ?>
+<?php $parts['services'] = ob_get_clean() ?>
 
+<?php ob_start() ?>
 <?php if ($promise->visible()): ?>
 <section class="section wall" id="promise">
     <div class="wrap">
@@ -114,7 +120,9 @@ $simulator = [
     </div>
 </section>
 <?php endif ?>
+<?php $parts['promise'] = ob_get_clean() ?>
 
+<?php ob_start() ?>
 <?php if ($spot->visible() && !$spot->title->isEmpty()): ?>
 <section class="section" id="spotlight">
     <div class="wrap">
@@ -161,7 +169,9 @@ $simulator = [
     </div>
 </section>
 <?php endif ?>
+<?php $parts['spotlight'] = ob_get_clean() ?>
 
+<?php ob_start() ?>
 <?php if ($numbers->visible() && !$numbers->title->isEmpty() && count($numbers->items)): ?>
 <section class="section stats wall" id="numbers">
     <div class="wrap stats-row" data-reveal>
@@ -174,7 +184,9 @@ $simulator = [
     </div>
 </section>
 <?php endif ?>
+<?php $parts['numbers'] = ob_get_clean() ?>
 
+<?php ob_start() ?>
 <?php if ($install->visible()): ?>
 <section class="section" id="install">
     <div class="wrap">
@@ -199,9 +211,11 @@ $simulator = [
     </div>
 </section>
 <?php endif ?>
+<?php $parts['install'] = ob_get_clean() ?>
 
-<?= pb_slot('home') ?>
+<?php $parts['plugins'] = pb_slot('home') ?>
 
+<?php ob_start() ?>
 <?php if ($cta->visible()): ?>
 <section class="closing has-stage">
     <div class="wrap closing-row">
@@ -225,3 +239,8 @@ $simulator = [
     </div>
 </section>
 <?php endif ?>
+<?php $parts['cta'] = ob_get_clean() ?>
+
+<?php foreach (pborg_order($page, ['services', 'promise', 'spotlight', 'numbers', 'install', 'plugins', 'cta']) as $name): ?>
+<?= pborg_section($name, $parts[$name] ?? '') ?>
+<?php endforeach ?>

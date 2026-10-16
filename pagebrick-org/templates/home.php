@@ -63,7 +63,7 @@ $simulator = [
     <div class="hero-geo" aria-hidden="true"><svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="50"/><line x1="-100" y1="-100" x2="200" y2="200"/><line x1="200" y1="-100" x2="-100" y2="200"/></svg><i class="hline"></i></div>
     <div class="wrap">
         <div class="stage intro" style="--i: 2">
-            <img class="figure" src="<?= e(pb_theme_url("assets/hero-$code.webp")) ?>" alt="<?= e(__('Um legionário romano usando o painel do PageBrick num notebook')) ?>" width="1400" height="1045">
+            <?= pborg_img("hero-$code", 1400, 1045, __('Um legionário romano usando o painel do PageBrick num notebook'), '(min-width: 1060px) 980px, 94vw', 'class="figure" fetchpriority="high" decoding="async"') ?>
             <p class="pop pop-a" aria-hidden="true"><strong><?= e(__('Cópia guardada antes de atualizar')) ?></strong><span><?= e(__('O site continua no ar')) ?></span></p>
             <p class="pop pop-b" aria-hidden="true"><strong><?= e(__('Todas as páginas conferidas')) ?></strong><span><?= e(__('Nenhuma deu erro')) ?></span></p>
         </div>
@@ -76,7 +76,7 @@ $simulator = [
 <?php if ($owners->visible()): ?>
 <section class="split-band band-orange" id="owners">
     <div class="split-image" aria-hidden="true">
-        <img class="columns" src="<?= e(pb_theme_url('assets/columns.webp')) ?>" alt="" width="986" height="1480" loading="lazy">
+        <?= pborg_img('columns', 986, 1480, '', '(max-width: 700px) 240px, 440px', 'class="columns" loading="lazy" decoding="async"') ?>
         <p class="float-card"><strong><?= e(__('Página publicada')) ?></strong><span><?= e(__('A página inicial já está no ar')) ?></span></p>
     </div>
     <div class="split-text" data-reveal>
@@ -235,7 +235,7 @@ $simulator = [
             </div>
         </div>
         <div class="closing-stage" aria-hidden="true" data-reveal>
-            <img class="figure" src="<?= e(pb_theme_url("assets/closing-$code.webp")) ?>" alt="" width="1400" height="1045" loading="lazy">
+            <?= pborg_img("closing-$code", 1400, 1045, '', '(min-width: 1060px) 980px, 94vw', 'class="figure" loading="lazy" decoding="async"') ?>
             <p class="pop pop-d"><strong><?= e(__('Licença MIT')) ?></strong><span><?= e(__('Use em qualquer site')) ?></span></p>
             <p class="pop pop-e"><strong><?= e(__('Sem cadastro')) ?></strong><span><?= e(__('Sem chave de licença')) ?></span></p>
         </div>

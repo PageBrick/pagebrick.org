@@ -37,6 +37,14 @@ Os textos estão em `demo.php` e podem ser mudados depois no painel. Confira pri
 - **Privacy policy**: diz quem é o responsável pelos dados, que o site não usa cookies nem ferramentas de rastreamento e que as mensagens do formulário são apagadas depois de 12 meses (a opção padrão do plugin de contato).
 - **Contact**: o formulário manda as mensagens para o e-mail do administrador.
 
+## Velocidade
+
+O que o PageSpeed Insights apontou foi resolvido no tema (versão 2.2.0), sem mudar o visual:
+
+- **Figuras em vários tamanhos.** O legionário, o filósofo e a colunata têm cópias menores (`hero-en-480.webp`, `-800`, `columns-493.webp`…), e `pborg_img()` monta o `srcset`: o celular baixa 28 KB em vez de 165 KB. Depois de trocar uma figura, rode `tools/pictures.php` (o comando está no começo do arquivo). `tests/img.php` confere que as cópias existem.
+- **A figura do topo aparece já na primeira pintura.** Ela tem `fetchpriority="high"` e a entrada dela só sobe, sem esmaecer e sem esperar (antes, o esmaecer atrasava a pintura da maior coisa da primeira tela em cerca de um segundo).
+- **Fontes pedidas junto com a página** (`rel="preload"`, no mesmo endereço que o CSS usa, sem `?v=`). A Newsreader foi estreitada para os pesos 300 a 500 e os tamanhos ópticos 24 a 72, que são os usados (132 KB viraram 86 KB): `assets/fonts/FONTS.txt` diz como.
+
 ## Atualizar o tema
 
 Depois de mudar arquivos em `pagebrick-org/`, aumente a versão em `theme.json`, gere o .zip de novo e envie em Settings (gear icon) → Themes → Upload theme. O tema anterior fica guardado nos backups, e o botão "Roll back" volta para ele.

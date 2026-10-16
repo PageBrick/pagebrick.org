@@ -12,6 +12,9 @@ $download = $site->project->download->url(); // the page with the download butto
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#2b2b2d">
+<?php foreach (['newsreader', 'inter-tight'] as $font): // the same address the style sheet asks for (no ?v=), or the browser would download each twice ?>
+<link rel="preload" href="<?= e(strtok(pb_theme_url("assets/fonts/$font.woff2"), '?')) ?>" as="font" type="font/woff2" crossorigin>
+<?php endforeach ?>
 <link rel="stylesheet" href="<?= e(pb_theme_url('assets/style.css')) ?>">
 <script>document.documentElement.classList.add('js')</script>
 <?= pb_head(['image' => $site->identity->share_image->url()]) ?>

@@ -133,6 +133,23 @@ function pborg_icon(string $name): string
     return '<svg viewBox="0 0 24 24" aria-hidden="true">' . ($paths[$name] ?? $paths['brick']) . '</svg>';
 }
 
+/**
+ * An <img> of one of the theme's big pictures with the smaller copies it has (name-480.webp, name-800.webp, made by tools/pictures.php): a phone downloads the one
+ * that fits instead of the 1400 px original. $attributes goes in as it is, already escaped (class, loading, fetchpriority…).
+ */
+function pborg_img(string $name, int $width, int $height, string $alt, string $sizes, string $attributes = ''): string
+{
+    $set = [];
+    foreach ([480, 493, 800] as $copy) {
+        if ($copy < $width && is_file(pb_theme()['dir'] . "/assets/$name-$copy.webp")) {
+            $set[] = e(pb_theme_url("assets/$name-$copy.webp")) . " {$copy}w";
+        }
+    }
+    $set[] = e(pb_theme_url("assets/$name.webp")) . " {$width}w";
+    return '<img ' . trim($attributes) . ' src="' . e(pb_theme_url("assets/$name.webp")) . '" srcset="' . implode(', ', $set) . '" sizes="' . e($sizes) . '" alt="' . e($alt)
+        . '" width="' . $width . '" height="' . $height . '">';
+}
+
 /** The light sweep of a "command" control. */
 function pborg_shine(): string
 {

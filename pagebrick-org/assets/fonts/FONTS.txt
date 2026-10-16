@@ -1,0 +1,9 @@
+Fonts of the pagebrick.org theme (both under the SIL Open Font License, see OFL.txt)
+
+inter-tight.woff2
+  Inter Tight, variable, Latin: as it comes from its authors.
+
+newsreader.woff2
+  Newsreader, variable, Latin. Narrowed to what the theme uses: weights 300 to 500 (the titles and the big numbers are weight 300) and optical sizes 24 to 72
+  (they are drawn at 24 px and more). 132 KB became 86 KB. Made with fontTools:
+    python -m fontTools.varLib.instancer newsreader-original.woff2 wght=300:500 opsz=24:72 -o newsreader.woff2
